@@ -1,34 +1,4 @@
 // Alias: ar
-/* 
- * 1st release
- * TODO start with deleting aL  prefix
- * ٌTODO ==> وويل ففارس  priority before suffixes 
- طالبات نسنعين   *
- * جمع مذكر السالم والمضار ناذرا ماتكون جذع اقل من 4
- * TODO make suffixes to set/unset is_noun, is_verb
- * // don't stem if it contains a number
- * further work:
- * Greedy for more suffixes between nouns and verbs
- * TODO define regions before start stemming, test everything then perform stemming,  make condition on sizes
- * TODO black list: Ignore some predefined words
- * TODO remove feminine marks
- * TODO remove plural infixes
- * TODO consider vocalization
- * TODO detect and process_vocalized texts
- * TODO guess pattern
- * TODO verb conjugation prefixess: a, t, y, n
- * TODO improve performance
- * TODO rename routines to etter-explaining names
- * TODO don't filter rare combinaitions
- * TODO Alef tanween
- * TODO idgham
- * TODO add conditons: probably noun or verb
- * 
- * known issues:
- * BUG Prefix confusion
- * BUG 2-letters words 
- 
-*/
 
 stringescapes { }
 
