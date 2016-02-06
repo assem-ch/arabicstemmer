@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>QUnit tests for all stemmers</title>
+	<link rel="stylesheet" href="qunit/qunit.css">
+	<script src="qunit/qunit.js"></script>
+	<script src="blanket/blanket.js"></script>
+	<script>
+		QUnit.config.hidepassed = true;
+		if (window.callPhantom || window._phantom) {
+			blanket.options('reporter', 'blanket/lcov_reporter.js');
+			blanket.options('reporter_options', { toHTML:false, strip_file_name:true });
+			QUnit.done(function() {
+				alert(JSON.stringify(["qunit.report", window._$blanket_LCOV]));
+			});
+		}
+	</script>
+	<script src="../lib/snowball.babel.js" data-cover></script>
+	<script src="js/arabicTests.js"></script>
+	<script src="js/armenianTests.js"></script>
+	<script src="js/basqueTests.js"></script>
+	<script src="js/catalanTests.js"></script>
+	<script src="js/czechTests.js"></script>
+	<script src="js/danishTests.js"></script>
+	<script src="js/dutchTests.js"></script>
+	<script src="js/englishTests.js"></script>
+	<script src="js/finnishTests.js"></script>
+	<script src="js/frenchTests.js"></script>
+	<script src="js/germanTests.js"></script>
+	<script src="js/hungarianTests.js"></script>
+	<script src="js/italianTests.js"></script>
+	<script src="js/irishTests.js"></script>
+	<script src="js/norwegianTests.js"></script>
+	<script src="js/porterTests.js"></script>
+	<script src="js/portugueseTests.js"></script>
+	<script src="js/romanianTests.js"></script>
+	<script src="js/russianTests.js"></script>
+	<script src="js/spanishTests.js"></script>
+	<script src="js/sloveneTests.js"></script>
+	<script src="js/swedishTests.js"></script>
+	<script src="js/tamilTests.js"></script>
+	<script src="js/turkishTests.js"></script>
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="qunit-fixture"></div>
+</body>
+</html>
