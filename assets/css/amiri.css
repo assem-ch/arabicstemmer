@@ -1,0 +1,8 @@
+@import url(http://fonts.googleapis.com/css?family=Amiri:400,700&subset=latin,arabic);
+@import url(http://fonts.googleapis.com/css?family=Amiri:400italic&subset=latin);
+
+body {
+   font-family: Amiri, serif;
+   font-size: 12pt;
+   text-align: justify;
+}

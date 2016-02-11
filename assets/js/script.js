@@ -72,7 +72,7 @@ var nameof="";
 				if (xhr.status === 200) {
 					$("#drop-box").html("<p> File Uploaded. Select more files</p>");
           testStemmertxt = snowballFactory.newStemmer("arabic");
-          txtr = readTextFile("http://arabicstemmer.com/tmp_file_txt/"+nameof);
+          txtr = readTextFile("http://localhost/snow/tmp_file_txt/"+nameof);
           list = txtr.split(" ");
           list.forEach(function(entry) {
              resulttxt += "<li><b>" + testStemmertxt.stem(entry) + "</b></li>";
