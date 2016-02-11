@@ -37,6 +37,7 @@
 				 list.forEach(function(entry) {
 					 	result += "<li><b>" + Stem(lng, entry) + "</b></li>";
 				});
+				document.getElementById("sh").style.visibility = 'visible';
 				document.getElementById("result").innerHTML = result;
 			 };
 		}
@@ -57,10 +58,12 @@
 							<button type="button" class='btn btn-conf btn-green' onclick="document.getElementById('txtfile').click(); return false;">Uplaod</button>
 							<input class='btn btn-conf btn-green' id="txtfile" type="file" name="file" style="visibility: hidden;">
 							<div id="drop-box"></div>
+							<div id="sh">
 							<h2>Result: </h2>
 							<div class="boxeds well">
 								<ul id="result"></ul>
 						</div>
+					</div>
 						</div><!--/mt-->
 			 </div>
 		 </div><!--/row-->
