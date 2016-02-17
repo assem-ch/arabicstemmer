@@ -73,11 +73,11 @@ body {
 	clear: both;
 }
 .centered {text-align: center}
-.mt {margin-top: 50px;}
-.mb {margin-bottom: 50px;}
-.mtb {margin-top: 50px; margin-bottom: 50px;}
-.mtb2 { margin-top: 100px; margin-bottom: 100px;}
-.ptb {padding-top: 80px; padding-bottom: 80px;}
+.mt {margin-top: 20px;}
+.mb {margin-bottom: 20px;}
+.mtb {margin-top: 10px; margin-bottom: 10px;}
+.mtb2 { margin-top: 10px; margin-bottom: 10px;}
+.ptb {padding-top: 30px; padding-bottom: 30px;}
 
 .clear {
 	clear: both;
@@ -376,21 +376,21 @@ ul {
 
 /* FOOTER */
 #f {
-	padding-top: 60px;
-	padding-bottom: 60px;
+	padding-top: 20px;
+	padding-bottom: 25px;
 	background: #2f2f2f;
 	color: white;
   clear:both;
 }
 
 #f h5 {
-	margin-top: 30px;
+	margin-top: 10px;
 	letter-spacing: 1px;
 }
 
 #f i {
 	font-size: 45px;
-	margin: 15px;
+	margin: 10px;
 }
 
 #f a {
