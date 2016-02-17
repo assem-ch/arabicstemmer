@@ -26,7 +26,7 @@
   font-size: 1.5em;
   }
   #sh {
-    visibility: hidden;}
+    display:none;}
 
 /* Import fonts */
 
