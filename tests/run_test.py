@@ -6,12 +6,12 @@ script for comparing arabic stemmer output
 import os
 
 
-os.system("make -C ../snowball/")
-os.system("time ../snowball/stemwords -l ar -i tests/wordlist.in -o wordlist.out")
+os.system("make -C ../../snowball/")
+os.system("time ../../snowball/stemwords -l ar -i voc.txt -o output.txt")
 
-f = open("tests/wordlist.out")
-g = open("tests/wordlist.in")
-h = open("tests/wordlist.grouping_effect", "w")
+f = open("output.txt")
+g = open("voc.txt")
+h = open("grouping.txt", "w")
 
 line1 = f.readline()
 line2 = g.readline()
