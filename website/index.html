@@ -87,11 +87,11 @@ window.onload = function() {
 						<p> Welcome to the Arabic Light Stemming Algorithm made for <a href="http://snowballstem.org/" target="_blank">Snowball</a>, it's fast and can be generated in many programming languages (through Snowball).</p>
 	
 		  <h2>Demo</h2>
-            <p>Type some Arabic text and press <b>"Stem!"</b> button or <b>"Upload!"</b> to upload a <b>".txt"</b> file</p>
+            <p>Type some Arabic text and press <b>"Stem!"</b> button or <b>"File"</b> to read from a local <b>".txt"</b> file</p>
             <div class="mtb">
 							<input id="query" type="text" value="مكتبة لمعالجة الكلمات العربية  وتجذيعها">
 							<button type="button" class='btn btn-conf btn-success' onclick=" printstem('arabic',  document.getElementById('query').value);"><noscript> <span style="color:red;">Enable JavaScript ! </span></noscript>Stem!</button>
-							<button  class="btn btn-conf btn-info" onclick="document.getElementById('fileInput').click(); return false;">Upload</button>
+							<button  class="btn btn-conf btn-info" onclick="document.getElementById('fileInput').click(); return false;">File</button>
 							
 							<input type="file" id="fileInput" style="display:none" ></input>
 							
