@@ -330,6 +330,12 @@ input {
 	font-weight: 700;
 }
 
+.tooltip-inner {
+ font-size: 18px;
+ background-color: white;
+ color: red;
+ border: solid 1px #ccc;
+}
 
 /* SPONSORS */
 #g {

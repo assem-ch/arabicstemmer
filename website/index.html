@@ -35,10 +35,14 @@
 				 list = word.split(" ");
 				 var result="";
 				 list.forEach(function(entry) {
-					 	result += "<li><b>" + Stem(lng, entry) + "</b></li>";
+					 	if(entry)
+					 		 result +=  " <span class='text-success' data-toggle='tooltip'  data-placement='bottom' title='"+ entry+"'>" + Stem(lng, entry) + "</span> ";
 				});
 				document.getElementById("sh").style.display = 'block';
 				document.getElementById("result").innerHTML = result;
+				    $(function () {
+      			  $("[data-toggle='tooltip']").tooltip()
+    			});
 			 };
 		}
 	)();
@@ -177,7 +181,8 @@ stemmer.stemWord("فسميتموها");
 		<script src="assets/js/script.js"></script>
 		<script src="assets/js/run_prettify.js"></script>
 
-		<script>
+
+<script>
   		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
