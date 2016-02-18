@@ -49,6 +49,34 @@
 
 
 	</script>
+
+	<script>
+window.onload = function() {
+        var fileInput = document.getElementById('fileInput');
+        var fileDisplayArea = document.getElementById('result');
+
+        fileInput.addEventListener('change', function(e) {
+            var file = fileInput.files[0];
+            var textType = /text.*/;
+
+            if (file.type.match(textType)) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+
+
+                    printstem('arabic',reader.result)	;
+                    document.getElementById("fileInput").value = "";
+                }
+
+                reader.readAsText(file);    
+            } else {
+                fileDisplayArea.innerText = "File not supported!"
+            }
+        });
+}
+
+</script>
 </head>
 <body>
 	<div class="container" id="wrap">
@@ -63,16 +91,16 @@
             <div class="mtb">
 							<input id="query" type="text" value="مكتبة لمعالجة الكلمات العربية  وتجذيعها">
 							<button type="button" class='btn btn-conf btn-success' onclick=" printstem('arabic',  document.getElementById('query').value);"><noscript> <span style="color:red;">Enable JavaScript ! </span></noscript>Stem!</button>
-							<button type="button" class='btn btn-conf btn-info' onclick="document.getElementById('txtfile').click(); return false;">Upload</button>
+							<button  class="btn btn-conf btn-info" onclick="document.getElementById('fileInput').click(); return false;">Upload</button>
 							
+							<input type="file" id="fileInput" style="display:none" ></input>
 							
 							<div id="sh">
 							<!--<h3>Result: </h3>-->
 							<div class="well centered">
 								<ul id="result"></ul>
 							</div>
-						    <input class='btn btn-conf btn-green' id="txtfile" type="file" name="file" style="display: none;">	
-						    <div id="drop-box"></div>
+
 					</div>
 						</div><!--/mt-->
 
@@ -157,6 +185,8 @@ stemmer.stemWord("فسميتموها");
 
 
      </ul>
+
+
 			 </div>
 
 
@@ -181,7 +211,6 @@ stemmer.stemWord("فسميتموها");
 		<script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/retina-1.1.0.js"></script>
-		<script src="assets/js/script.js"></script>
 		<script src="assets/js/run_prettify.js"></script>
 
 
