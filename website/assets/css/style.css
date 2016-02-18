@@ -169,10 +169,7 @@ input {
 .btn-download {
 	background: #FDE3A7;
 }
-ul
-{
-    list-style-type: none;
-}
+
 
 .boxeds {
   border: 1px solid #03C9A9 ;
@@ -180,10 +177,6 @@ ul
   padding-top: 10%;
   height: 50%;
   /*min-height: 100%;*/
-}
-ul li{
-  display: inline;
-  margin-right: 1%;
 }
 
 /*Buttons Configuration */
@@ -337,9 +330,6 @@ ul li{
 	font-weight: 700;
 }
 
-ul {
-	list-style-type: none;
-}
 
 /* SPONSORS */
 #g {
