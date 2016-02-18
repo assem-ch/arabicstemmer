@@ -34,10 +34,25 @@
 			return function(lng, word){
 				 list = word.split(" ");
 				 var result="";
-				 list.forEach(function(entry) {
-					 	if(entry)
-					 		 result +=  " <span class='text-success' data-toggle='tooltip'  data-placement='bottom' title='"+ entry+"'>" + Stem(lng, entry) + "</span> ";
+				 var stats=""
+				 var cpt=0;
+				 var stem="";
+				 var stems=[];
+			list.forEach(function(entry) {
+					 	if(entry)  {
+					 		cpt++;
+						 	stem = Stem(lng, entry);
+						 	if (!(stem in stems)) stems[stem]=[entry];
+						 	else if (stems[stem].indexOf(entry) == -1) stems[stem].push(entry);
+					 	}
+			});
+				stats+=" <span class='label label-primary'>words: " + cpt + "</span> ";
+				stats+="<span class='label label-primary'>stems: " + Object.keys(stems).length + "</span> ";
+				stats+="<span class='label label-primary'>ratio: " + Math.round(list.length*100/Object.keys(stems).length)/100 + "</span> ";
+				 Object.keys(stems).forEach(function(entry) {
+					 	result +=  " <span class='text-success' data-toggle='tooltip'  data-placement='bottom' title='"+ stems[entry].join(" | ") +"'>" +entry+ "</span> ";
 				});
+				document.getElementById("stats").innerHTML  = stats;
 				document.getElementById("sh").style.display = 'block';
 				document.getElementById("result").innerHTML = result;
 				    $(function () {
@@ -98,6 +113,8 @@ window.onload = function() {
 							<div id="sh">
 							<!--<h3>Result: </h3>-->
 							<div class="well centered">
+								<div><span class="label label-default">Stats</span><span id="stats"></span></div>
+								<br/>
 								<ul id="result"></ul>
 							</div>
 
@@ -180,11 +197,17 @@ stemmer.stemWord("فسميتموها");
      <li>
      	<h4><a href="#">Azeddine Islam Mennouchi</a> <small> Website</small></h4>
      </li>
-
-
-
-
      </ul>
+
+     <h2>Contribute</h2>
+     
+	 <p> If you have a bug or suggestion, please consider to submit a report <a href="https://github.com/assem-ch/arabicstemmer/issues/new">here</a>. Open issues are listed <a href="https://github.com/assem-ch/arabicstemmer/issues"> here</a>. 
+     </p>
+
+
+
+
+     
 
 
 			 </div>

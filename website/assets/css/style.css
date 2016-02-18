@@ -335,6 +335,8 @@ input {
  background-color: white;
  color: red;
  border: solid 1px #ccc;
+ white-space:pre-wrap;
+ max-width:300px;
 }
 
 /* SPONSORS */
