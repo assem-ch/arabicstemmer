@@ -1,1 +1,0 @@
-# Snowball-Arabic-Stemmer
