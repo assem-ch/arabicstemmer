@@ -1,5 +1,3 @@
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
         define('snowballFactory', ['exports'], factory);
@@ -13,6 +11,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         global.snowballFactory = mod.exports;
     }
 })(this, function (exports) {
+    /*!
+     * Snowball JavaScript Library v0.6
+     * http://snowball.tartarus.org/
+     * https://github.com/mazko/jssnowball
+     *
+     * Copyright 12.03.2016 16:16:30, Oleg Mazko
+     * http://www.opensource.org/licenses/bsd-license.html
+     */
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -26,12 +32,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
         }
 
-        return call && ((typeof call === 'undefined' ? 'undefined' : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+        return call && (typeof call === "object" || typeof call === "function") ? call : self;
     }
 
     function _inherits(subClass, superClass) {
         if (typeof superClass !== "function" && superClass !== null) {
-            throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : _typeof(superClass)));
+            throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
         }
 
         subClass.prototype = Object.create(superClass && superClass.prototype, {
@@ -148,7 +154,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.length$esjava$0.apply(this, args);
                 }
-
                 return (_get2 = _get(Object.getPrototypeOf(StringBuffer.prototype), 'length', this)).call.apply(_get2, [this].concat(args));
             }
         }, {
@@ -164,7 +169,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 3:
                         return this.replace$esjava$3.apply(this, args);
                 }
-
                 return (_get3 = _get(Object.getPrototypeOf(StringBuffer.prototype), 'replace', this)).call.apply(_get3, [this].concat(args));
             }
         }, {
@@ -180,7 +184,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 2:
                         return this.substring$esjava$2.apply(this, args);
                 }
-
                 return (_get4 = _get(Object.getPrototypeOf(StringBuffer.prototype), 'substring', this)).call.apply(_get4, [this].concat(args));
             }
         }, {
@@ -196,7 +199,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 1:
                         return this.charAt$esjava$1.apply(this, args);
                 }
-
                 return (_get5 = _get(Object.getPrototypeOf(StringBuffer.prototype), 'charAt', this)).call.apply(_get5, [this].concat(args));
             }
         }, {
@@ -212,7 +214,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 2:
                         return this.subSequence$esjava$2.apply(this, args);
                 }
-
                 return (_get6 = _get(Object.getPrototypeOf(StringBuffer.prototype), 'subSequence', this)).call.apply(_get6, [this].concat(args));
             }
         }, {
@@ -228,7 +229,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.toString$esjava$0.apply(this, args);
                 }
-
                 return (_get7 = _get(Object.getPrototypeOf(StringBuffer.prototype), 'toString', this)).call.apply(_get7, [this].concat(args));
             }
         }, {
@@ -262,12 +262,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             value: function toCharArray$esjava$1(s) {
                 var sLength = s.length;
                 var charArr = new Array(sLength);
-
                 for (var i = 0; i < sLength; i++) {
                     charArr[i] = s.charCodeAt(i);
-                }
-
-                return charArr;
+                }return charArr;
             }
         }]);
 
@@ -378,19 +375,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             value: function out_grouping$esjava$3(s, min, max) {
                 if (this.cursor >= this.limit) return false;
                 var ch = this.current.charAt(this.cursor);
-
                 if (ch > max || ch < min) {
                     this.cursor++;
                     return true;
                 }
-
                 ch -= min;
-
                 if ((s[ch >> 3] & 0X1 << (ch & 0X7)) === 0) {
                     this.cursor++;
                     return true;
                 }
-
                 return false;
             }
         }, {
@@ -398,31 +391,25 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             value: function out_grouping_b$esjava$3(s, min, max) {
                 if (this.cursor <= this.limit_backward) return false;
                 var ch = this.current.charAt(this.cursor - 1);
-
                 if (ch > max || ch < min) {
                     this.cursor--;
                     return true;
                 }
-
                 ch -= min;
-
                 if ((s[ch >> 3] & 0X1 << (ch & 0X7)) === 0) {
                     this.cursor--;
                     return true;
                 }
-
                 return false;
             }
         }, {
             key: 'eq_s$esjava$1',
             value: function eq_s$esjava$1(s) {
                 if (this.limit - this.cursor < s.length) return false;
-                var i = undefined;
-
+                var i = void 0;
                 for (i = 0; i !== s.length; i++) {
                     if (this.current.charAt(this.cursor + i) !== s.charCodeAt(i)) return false;
                 }
-
                 this.cursor += s.length;
                 return true;
             }
@@ -430,12 +417,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             key: 'eq_s_b$esjava$1',
             value: function eq_s_b$esjava$1(s) {
                 if (this.cursor - this.limit_backward < s.length) return false;
-                var i = undefined;
-
+                var i = void 0;
                 for (i = 0; i !== s.length; i++) {
                     if (this.current.charAt(this.cursor - s.length + i) !== s.charCodeAt(i)) return false;
                 }
-
                 this.cursor -= s.length;
                 return true;
             }
@@ -449,25 +434,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 var common_i = 0;
                 var common_j = 0;
                 var first_key_inspected = false;
-
                 while (true) {
                     var k = i + (j - i >> 1);
                     var diff = 0;
                     var common = common_i < common_j ? common_i : common_j;
                     var w = v[k];
-                    var i2 = undefined;
-
+                    var i2 = void 0;
                     for (i2 = common; i2 < w.s.length; i2++) {
                         if (c + common === l) {
                             diff = -1;
                             break;
                         }
-
                         diff = this.current.charAt(c + common) - w.s[i2];
                         if (diff !== 0) break;
                         common++;
                     }
-
                     if (diff < 0) {
                         j = k;
                         common_j = common;
@@ -475,7 +456,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         i = k;
                         common_i = common;
                     }
-
                     if (j - i <= 1) {
                         if (i > 0) break;
                         if (j === i) break;
@@ -483,20 +463,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         first_key_inspected = true;
                     }
                 }
-
                 while (true) {
-                    var w = v[i];
-
-                    if (common_i >= w.s.length) {
-                        this.cursor = c + w.s.length;
-                        if (w.method === null) return w.result;
-                        var res = undefined;
-                        res = w.method.call(w.methodobject);
-                        this.cursor = c + w.s.length;
-                        if (res) return w.result;
+                    var _w = v[i];
+                    if (common_i >= _w.s.length) {
+                        this.cursor = c + _w.s.length;
+                        if (_w.method === null) return _w.result;
+                        var res = void 0;
+                        res = _w.method.call(_w.methodobject);
+                        this.cursor = c + _w.s.length;
+                        if (res) return _w.result;
                     }
-
-                    i = w.substring_i;
+                    i = _w.substring_i;
                     if (i < 0) return 0;
                 }
             }
@@ -510,25 +487,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 var common_i = 0;
                 var common_j = 0;
                 var first_key_inspected = false;
-
                 while (true) {
                     var k = i + (j - i >> 1);
                     var diff = 0;
                     var common = common_i < common_j ? common_i : common_j;
                     var w = v[k];
-                    var i2 = undefined;
-
+                    var i2 = void 0;
                     for (i2 = w.s.length - 1 - common; i2 >= 0; i2--) {
                         if (c - common === lb) {
                             diff = -1;
                             break;
                         }
-
                         diff = this.current.charAt(c - 1 - common) - w.s[i2];
                         if (diff !== 0) break;
                         common++;
                     }
-
                     if (diff < 0) {
                         j = k;
                         common_j = common;
@@ -536,7 +509,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         i = k;
                         common_i = common;
                     }
-
                     if (j - i <= 1) {
                         if (i > 0) break;
                         if (j === i) break;
@@ -544,20 +516,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         first_key_inspected = true;
                     }
                 }
-
                 while (true) {
-                    var w = v[i];
-
-                    if (common_i >= w.s.length) {
-                        this.cursor = c - w.s.length;
-                        if (w.method === null) return w.result;
-                        var res = undefined;
-                        res = w.method.call(w.methodobject);
-                        this.cursor = c - w.s.length;
-                        if (res) return w.result;
+                    var _w2 = v[i];
+                    if (common_i >= _w2.s.length) {
+                        this.cursor = c - _w2.s.length;
+                        if (_w2.method === null) return _w2.result;
+                        var res = void 0;
+                        res = _w2.method.call(_w2.methodobject);
+                        this.cursor = c - _w2.s.length;
+                        if (res) return _w2.result;
                     }
-
-                    i = w.substring_i;
+                    i = _w2.substring_i;
                     if (i < 0) return 0;
                 }
             }
@@ -615,7 +584,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 1:
                         return this.setCurrent$esjava$1.apply(this, args);
                 }
-
                 return (_get8 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'setCurrent', this)).call.apply(_get8, [this].concat(args));
             }
         }, {
@@ -631,7 +599,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.getCurrent$esjava$0.apply(this, args);
                 }
-
                 return (_get9 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'getCurrent', this)).call.apply(_get9, [this].concat(args));
             }
         }, {
@@ -647,7 +614,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 3:
                         return this.in_grouping$esjava$3.apply(this, args);
                 }
-
                 return (_get10 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'in_grouping', this)).call.apply(_get10, [this].concat(args));
             }
         }, {
@@ -663,7 +629,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 3:
                         return this.in_grouping_b$esjava$3.apply(this, args);
                 }
-
                 return (_get11 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'in_grouping_b', this)).call.apply(_get11, [this].concat(args));
             }
         }, {
@@ -679,7 +644,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 3:
                         return this.out_grouping$esjava$3.apply(this, args);
                 }
-
                 return (_get12 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'out_grouping', this)).call.apply(_get12, [this].concat(args));
             }
         }, {
@@ -695,7 +659,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 3:
                         return this.out_grouping_b$esjava$3.apply(this, args);
                 }
-
                 return (_get13 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'out_grouping_b', this)).call.apply(_get13, [this].concat(args));
             }
         }, {
@@ -711,7 +674,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 1:
                         return this.eq_s$esjava$1.apply(this, args);
                 }
-
                 return (_get14 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'eq_s', this)).call.apply(_get14, [this].concat(args));
             }
         }, {
@@ -727,7 +689,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 1:
                         return this.eq_s_b$esjava$1.apply(this, args);
                 }
-
                 return (_get15 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'eq_s_b', this)).call.apply(_get15, [this].concat(args));
             }
         }, {
@@ -743,7 +704,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 1:
                         return this.find_among$esjava$1.apply(this, args);
                 }
-
                 return (_get16 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'find_among', this)).call.apply(_get16, [this].concat(args));
             }
         }, {
@@ -759,7 +719,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 1:
                         return this.find_among_b$esjava$1.apply(this, args);
                 }
-
                 return (_get17 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'find_among_b', this)).call.apply(_get17, [this].concat(args));
             }
         }, {
@@ -775,7 +734,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 3:
                         return this.replace_s$esjava$3.apply(this, args);
                 }
-
                 return (_get18 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'replace_s', this)).call.apply(_get18, [this].concat(args));
             }
         }, {
@@ -791,7 +749,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.slice_check$esjava$0.apply(this, args);
                 }
-
                 return (_get19 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'slice_check', this)).call.apply(_get19, [this].concat(args));
             }
         }, {
@@ -807,7 +764,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 1:
                         return this.slice_from$esjava$1.apply(this, args);
                 }
-
                 return (_get20 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'slice_from', this)).call.apply(_get20, [this].concat(args));
             }
         }, {
@@ -823,7 +779,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.slice_del$esjava$0.apply(this, args);
                 }
-
                 return (_get21 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'slice_del', this)).call.apply(_get21, [this].concat(args));
             }
         }, {
@@ -839,7 +794,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 3:
                         return this.insert$esjava$3.apply(this, args);
                 }
-
                 return (_get22 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'insert', this)).call.apply(_get22, [this].concat(args));
             }
         }, {
@@ -855,7 +809,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 1:
                         return this.slice_to$esjava$1.apply(this, args);
                 }
-
                 return (_get23 = _get(Object.getPrototypeOf(SnowballProgram.prototype), 'slice_to', this)).call.apply(_get23, [this].concat(args));
             }
         }, {
@@ -938,7 +891,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get24 = _get(Object.getPrototypeOf(SnowballStemmer.prototype), 'stem', this)).call.apply(_get24, [this].concat(args));
             }
         }]);
@@ -958,1494 +910,1236 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(arabicStemmer, [{
             key: 'r_Normalize_pre$esjava$0',
             value: function r_Normalize_pre$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 for (v_1 = this.current.length(); v_1 > 0; v_1--) {
                     lab0: do {
                         v_2 = this.cursor;
-
                         lab1: do {
                             this.bra = this.cursor;
                             among_var = this.find_among$esjava$1(arabicStemmer.a_0);
-
                             if (among_var === 0) {
                                 break lab1;
                             }
-
                             this.ket = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     break lab1;
-
                                 case 1:
                                     this.slice_del$esjava$0();
                                     break;
-
                                 case 2:
                                     this.slice_del$esjava$0();
                                     break;
-
                                 case 3:
                                     this.slice_del$esjava$0();
                                     break;
-
                                 case 4:
                                     this.slice_del$esjava$0();
                                     break;
-
                                 case 5:
                                     this.slice_from$esjava$1("0");
                                     break;
-
                                 case 6:
                                     this.slice_from$esjava$1("1");
                                     break;
-
                                 case 7:
                                     this.slice_from$esjava$1("2");
                                     break;
-
                                 case 8:
                                     this.slice_from$esjava$1("3");
                                     break;
-
                                 case 9:
                                     this.slice_from$esjava$1("4");
                                     break;
-
                                 case 10:
                                     this.slice_from$esjava$1("5");
                                     break;
-
                                 case 11:
                                     this.slice_from$esjava$1("6");
                                     break;
-
                                 case 12:
                                     this.slice_from$esjava$1("7");
                                     break;
-
                                 case 13:
                                     this.slice_from$esjava$1("8");
                                     break;
-
                                 case 14:
                                     this.slice_from$esjava$1("9");
                                     break;
-
                                 case 15:
                                     this.slice_del$esjava$0();
                                     break;
-
                                 case 16:
                                     this.slice_from$esjava$1('\u0621');
                                     break;
-
                                 case 17:
                                     this.slice_from$esjava$1('\u0623');
                                     break;
-
                                 case 18:
                                     this.slice_from$esjava$1('\u0625');
                                     break;
-
                                 case 19:
                                     this.slice_from$esjava$1('\u0626');
                                     break;
-
                                 case 20:
                                     this.slice_from$esjava$1('\u0622');
                                     break;
-
                                 case 21:
                                     this.slice_from$esjava$1('\u0624');
                                     break;
-
                                 case 22:
                                     this.slice_from$esjava$1('\u0627');
                                     break;
-
                                 case 23:
                                     this.slice_from$esjava$1('\u0628');
                                     break;
-
                                 case 24:
                                     this.slice_from$esjava$1('\u0629');
                                     break;
-
                                 case 25:
                                     this.slice_from$esjava$1('\u062A');
                                     break;
-
                                 case 26:
                                     this.slice_from$esjava$1('\u062B');
                                     break;
-
                                 case 27:
                                     this.slice_from$esjava$1('\u062C');
                                     break;
-
                                 case 28:
                                     this.slice_from$esjava$1('\u062D');
                                     break;
-
                                 case 29:
                                     this.slice_from$esjava$1('\u062E');
                                     break;
-
                                 case 30:
                                     this.slice_from$esjava$1('\u062F');
                                     break;
-
                                 case 31:
                                     this.slice_from$esjava$1('\u0630');
                                     break;
-
                                 case 32:
                                     this.slice_from$esjava$1('\u0631');
                                     break;
-
                                 case 33:
                                     this.slice_from$esjava$1('\u0632');
                                     break;
-
                                 case 34:
                                     this.slice_from$esjava$1('\u0633');
                                     break;
-
                                 case 35:
                                     this.slice_from$esjava$1('\u0634');
                                     break;
-
                                 case 36:
                                     this.slice_from$esjava$1('\u0635');
                                     break;
-
                                 case 37:
                                     this.slice_from$esjava$1('\u0636');
                                     break;
-
                                 case 38:
                                     this.slice_from$esjava$1('\u0637');
                                     break;
-
                                 case 39:
                                     this.slice_from$esjava$1('\u0638');
                                     break;
-
                                 case 40:
                                     this.slice_from$esjava$1('\u0639');
                                     break;
-
                                 case 41:
                                     this.slice_from$esjava$1('\u063A');
                                     break;
-
                                 case 42:
                                     this.slice_from$esjava$1('\u0641');
                                     break;
-
                                 case 43:
                                     this.slice_from$esjava$1('\u0642');
                                     break;
-
                                 case 44:
                                     this.slice_from$esjava$1('\u0643');
                                     break;
-
                                 case 45:
                                     this.slice_from$esjava$1('\u0644');
                                     break;
-
                                 case 46:
                                     this.slice_from$esjava$1('\u0645');
                                     break;
-
                                 case 47:
                                     this.slice_from$esjava$1('\u0646');
                                     break;
-
                                 case 48:
                                     this.slice_from$esjava$1('\u0647');
                                     break;
-
                                 case 49:
                                     this.slice_from$esjava$1('\u0648');
                                     break;
-
                                 case 50:
                                     this.slice_from$esjava$1('\u0649');
                                     break;
-
                                 case 51:
                                     this.slice_from$esjava$1('\u064A');
                                     break;
-
                                 case 52:
                                     this.slice_from$esjava$1('\u0644\u0627');
                                     break;
-
                                 case 53:
                                     this.slice_from$esjava$1('\u0644\u0623');
                                     break;
-
                                 case 54:
                                     this.slice_from$esjava$1('\u0644\u0625');
                                     break;
-
                                 case 55:
                                     this.slice_from$esjava$1('\u0644\u0622');
                                     break;
                             }
-
                             break lab0;
                         } while (false);
-
                         this.cursor = v_2;
-
                         if (this.cursor >= this.limit) {
                             return false;
                         }
-
                         this.cursor++;
                     } while (false);
                 }
-
                 return true;
             }
         }, {
             key: 'r_Normalize_post$esjava$0',
             value: function r_Normalize_post$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     this.limit_backward = this.cursor;
                     this.cursor = this.limit;
                     this.ket = this.cursor;
                     among_var = this.find_among_b$esjava$1(arabicStemmer.a_1);
-
                     if (among_var === 0) {
                         break lab0;
                     }
-
                     this.bra = this.cursor;
-
                     switch (among_var) {
                         case 0:
                             break lab0;
-
                         case 1:
                             this.slice_from$esjava$1('\u0621');
                             break;
-
                         case 2:
                             this.slice_from$esjava$1('\u0621');
                             break;
-
                         case 3:
                             this.slice_from$esjava$1('\u0621');
                             break;
                     }
-
                     this.cursor = this.limit_backward;
                 } while (false);
-
                 this.cursor = v_1;
                 v_2 = this.cursor;
-
                 lab1: do {
                     for (v_3 = this.I_word_len; v_3 > 0; v_3--) {
                         lab2: do {
                             v_4 = this.cursor;
-
                             lab3: do {
                                 this.bra = this.cursor;
                                 among_var = this.find_among$esjava$1(arabicStemmer.a_2);
-
                                 if (among_var === 0) {
                                     break lab3;
                                 }
-
                                 this.ket = this.cursor;
-
                                 switch (among_var) {
                                     case 0:
                                         break lab3;
-
                                     case 1:
                                         this.slice_from$esjava$1('\u0627');
                                         break;
-
                                     case 2:
                                         this.slice_from$esjava$1('\u0648');
                                         break;
-
                                     case 3:
                                         this.slice_from$esjava$1('\u064A');
                                         break;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = v_4;
-
                             if (this.cursor >= this.limit) {
                                 break lab1;
                             }
-
                             this.cursor++;
                         } while (false);
                     }
                 } while (false);
-
                 this.cursor = v_2;
                 return true;
             }
         }, {
             key: 'r_Checks1$esjava$0',
             value: function r_Checks1$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.bra = this.cursor;
                 among_var = this.find_among$esjava$1(arabicStemmer.a_3);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.ket = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len > 4)) {
                             return false;
                         }
-
                         this.B_is_noun = true;
                         this.B_is_verb = false;
                         this.B_is_defined = true;
                         break;
-
                     case 2:
                         if (!(this.I_word_len > 3)) {
                             return false;
                         }
-
                         this.B_is_noun = true;
                         this.B_is_verb = false;
                         this.B_is_defined = true;
                         break;
                 }
-
+                return true;
+            }
+        }, {
+            key: 'r_Checks2$esjava$0',
+            value: function r_Checks2$esjava$0() {
+                var among_var = void 0;
+                this.I_word_len = this.current.length();
+                this.ket = this.cursor;
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_4);
+                if (among_var === 0) {
+                    return false;
+                }
+                this.bra = this.cursor;
+                switch (among_var) {
+                    case 0:
+                        return false;
+                    case 1:
+                        if (!(this.I_word_len > 2)) {
+                            return false;
+                        }
+                        this.B_is_noun = true;
+                        this.B_is_verb = false;
+                        break;
+                }
                 return true;
             }
         }, {
             key: 'r_Prefix_Step1$esjava$0',
             value: function r_Prefix_Step1$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.bra = this.cursor;
-                among_var = this.find_among$esjava$1(arabicStemmer.a_4);
-
+                among_var = this.find_among$esjava$1(arabicStemmer.a_5);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.ket = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len > 3)) {
                             return false;
                         }
-
                         this.slice_from$esjava$1('\u0623');
                         break;
-
                     case 2:
                         if (!(this.I_word_len > 3)) {
                             return false;
                         }
-
                         this.slice_from$esjava$1('\u0622');
                         break;
-
                     case 3:
                         if (!(this.I_word_len > 3)) {
                             return false;
                         }
-
                         this.slice_from$esjava$1('\u0623');
                         break;
-
                     case 4:
                         if (!(this.I_word_len > 3)) {
                             return false;
                         }
-
                         this.slice_from$esjava$1('\u0627');
                         break;
-
                     case 5:
                         if (!(this.I_word_len > 3)) {
                             return false;
                         }
-
                         this.slice_from$esjava$1('\u0625');
                         break;
                 }
-
                 return true;
             }
         }, {
-            key: 'r_Prefix_Step2$esjava$0',
-            value: function r_Prefix_Step2$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+            key: 'r_Prefix_Step2a$esjava$0',
+            value: function r_Prefix_Step2a$esjava$0() {
+                var among_var = void 0;
+                this.I_word_len = this.current.length();
+                this.bra = this.cursor;
+                among_var = this.find_among$esjava$1(arabicStemmer.a_6);
+                if (among_var === 0) {
+                    return false;
+                }
+                this.ket = this.cursor;
+                switch (among_var) {
+                    case 0:
+                        return false;
+                    case 1:
+                        if (!(this.I_word_len > 5)) {
+                            return false;
+                        }
+                        this.slice_del$esjava$0();
+                        break;
+                    case 2:
+                        if (!(this.I_word_len > 5)) {
+                            return false;
+                        }
+                        this.slice_del$esjava$0();
+                        break;
+                }
+                return true;
+            }
+        }, {
+            key: 'r_Prefix_Step2b$esjava$0',
+            value: function r_Prefix_Step2b$esjava$0() {
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 this.I_word_len = this.current.length();
                 {
                     v_1 = this.cursor;
-
                     lab0: do {
                         if (!this.eq_s$esjava$1('\u0641\u0627')) {
                             break lab0;
                         }
-
                         return false;
                     } while (false);
-
                     this.cursor = v_1;
                 }
                 {
                     v_2 = this.cursor;
-
                     lab1: do {
                         if (!this.eq_s$esjava$1('\u0648\u0627')) {
                             break lab1;
                         }
-
                         return false;
                     } while (false);
-
                     this.cursor = v_2;
                 }
                 this.bra = this.cursor;
-                among_var = this.find_among$esjava$1(arabicStemmer.a_5);
-
+                among_var = this.find_among$esjava$1(arabicStemmer.a_7);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.ket = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len > 3)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!(this.I_word_len > 3)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Prefix_Step3a_Noun$esjava$0',
             value: function r_Prefix_Step3a_Noun$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.bra = this.cursor;
-                among_var = this.find_among$esjava$1(arabicStemmer.a_6);
-
+                among_var = this.find_among$esjava$1(arabicStemmer.a_8);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.ket = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len > 5)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!(this.I_word_len > 4)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Prefix_Step3b_Noun$esjava$0',
             value: function r_Prefix_Step3b_Noun$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
                 this.I_word_len = this.current.length();
                 {
                     v_1 = this.cursor;
-
                     lab0: do {
                         if (!this.eq_s$esjava$1('\u0628\u0627')) {
                             break lab0;
                         }
-
                         return false;
                     } while (false);
-
                     this.cursor = v_1;
                 }
                 this.bra = this.cursor;
-                among_var = this.find_among$esjava$1(arabicStemmer.a_7);
-
+                among_var = this.find_among$esjava$1(arabicStemmer.a_9);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.ket = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len > 3)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
+                        if (!(this.I_word_len > 4)) {
+                            return false;
+                        }
+                        this.slice_del$esjava$0();
+                        break;
+                    case 3:
+                        if (!(this.I_word_len > 4)) {
+                            return false;
+                        }
+                        this.slice_del$esjava$0();
+                        break;
+                    case 4:
                         if (!(this.I_word_len > 3)) {
                             return false;
                         }
-
                         this.slice_from$esjava$1('\u0628');
                         break;
-
-                    case 3:
+                    case 5:
                         if (!(this.I_word_len > 3)) {
                             return false;
                         }
-
                         this.slice_from$esjava$1('\u0643');
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Prefix_Step3_Verb$esjava$0',
             value: function r_Prefix_Step3_Verb$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.bra = this.cursor;
-                among_var = this.find_among$esjava$1(arabicStemmer.a_8);
-
+                among_var = this.find_among$esjava$1(arabicStemmer.a_10);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.ket = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len > 4)) {
                             return false;
                         }
-
                         this.slice_from$esjava$1('\u064A');
                         break;
-
                     case 2:
                         if (!(this.I_word_len > 4)) {
                             return false;
                         }
-
                         this.slice_from$esjava$1('\u062A');
                         break;
-
                     case 3:
                         if (!(this.I_word_len > 4)) {
                             return false;
                         }
-
                         this.slice_from$esjava$1('\u0646');
                         break;
-
                     case 4:
                         if (!(this.I_word_len > 4)) {
                             return false;
                         }
-
                         this.slice_from$esjava$1('\u0623');
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Prefix_Step4_Verb$esjava$0',
             value: function r_Prefix_Step4_Verb$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.bra = this.cursor;
-                among_var = this.find_among$esjava$1(arabicStemmer.a_9);
-
+                among_var = this.find_among$esjava$1(arabicStemmer.a_11);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.ket = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len > 4)) {
                             return false;
                         }
-
                         this.B_is_verb = true;
                         this.B_is_noun = false;
                         this.slice_from$esjava$1('\u0627\u0633\u062A');
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Suffix_Noun_Step1a$esjava$0',
             value: function r_Suffix_Noun_Step1a$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.ket = this.cursor;
-                among_var = this.find_among_b$esjava$1(arabicStemmer.a_10);
-
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_12);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len >= 4)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!(this.I_word_len >= 5)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 3:
                         if (!(this.I_word_len >= 6)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Suffix_Noun_Step1b$esjava$0',
             value: function r_Suffix_Noun_Step1b$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.ket = this.cursor;
-                among_var = this.find_among_b$esjava$1(arabicStemmer.a_11);
-
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_13);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len > 5)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Suffix_Noun_Step2a$esjava$0',
             value: function r_Suffix_Noun_Step2a$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.ket = this.cursor;
-                among_var = this.find_among_b$esjava$1(arabicStemmer.a_12);
-
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_14);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len > 4)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Suffix_Noun_Step2b$esjava$0',
             value: function r_Suffix_Noun_Step2b$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.ket = this.cursor;
-                among_var = this.find_among_b$esjava$1(arabicStemmer.a_13);
-
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_15);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len >= 5)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Suffix_Noun_Step2c1$esjava$0',
             value: function r_Suffix_Noun_Step2c1$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.ket = this.cursor;
-                among_var = this.find_among_b$esjava$1(arabicStemmer.a_14);
-
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_16);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len >= 4)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Suffix_Noun_Step2c2$esjava$0',
             value: function r_Suffix_Noun_Step2c2$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.ket = this.cursor;
-                among_var = this.find_among_b$esjava$1(arabicStemmer.a_15);
-
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_17);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
-                        if (!(this.I_word_len >= 4)) {
+                        if (!(this.I_word_len >= 3)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Suffix_Noun_Step3$esjava$0',
             value: function r_Suffix_Noun_Step3$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.ket = this.cursor;
-                among_var = this.find_among_b$esjava$1(arabicStemmer.a_16);
-
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_18);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len >= 3)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Suffix_Verb_Step1$esjava$0',
             value: function r_Suffix_Verb_Step1$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.ket = this.cursor;
-                among_var = this.find_among_b$esjava$1(arabicStemmer.a_17);
-
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_19);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len >= 4)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!(this.I_word_len >= 5)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 3:
                         if (!(this.I_word_len >= 6)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Suffix_Verb_Step2a$esjava$0',
             value: function r_Suffix_Verb_Step2a$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.ket = this.cursor;
-                among_var = this.find_among_b$esjava$1(arabicStemmer.a_18);
-
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_20);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len >= 4)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!(this.I_word_len >= 4)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 3:
                         if (!(this.I_word_len >= 5)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 4:
                         if (!(this.I_word_len > 5)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 5:
                         if (!(this.I_word_len >= 6)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Suffix_Verb_Step2b$esjava$0',
             value: function r_Suffix_Verb_Step2b$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.ket = this.cursor;
-                among_var = this.find_among_b$esjava$1(arabicStemmer.a_19);
-
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_21);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len >= 5)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Suffix_Verb_Step2c$esjava$0',
             value: function r_Suffix_Verb_Step2c$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.ket = this.cursor;
-                among_var = this.find_among_b$esjava$1(arabicStemmer.a_20);
-
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_22);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!(this.I_word_len >= 4)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!(this.I_word_len >= 6)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Suffix_All_alef_maqsura$esjava$0',
             value: function r_Suffix_All_alef_maqsura$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.I_word_len = this.current.length();
                 this.ket = this.cursor;
-                among_var = this.find_among_b$esjava$1(arabicStemmer.a_21);
-
+                among_var = this.find_among_b$esjava$1(arabicStemmer.a_23);
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1('\u064A');
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
-                var v_12 = undefined;
-                var v_13 = undefined;
-                var v_15 = undefined;
-                var v_16 = undefined;
-                var v_17 = undefined;
-                var v_18 = undefined;
-                var v_19 = undefined;
-                var v_20 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
+                var v_11 = void 0;
+                var v_13 = void 0;
+                var v_14 = void 0;
+                var v_16 = void 0;
+                var v_17 = void 0;
+                var v_18 = void 0;
+                var v_19 = void 0;
+                var v_20 = void 0;
+                var v_21 = void 0;
+                var v_22 = void 0;
                 this.B_is_noun = true;
                 this.B_is_verb = true;
                 this.B_is_defined = false;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_Checks1$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
-                v_2 = this.cursor;
-
+                this.limit_backward = this.cursor;
+                this.cursor = this.limit;
+                v_2 = this.limit - this.cursor;
                 lab1: do {
-                    if (!this.r_Normalize_pre$esjava$0()) {
+                    if (!this.r_Checks2$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
-                this.cursor = v_2;
+                this.cursor = this.limit - v_2;
+                this.cursor = this.limit_backward;
+                v_3 = this.cursor;
+                lab2: do {
+                    if (!this.r_Normalize_pre$esjava$0()) {
+                        break lab2;
+                    }
+                } while (false);
+                this.cursor = v_3;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
-                v_3 = this.limit - this.cursor;
-
-                lab2: do {
-                    lab3: do {
-                        v_4 = this.limit - this.cursor;
-
-                        lab4: do {
+                v_4 = this.limit - this.cursor;
+                lab3: do {
+                    lab4: do {
+                        v_5 = this.limit - this.cursor;
+                        lab5: do {
                             if (!this.B_is_verb) {
-                                break lab4;
+                                break lab5;
                             }
-
-                            lab5: do {
-                                v_5 = this.limit - this.cursor;
-
-                                lab6: do {
+                            lab6: do {
+                                v_6 = this.limit - this.cursor;
+                                lab7: do {
                                     {
-                                        var v_6 = 1;
-
-                                        replab7: while (true) {
-                                            v_7 = this.limit - this.cursor;
-
-                                            lab8: do {
+                                        var v_7 = 1;
+                                        replab8: while (true) {
+                                            v_8 = this.limit - this.cursor;
+                                            lab9: do {
                                                 if (!this.r_Suffix_Verb_Step1$esjava$0()) {
-                                                    break lab8;
+                                                    break lab9;
                                                 }
-
-                                                v_6--;
-                                                continue replab7;
+                                                v_7--;
+                                                continue replab8;
                                             } while (false);
-
-                                            this.cursor = this.limit - v_7;
-                                            break replab7;
+                                            this.cursor = this.limit - v_8;
+                                            break replab8;
                                         }
-
-                                        if (v_6 > 0) {
-                                            break lab6;
+                                        if (v_7 > 0) {
+                                            break lab7;
                                         }
                                     }
-
-                                    lab9: do {
-                                        v_8 = this.limit - this.cursor;
-
-                                        lab10: do {
-                                            if (!this.r_Suffix_Verb_Step2a$esjava$0()) {
-                                                break lab10;
-                                            }
-
-                                            break lab9;
-                                        } while (false);
-
-                                        this.cursor = this.limit - v_8;
-
+                                    lab10: do {
+                                        v_9 = this.limit - this.cursor;
                                         lab11: do {
-                                            if (!this.r_Suffix_Verb_Step2c$esjava$0()) {
+                                            if (!this.r_Suffix_Verb_Step2a$esjava$0()) {
                                                 break lab11;
                                             }
-
-                                            break lab9;
+                                            break lab10;
                                         } while (false);
-
-                                        this.cursor = this.limit - v_8;
-
+                                        this.cursor = this.limit - v_9;
+                                        lab12: do {
+                                            if (!this.r_Suffix_Verb_Step2c$esjava$0()) {
+                                                break lab12;
+                                            }
+                                            break lab10;
+                                        } while (false);
+                                        this.cursor = this.limit - v_9;
                                         if (this.cursor <= this.limit_backward) {
-                                            break lab6;
+                                            break lab7;
                                         }
-
                                         this.cursor--;
                                     } while (false);
-
-                                    break lab5;
+                                    break lab6;
                                 } while (false);
-
-                                this.cursor = this.limit - v_5;
-
-                                lab12: do {
+                                this.cursor = this.limit - v_6;
+                                lab13: do {
                                     if (!this.r_Suffix_Verb_Step2b$esjava$0()) {
-                                        break lab12;
+                                        break lab13;
                                     }
-
-                                    break lab5;
+                                    break lab6;
                                 } while (false);
-
-                                this.cursor = this.limit - v_5;
-
+                                this.cursor = this.limit - v_6;
                                 if (!this.r_Suffix_Verb_Step2a$esjava$0()) {
-                                    break lab4;
+                                    break lab5;
                                 }
                             } while (false);
-
-                            break lab3;
+                            break lab4;
                         } while (false);
-
-                        this.cursor = this.limit - v_4;
-
-                        lab13: do {
+                        this.cursor = this.limit - v_5;
+                        lab14: do {
                             if (!this.B_is_noun) {
-                                break lab13;
+                                break lab14;
                             }
-
-                            v_9 = this.limit - this.cursor;
-
-                            lab14: do {
-                                lab15: do {
-                                    v_10 = this.limit - this.cursor;
-
-                                    lab16: do {
-                                        if (!this.r_Suffix_Noun_Step2c2$esjava$0()) {
-                                            break lab16;
-                                        }
-
-                                        break lab15;
-                                    } while (false);
-
-                                    this.cursor = this.limit - v_10;
-
+                            v_10 = this.limit - this.cursor;
+                            lab15: do {
+                                lab16: do {
+                                    v_11 = this.limit - this.cursor;
                                     lab17: do {
-                                        lab18: do {
-                                            if (!this.B_is_defined) {
-                                                break lab18;
-                                            }
-
-                                            break lab17;
-                                        } while (false);
-
-                                        if (!this.r_Suffix_Noun_Step1a$esjava$0()) {
+                                        if (!this.r_Suffix_Noun_Step2c2$esjava$0()) {
                                             break lab17;
                                         }
-
+                                        break lab16;
+                                    } while (false);
+                                    this.cursor = this.limit - v_11;
+                                    lab18: do {
                                         lab19: do {
-                                            v_12 = this.limit - this.cursor;
-
-                                            lab20: do {
-                                                if (!this.r_Suffix_Noun_Step2a$esjava$0()) {
-                                                    break lab20;
-                                                }
-
+                                            if (!this.B_is_defined) {
                                                 break lab19;
-                                            } while (false);
-
-                                            this.cursor = this.limit - v_12;
-
+                                            }
+                                            break lab18;
+                                        } while (false);
+                                        if (!this.r_Suffix_Noun_Step1a$esjava$0()) {
+                                            break lab18;
+                                        }
+                                        lab20: do {
+                                            v_13 = this.limit - this.cursor;
                                             lab21: do {
-                                                if (!this.r_Suffix_Noun_Step2b$esjava$0()) {
+                                                if (!this.r_Suffix_Noun_Step2a$esjava$0()) {
                                                     break lab21;
                                                 }
-
-                                                break lab19;
+                                                break lab20;
                                             } while (false);
-
-                                            this.cursor = this.limit - v_12;
-
+                                            this.cursor = this.limit - v_13;
                                             lab22: do {
-                                                if (!this.r_Suffix_Noun_Step2c1$esjava$0()) {
+                                                if (!this.r_Suffix_Noun_Step2b$esjava$0()) {
                                                     break lab22;
                                                 }
-
-                                                break lab19;
+                                                break lab20;
                                             } while (false);
-
-                                            this.cursor = this.limit - v_12;
-
+                                            this.cursor = this.limit - v_13;
+                                            lab23: do {
+                                                if (!this.r_Suffix_Noun_Step2c1$esjava$0()) {
+                                                    break lab23;
+                                                }
+                                                break lab20;
+                                            } while (false);
+                                            this.cursor = this.limit - v_13;
                                             if (this.cursor <= this.limit_backward) {
-                                                break lab17;
+                                                break lab18;
                                             }
-
                                             this.cursor--;
                                         } while (false);
-
-                                        break lab15;
+                                        break lab16;
                                     } while (false);
-
-                                    this.cursor = this.limit - v_10;
-
-                                    lab23: do {
+                                    this.cursor = this.limit - v_11;
+                                    lab24: do {
                                         if (!this.r_Suffix_Noun_Step1b$esjava$0()) {
-                                            break lab23;
+                                            break lab24;
                                         }
-
-                                        lab24: do {
-                                            v_13 = this.limit - this.cursor;
-
-                                            lab25: do {
-                                                if (!this.r_Suffix_Noun_Step2a$esjava$0()) {
-                                                    break lab25;
-                                                }
-
-                                                break lab24;
-                                            } while (false);
-
-                                            this.cursor = this.limit - v_13;
-
+                                        lab25: do {
+                                            v_14 = this.limit - this.cursor;
                                             lab26: do {
-                                                if (!this.r_Suffix_Noun_Step2b$esjava$0()) {
+                                                if (!this.r_Suffix_Noun_Step2a$esjava$0()) {
                                                     break lab26;
                                                 }
-
-                                                break lab24;
+                                                break lab25;
                                             } while (false);
-
-                                            this.cursor = this.limit - v_13;
-
+                                            this.cursor = this.limit - v_14;
+                                            lab27: do {
+                                                if (!this.r_Suffix_Noun_Step2b$esjava$0()) {
+                                                    break lab27;
+                                                }
+                                                break lab25;
+                                            } while (false);
+                                            this.cursor = this.limit - v_14;
                                             if (!this.r_Suffix_Noun_Step2c1$esjava$0()) {
-                                                break lab23;
+                                                break lab24;
                                             }
                                         } while (false);
-
-                                        break lab15;
+                                        break lab16;
                                     } while (false);
-
-                                    this.cursor = this.limit - v_10;
-
-                                    lab27: do {
-                                        lab28: do {
+                                    this.cursor = this.limit - v_11;
+                                    lab28: do {
+                                        lab29: do {
                                             if (!this.B_is_defined) {
-                                                break lab28;
+                                                break lab29;
                                             }
-
-                                            break lab27;
+                                            break lab28;
                                         } while (false);
-
                                         if (!this.r_Suffix_Noun_Step2a$esjava$0()) {
-                                            break lab27;
+                                            break lab28;
                                         }
-
-                                        break lab15;
+                                        break lab16;
                                     } while (false);
-
-                                    this.cursor = this.limit - v_10;
-
+                                    this.cursor = this.limit - v_11;
                                     if (!this.r_Suffix_Noun_Step2b$esjava$0()) {
-                                        this.cursor = this.limit - v_9;
-                                        break lab14;
+                                        this.cursor = this.limit - v_10;
+                                        break lab15;
                                     }
                                 } while (false);
                             } while (false);
-
                             if (!this.r_Suffix_Noun_Step3$esjava$0()) {
-                                break lab13;
+                                break lab14;
                             }
-
-                            break lab3;
+                            break lab4;
                         } while (false);
-
-                        this.cursor = this.limit - v_4;
-
+                        this.cursor = this.limit - v_5;
                         if (!this.r_Suffix_All_alef_maqsura$esjava$0()) {
-                            break lab2;
+                            break lab3;
                         }
                     } while (false);
                 } while (false);
-
-                this.cursor = this.limit - v_3;
+                this.cursor = this.limit - v_4;
                 this.cursor = this.limit_backward;
-                v_15 = this.cursor;
-
-                lab29: do {
-                    v_16 = this.cursor;
-
-                    lab30: do {
-                        if (!this.r_Prefix_Step1$esjava$0()) {
-                            this.cursor = v_16;
-                            break lab30;
-                        }
-                    } while (false);
-
+                v_16 = this.cursor;
+                lab30: do {
                     v_17 = this.cursor;
-
                     lab31: do {
-                        if (!this.r_Prefix_Step2$esjava$0()) {
+                        if (!this.r_Prefix_Step1$esjava$0()) {
                             this.cursor = v_17;
                             break lab31;
                         }
                     } while (false);
-
+                    v_18 = this.cursor;
                     lab32: do {
-                        v_18 = this.cursor;
-
                         lab33: do {
-                            if (!this.r_Prefix_Step3a_Noun$esjava$0()) {
+                            v_19 = this.cursor;
+                            lab34: do {
+                                if (!this.r_Prefix_Step2a$esjava$0()) {
+                                    break lab34;
+                                }
                                 break lab33;
+                            } while (false);
+                            this.cursor = v_19;
+                            if (!this.r_Prefix_Step2b$esjava$0()) {
+                                this.cursor = v_18;
+                                break lab32;
                             }
-
-                            break lab32;
                         } while (false);
-
-                        this.cursor = v_18;
-
-                        lab34: do {
+                    } while (false);
+                    lab35: do {
+                        v_20 = this.cursor;
+                        lab36: do {
+                            if (!this.r_Prefix_Step3a_Noun$esjava$0()) {
+                                break lab36;
+                            }
+                            break lab35;
+                        } while (false);
+                        this.cursor = v_20;
+                        lab37: do {
                             if (!this.B_is_noun) {
-                                break lab34;
+                                break lab37;
                             }
-
                             if (!this.r_Prefix_Step3b_Noun$esjava$0()) {
-                                break lab34;
+                                break lab37;
                             }
-
-                            break lab32;
+                            break lab35;
                         } while (false);
-
-                        this.cursor = v_18;
-
+                        this.cursor = v_20;
                         if (!this.B_is_verb) {
-                            break lab29;
+                            break lab30;
                         }
-
-                        v_19 = this.cursor;
-
-                        lab35: do {
+                        v_21 = this.cursor;
+                        lab38: do {
                             if (!this.r_Prefix_Step3_Verb$esjava$0()) {
-                                this.cursor = v_19;
-                                break lab35;
+                                this.cursor = v_21;
+                                break lab38;
                             }
                         } while (false);
-
                         if (!this.r_Prefix_Step4_Verb$esjava$0()) {
-                            break lab29;
+                            break lab30;
                         }
                     } while (false);
                 } while (false);
-
-                this.cursor = v_15;
-                v_20 = this.cursor;
-
-                lab36: do {
+                this.cursor = v_16;
+                v_22 = this.cursor;
+                lab39: do {
                     if (!this.r_Normalize_post$esjava$0()) {
-                        break lab36;
+                        break lab39;
                     }
                 } while (false);
-
-                this.cursor = v_20;
+                this.cursor = v_22;
                 return true;
             }
         }, {
@@ -2461,7 +2155,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get25 = _get(Object.getPrototypeOf(arabicStemmer.prototype), 'stem', this)).call.apply(_get25, [this].concat(args));
             }
         }, {
@@ -2524,109 +2217,121 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             key: 'a_4',
             get: function get() {
                 delete arabicStemmer.a_4;
-                return arabicStemmer.a_4 = [new Among('\u0623\u0622', -1, 2), new Among('\u0623\u0623', -1, 1), new Among('\u0623\u0624', -1, 3), new Among('\u0623\u0625', -1, 5), new Among('\u0623\u0627', -1, 4)];
+                return arabicStemmer.a_4 = [new Among('\u0629', -1, 1)];
             }
         }, {
             key: 'a_5',
             get: function get() {
                 delete arabicStemmer.a_5;
-                return arabicStemmer.a_5 = [new Among('\u0641', -1, 1), new Among('\u0648', -1, 2)];
+                return arabicStemmer.a_5 = [new Among('\u0623\u0622', -1, 2), new Among('\u0623\u0623', -1, 1), new Among('\u0623\u0624', -1, 3), new Among('\u0623\u0625', -1, 5), new Among('\u0623\u0627', -1, 4)];
             }
         }, {
             key: 'a_6',
             get: function get() {
                 delete arabicStemmer.a_6;
-                return arabicStemmer.a_6 = [new Among('\u0627\u0644', -1, 2), new Among('\u0628\u0627\u0644', -1, 1), new Among('\u0643\u0627\u0644', -1, 1), new Among('\u0644\u0644', -1, 2)];
+                return arabicStemmer.a_6 = [new Among('\u0641\u0627\u0644', -1, 1), new Among('\u0648\u0627\u0644', -1, 2)];
             }
         }, {
             key: 'a_7',
             get: function get() {
                 delete arabicStemmer.a_7;
-                return arabicStemmer.a_7 = [new Among('\u0628', -1, 1), new Among('\u0628\u0628', 0, 2), new Among('\u0643\u0643', -1, 3)];
+                return arabicStemmer.a_7 = [new Among('\u0641', -1, 1), new Among('\u0648', -1, 2)];
             }
         }, {
             key: 'a_8',
             get: function get() {
                 delete arabicStemmer.a_8;
-                return arabicStemmer.a_8 = [new Among('\u0633\u0623', -1, 4), new Among('\u0633\u062A', -1, 2), new Among('\u0633\u0646', -1, 3), new Among('\u0633\u064A', -1, 1)];
+                return arabicStemmer.a_8 = [new Among('\u0627\u0644', -1, 2), new Among('\u0628\u0627\u0644', -1, 1), new Among('\u0643\u0627\u0644', -1, 1), new Among('\u0644\u0644', -1, 2)];
             }
         }, {
             key: 'a_9',
             get: function get() {
                 delete arabicStemmer.a_9;
-                return arabicStemmer.a_9 = [new Among('\u062A\u0633\u062A', -1, 1), new Among('\u0646\u0633\u062A', -1, 1), new Among('\u064A\u0633\u062A', -1, 1)];
+                return arabicStemmer.a_9 = [new Among('\u0628', -1, 1), new Among('\u0628\u0628', 0, 4), new Among('\u0643', -1, 2), new Among('\u0643\u0643', 2, 5), new Among('\u0644', -1, 3)];
             }
         }, {
             key: 'a_10',
             get: function get() {
                 delete arabicStemmer.a_10;
-                return arabicStemmer.a_10 = [new Among('\u0643\u0645\u0627', -1, 3), new Among('\u0647\u0645\u0627', -1, 3), new Among('\u0646\u0627', -1, 2), new Among('\u0647\u0627', -1, 2), new Among('\u0643', -1, 1), new Among('\u0643\u0645', -1, 2), new Among('\u0647\u0645', -1, 2), new Among('\u0647\u0646', -1, 2), new Among('\u0647', -1, 1), new Among('\u064A', -1, 1)];
+                return arabicStemmer.a_10 = [new Among('\u0633\u0623', -1, 4), new Among('\u0633\u062A', -1, 2), new Among('\u0633\u0646', -1, 3), new Among('\u0633\u064A', -1, 1)];
             }
         }, {
             key: 'a_11',
             get: function get() {
                 delete arabicStemmer.a_11;
-                return arabicStemmer.a_11 = [new Among('\u0646', -1, 1)];
+                return arabicStemmer.a_11 = [new Among('\u062A\u0633\u062A', -1, 1), new Among('\u0646\u0633\u062A', -1, 1), new Among('\u064A\u0633\u062A', -1, 1)];
             }
         }, {
             key: 'a_12',
             get: function get() {
                 delete arabicStemmer.a_12;
-                return arabicStemmer.a_12 = [new Among('\u0627', -1, 1), new Among('\u0648', -1, 1), new Among('\u064A', -1, 1)];
+                return arabicStemmer.a_12 = [new Among('\u0643\u0645\u0627', -1, 3), new Among('\u0647\u0645\u0627', -1, 3), new Among('\u0646\u0627', -1, 2), new Among('\u0647\u0627', -1, 2), new Among('\u0643', -1, 1), new Among('\u0643\u0645', -1, 2), new Among('\u0647\u0645', -1, 2), new Among('\u0647\u0646', -1, 2), new Among('\u0647', -1, 1), new Among('\u064A', -1, 1)];
             }
         }, {
             key: 'a_13',
             get: function get() {
                 delete arabicStemmer.a_13;
-                return arabicStemmer.a_13 = [new Among('\u0627\u062A', -1, 1)];
+                return arabicStemmer.a_13 = [new Among('\u0646', -1, 1)];
             }
         }, {
             key: 'a_14',
             get: function get() {
                 delete arabicStemmer.a_14;
-                return arabicStemmer.a_14 = [new Among('\u062A', -1, 1)];
+                return arabicStemmer.a_14 = [new Among('\u0627', -1, 1), new Among('\u0648', -1, 1), new Among('\u064A', -1, 1)];
             }
         }, {
             key: 'a_15',
             get: function get() {
                 delete arabicStemmer.a_15;
-                return arabicStemmer.a_15 = [new Among('\u0629', -1, 1)];
+                return arabicStemmer.a_15 = [new Among('\u0627\u062A', -1, 1)];
             }
         }, {
             key: 'a_16',
             get: function get() {
                 delete arabicStemmer.a_16;
-                return arabicStemmer.a_16 = [new Among('\u064A', -1, 1)];
+                return arabicStemmer.a_16 = [new Among('\u062A', -1, 1)];
             }
         }, {
             key: 'a_17',
             get: function get() {
                 delete arabicStemmer.a_17;
-                return arabicStemmer.a_17 = [new Among('\u0643\u0645\u0627', -1, 3), new Among('\u0647\u0645\u0627', -1, 3), new Among('\u0646\u0627', -1, 2), new Among('\u0647\u0627', -1, 2), new Among('\u0643', -1, 1), new Among('\u0643\u0645', -1, 2), new Among('\u0647\u0645', -1, 2), new Among('\u0643\u0646', -1, 2), new Among('\u0647\u0646', -1, 2), new Among('\u0647', -1, 1), new Among('\u0643\u0645\u0648', -1, 3), new Among('\u0646\u064A', -1, 2)];
+                return arabicStemmer.a_17 = [new Among('\u0629', -1, 1)];
             }
         }, {
             key: 'a_18',
             get: function get() {
                 delete arabicStemmer.a_18;
-                return arabicStemmer.a_18 = [new Among('\u0627', -1, 2), new Among('\u062A\u0627', 0, 3), new Among('\u062A\u0645\u0627', 0, 5), new Among('\u0646\u0627', 0, 3), new Among('\u062A', -1, 1), new Among('\u0646', -1, 2), new Among('\u0627\u0646', 5, 4), new Among('\u062A\u0646', 5, 3), new Among('\u0648\u0646', 5, 4), new Among('\u064A\u0646', 5, 4), new Among('\u064A', -1, 2)];
+                return arabicStemmer.a_18 = [new Among('\u064A', -1, 1)];
             }
         }, {
             key: 'a_19',
             get: function get() {
                 delete arabicStemmer.a_19;
-                return arabicStemmer.a_19 = [new Among('\u0648\u0627', -1, 1), new Among('\u062A\u0645', -1, 1)];
+                return arabicStemmer.a_19 = [new Among('\u0643\u0645\u0627', -1, 3), new Among('\u0647\u0645\u0627', -1, 3), new Among('\u0646\u0627', -1, 2), new Among('\u0647\u0627', -1, 2), new Among('\u0643', -1, 1), new Among('\u0643\u0645', -1, 2), new Among('\u0647\u0645', -1, 2), new Among('\u0643\u0646', -1, 2), new Among('\u0647\u0646', -1, 2), new Among('\u0647', -1, 1), new Among('\u0643\u0645\u0648', -1, 3), new Among('\u0646\u064A', -1, 2)];
             }
         }, {
             key: 'a_20',
             get: function get() {
                 delete arabicStemmer.a_20;
-                return arabicStemmer.a_20 = [new Among('\u0648', -1, 1), new Among('\u062A\u0645\u0648', 0, 2)];
+                return arabicStemmer.a_20 = [new Among('\u0627', -1, 2), new Among('\u062A\u0627', 0, 3), new Among('\u062A\u0645\u0627', 0, 5), new Among('\u0646\u0627', 0, 3), new Among('\u062A', -1, 1), new Among('\u0646', -1, 2), new Among('\u0627\u0646', 5, 4), new Among('\u062A\u0646', 5, 3), new Among('\u0648\u0646', 5, 4), new Among('\u064A\u0646', 5, 4), new Among('\u064A', -1, 2)];
             }
         }, {
             key: 'a_21',
             get: function get() {
                 delete arabicStemmer.a_21;
-                return arabicStemmer.a_21 = [new Among('\u0649', -1, 1)];
+                return arabicStemmer.a_21 = [new Among('\u0648\u0627', -1, 1), new Among('\u062A\u0645', -1, 1)];
+            }
+        }, {
+            key: 'a_22',
+            get: function get() {
+                delete arabicStemmer.a_22;
+                return arabicStemmer.a_22 = [new Among('\u0648', -1, 1), new Among('\u062A\u0645\u0648', 0, 2)];
+            }
+        }, {
+            key: 'a_23',
+            get: function get() {
+                delete arabicStemmer.a_23;
+                return arabicStemmer.a_23 = [new Among('\u0649', -1, 1)];
             }
         }]);
 
@@ -2645,81 +2350,62 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(armenianStemmer, [{
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 this.I_pV = this.limit;
                 this.I_p2 = this.limit;
                 v_1 = this.cursor;
-
                 lab0: do {
                     golab1: while (true) {
                         lab2: do {
                             if (!this.in_grouping$esjava$3(armenianStemmer.g_v, 1377, 1413)) {
                                 break lab2;
                             }
-
                             break golab1;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_pV = this.cursor;
-
                     golab3: while (true) {
                         lab4: do {
                             if (!this.out_grouping$esjava$3(armenianStemmer.g_v, 1377, 1413)) {
                                 break lab4;
                             }
-
                             break golab3;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     golab5: while (true) {
                         lab6: do {
                             if (!this.in_grouping$esjava$3(armenianStemmer.g_v, 1377, 1413)) {
                                 break lab6;
                             }
-
                             break golab5;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     golab7: while (true) {
                         lab8: do {
                             if (!this.out_grouping$esjava$3(armenianStemmer.g_v, 1377, 1413)) {
                                 break lab8;
                             }
-
                             break golab7;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p2 = this.cursor;
                 } while (false);
-
                 this.cursor = v_1;
                 return true;
             }
@@ -2729,175 +2415,141 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_adjective$esjava$0',
             value: function r_adjective$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(armenianStemmer.a_0);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_verb$esjava$0',
             value: function r_verb$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(armenianStemmer.a_1);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_noun$esjava$0',
             value: function r_noun$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(armenianStemmer.a_2);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_ending$esjava$0',
             value: function r_ending$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(armenianStemmer.a_3);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R2$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_2 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_pV) {
                     return false;
                 }
-
                 this.cursor = this.I_pV;
                 v_3 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_2;
                 v_4 = this.limit - this.cursor;
-
                 lab1: do {
                     if (!this.r_ending$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_4;
                 v_5 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_verb$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_5;
                 v_6 = this.limit - this.cursor;
-
                 lab3: do {
                     if (!this.r_adjective$esjava$0()) {
                         break lab3;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_6;
                 v_7 = this.limit - this.cursor;
-
                 lab4: do {
                     if (!this.r_noun$esjava$0()) {
                         break lab4;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_7;
                 this.limit_backward = v_3;
                 this.cursor = this.limit_backward;
@@ -2916,7 +2568,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get26 = _get(Object.getPrototypeOf(armenianStemmer.prototype), 'stem', this)).call.apply(_get26, [this].concat(args));
             }
         }, {
@@ -2982,201 +2633,151 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(basqueStemmer, [{
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_6 = undefined;
-                var v_8 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_6 = void 0;
+                var v_8 = void 0;
                 this.I_pV = this.limit;
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
                 v_1 = this.cursor;
-
                 lab0: do {
                     lab1: do {
                         v_2 = this.cursor;
-
                         lab2: do {
                             if (!this.in_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                                 break lab2;
                             }
-
                             lab3: do {
                                 v_3 = this.cursor;
-
                                 lab4: do {
                                     if (!this.out_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                                         break lab4;
                                     }
-
                                     golab5: while (true) {
                                         lab6: do {
                                             if (!this.in_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                                                 break lab6;
                                             }
-
                                             break golab5;
                                         } while (false);
-
                                         if (this.cursor >= this.limit) {
                                             break lab4;
                                         }
-
                                         this.cursor++;
                                     }
-
                                     break lab3;
                                 } while (false);
-
                                 this.cursor = v_3;
-
                                 if (!this.in_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                                     break lab2;
                                 }
-
                                 golab7: while (true) {
                                     lab8: do {
                                         if (!this.out_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                                             break lab8;
                                         }
-
                                         break golab7;
                                     } while (false);
-
                                     if (this.cursor >= this.limit) {
                                         break lab2;
                                     }
-
                                     this.cursor++;
                                 }
                             } while (false);
-
                             break lab1;
                         } while (false);
-
                         this.cursor = v_2;
-
                         if (!this.out_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                             break lab0;
                         }
-
                         lab9: do {
                             v_6 = this.cursor;
-
                             lab10: do {
                                 if (!this.out_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                                     break lab10;
                                 }
-
                                 golab11: while (true) {
                                     lab12: do {
                                         if (!this.in_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                                             break lab12;
                                         }
-
                                         break golab11;
                                     } while (false);
-
                                     if (this.cursor >= this.limit) {
                                         break lab10;
                                     }
-
                                     this.cursor++;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = v_6;
-
                             if (!this.in_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                                 break lab0;
                             }
-
                             if (this.cursor >= this.limit) {
                                 break lab0;
                             }
-
                             this.cursor++;
                         } while (false);
                     } while (false);
-
                     this.I_pV = this.cursor;
                 } while (false);
-
                 this.cursor = v_1;
                 v_8 = this.cursor;
-
                 lab13: do {
                     golab14: while (true) {
                         lab15: do {
                             if (!this.in_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                                 break lab15;
                             }
-
                             break golab14;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     golab16: while (true) {
                         lab17: do {
                             if (!this.out_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                                 break lab17;
                             }
-
                             break golab16;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p1 = this.cursor;
-
                     golab18: while (true) {
                         lab19: do {
                             if (!this.in_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                                 break lab19;
                             }
-
                             break golab18;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     golab20: while (true) {
                         lab21: do {
                             if (!this.out_grouping$esjava$3(basqueStemmer.g_v, 97, 117)) {
                                 break lab21;
                             }
-
                             break golab20;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p2 = this.cursor;
                 } while (false);
-
                 this.cursor = v_8;
                 return true;
             }
@@ -3186,7 +2787,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_pV <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -3195,7 +2795,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -3204,218 +2803,169 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_aditzak$esjava$0',
             value: function r_aditzak$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(basqueStemmer.a_0);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("atseden");
                         break;
-
                     case 4:
                         this.slice_from$esjava$1("arabera");
                         break;
-
                     case 5:
                         this.slice_from$esjava$1("baditu");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_izenak$esjava$0',
             value: function r_izenak$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(basqueStemmer.a_1);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("jok");
                         break;
-
                     case 4:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 5:
                         this.slice_from$esjava$1("tra");
                         break;
-
                     case 6:
                         this.slice_from$esjava$1("minutu");
                         break;
-
                     case 7:
                         this.slice_from$esjava$1("zehar");
                         break;
-
                     case 8:
                         this.slice_from$esjava$1("geldi");
                         break;
-
                     case 9:
                         this.slice_from$esjava$1("igaro");
                         break;
-
                     case 10:
                         this.slice_from$esjava$1("aurka");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_adjetiboak$esjava$0',
             value: function r_adjetiboak$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(basqueStemmer.a_2);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("z");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
-
                 replab1: while (true) {
                     v_2 = this.limit - this.cursor;
-
                     lab2: do {
                         if (!this.r_aditzak$esjava$0()) {
                             break lab2;
                         }
-
                         continue replab1;
                     } while (false);
-
                     this.cursor = this.limit - v_2;
                     break replab1;
                 }
-
                 replab3: while (true) {
                     v_3 = this.limit - this.cursor;
-
                     lab4: do {
                         if (!this.r_izenak$esjava$0()) {
                             break lab4;
                         }
-
                         continue replab3;
                     } while (false);
-
                     this.cursor = this.limit - v_3;
                     break replab3;
                 }
-
                 v_4 = this.limit - this.cursor;
-
                 lab5: do {
                     if (!this.r_adjetiboak$esjava$0()) {
                         break lab5;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_4;
                 this.cursor = this.limit_backward;
                 return true;
@@ -3433,7 +2983,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get27 = _get(Object.getPrototypeOf(basqueStemmer.prototype), 'stem', this)).call.apply(_get27, [this].concat(args));
             }
         }, {
@@ -3501,171 +3050,130 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(catalanStemmer, [{
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
                 v_1 = this.cursor;
-
                 lab0: do {
                     golab1: while (true) {
                         lab2: do {
                             if (!this.in_grouping$esjava$3(catalanStemmer.g_v, 97, 252)) {
                                 break lab2;
                             }
-
                             break golab1;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     golab3: while (true) {
                         lab4: do {
                             if (!this.out_grouping$esjava$3(catalanStemmer.g_v, 97, 252)) {
                                 break lab4;
                             }
-
                             break golab3;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p1 = this.cursor;
-
                     golab5: while (true) {
                         lab6: do {
                             if (!this.in_grouping$esjava$3(catalanStemmer.g_v, 97, 252)) {
                                 break lab6;
                             }
-
                             break golab5;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     golab7: while (true) {
                         lab8: do {
                             if (!this.out_grouping$esjava$3(catalanStemmer.g_v, 97, 252)) {
                                 break lab8;
                             }
-
                             break golab7;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p2 = this.cursor;
                 } while (false);
-
                 this.cursor = v_1;
                 return true;
             }
         }, {
             key: 'r_cleaning$esjava$0',
             value: function r_cleaning$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-
+                var among_var = void 0;
+                var v_1 = void 0;
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         this.bra = this.cursor;
                         among_var = this.find_among$esjava$1(catalanStemmer.a_0);
-
                         if (among_var === 0) {
                             break lab1;
                         }
-
                         this.ket = this.cursor;
-
                         switch (among_var) {
                             case 0:
                                 break lab1;
-
                             case 1:
                                 this.slice_from$esjava$1("a");
                                 break;
-
                             case 2:
                                 this.slice_from$esjava$1("a");
                                 break;
-
                             case 3:
                                 this.slice_from$esjava$1("e");
                                 break;
-
                             case 4:
                                 this.slice_from$esjava$1("e");
                                 break;
-
                             case 5:
                                 this.slice_from$esjava$1("i");
                                 break;
-
                             case 6:
                                 this.slice_from$esjava$1("i");
                                 break;
-
                             case 7:
                                 this.slice_from$esjava$1("o");
                                 break;
-
                             case 8:
                                 this.slice_from$esjava$1("o");
                                 break;
-
                             case 9:
                                 this.slice_from$esjava$1("u");
                                 break;
-
                             case 10:
                                 this.slice_from$esjava$1("u");
                                 break;
-
                             case 11:
                                 this.slice_from$esjava$1("i");
                                 break;
-
                             case 12:
                                 this.slice_from$esjava$1(".");
                                 break;
-
                             case 13:
                                 if (this.cursor >= this.limit) {
                                     break lab1;
                                 }
-
                                 this.cursor++;
                                 break;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
@@ -3674,7 +3182,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -3683,239 +3190,188 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_attached_pronoun$esjava$0',
             value: function r_attached_pronoun$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(catalanStemmer.a_1);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_standard_suffix$esjava$0',
             value: function r_standard_suffix$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(catalanStemmer.a_2);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 3:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("log");
                         break;
-
                     case 4:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("ic");
                         break;
-
                     case 5:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("c");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_verb_suffix$esjava$0',
             value: function r_verb_suffix$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(catalanStemmer.a_3);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_residual_suffix$esjava$0',
             value: function r_residual_suffix$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(catalanStemmer.a_4);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("ic");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_2 = this.limit - this.cursor;
-
                 lab1: do {
                     if (!this.r_attached_pronoun$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_2;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     lab3: do {
                         v_4 = this.limit - this.cursor;
-
                         lab4: do {
                             if (!this.r_standard_suffix$esjava$0()) {
                                 break lab4;
                             }
-
                             break lab3;
                         } while (false);
-
                         this.cursor = this.limit - v_4;
-
                         if (!this.r_verb_suffix$esjava$0()) {
                             break lab2;
                         }
                     } while (false);
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_5 = this.limit - this.cursor;
-
                 lab5: do {
                     if (!this.r_residual_suffix$esjava$0()) {
                         break lab5;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_5;
                 this.cursor = this.limit_backward;
                 v_6 = this.cursor;
-
                 lab6: do {
                     if (!this.r_cleaning$esjava$0()) {
                         break lab6;
                     }
                 } while (false);
-
                 this.cursor = v_6;
                 return true;
             }
@@ -3932,7 +3388,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get28 = _get(Object.getPrototypeOf(catalanStemmer.prototype), 'stem', this)).call.apply(_get28, [this].concat(args));
             }
         }, {
@@ -4004,65 +3459,50 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(czechStemmer, [{
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 this.I_pV = this.limit;
                 this.I_p1 = this.limit;
                 v_1 = this.cursor;
-
                 lab0: do {
                     golab1: while (true) {
                         lab2: do {
                             if (!this.out_grouping$esjava$3(czechStemmer.g_v, 97, 367)) {
                                 break lab2;
                             }
-
                             break golab1;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_pV = this.cursor;
-
                     golab3: while (true) {
                         lab4: do {
                             if (!this.out_grouping$esjava$3(czechStemmer.g_v, 97, 367)) {
                                 break lab4;
                             }
-
                             break golab3;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     golab5: while (true) {
                         lab6: do {
                             if (!this.in_grouping$esjava$3(czechStemmer.g_v, 97, 367)) {
                                 break lab6;
                             }
-
                             break golab5;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p1 = this.cursor;
                 } while (false);
-
                 this.cursor = v_1;
                 return true;
             }
@@ -4072,7 +3512,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_pV <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -4081,470 +3520,357 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_palatalise$esjava$0',
             value: function r_palatalise$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(czechStemmer.a_0);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_RV$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("k");
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("h");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("ck");
                         break;
-
                     case 4:
                         this.slice_from$esjava$1("sk");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_do_possessive$esjava$0',
             value: function r_do_possessive$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(czechStemmer.a_1);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_RV$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_del$esjava$0();
                         v_1 = this.limit - this.cursor;
-
                         lab0: do {
                             if (!this.r_palatalise$esjava$0()) {
                                 this.cursor = this.limit - v_1;
                                 break lab0;
                             }
                         } while (false);
-
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_do_case$esjava$0',
             value: function r_do_case$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(czechStemmer.a_2);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_del$esjava$0();
                         v_1 = this.limit - this.cursor;
-
                         lab0: do {
                             if (!this.r_palatalise$esjava$0()) {
                                 this.cursor = this.limit - v_1;
                                 break lab0;
                             }
                         } while (false);
-
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("e");
                         v_2 = this.limit - this.cursor;
-
                         lab1: do {
                             if (!this.r_palatalise$esjava$0()) {
                                 this.cursor = this.limit - v_2;
                                 break lab1;
                             }
                         } while (false);
-
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_do_derivational$esjava$0',
             value: function r_do_derivational$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(czechStemmer.a_3);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("i");
-
                         if (!this.r_palatalise$esjava$0()) {
                             return false;
                         }
-
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("e");
-
                         if (!this.r_palatalise$esjava$0()) {
                             return false;
                         }
-
                         break;
-
                     case 4:
                         this.slice_from$esjava$1('\u00E9');
-
                         if (!this.r_palatalise$esjava$0()) {
                             return false;
                         }
-
                         break;
-
                     case 5:
                         this.slice_from$esjava$1('\u011B');
-
                         if (!this.r_palatalise$esjava$0()) {
                             return false;
                         }
-
                         break;
-
                     case 6:
                         this.slice_from$esjava$1('\u00ED');
-
                         if (!this.r_palatalise$esjava$0()) {
                             return false;
                         }
-
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_do_deriv_single$esjava$0',
             value: function r_do_deriv_single$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(czechStemmer.a_4);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_do_augmentative$esjava$0',
             value: function r_do_augmentative$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(czechStemmer.a_5);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("i");
-
                         if (!this.r_palatalise$esjava$0()) {
                             return false;
                         }
-
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_do_diminutive$esjava$0',
             value: function r_do_diminutive$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(czechStemmer.a_6);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("e");
-
                         if (!this.r_palatalise$esjava$0()) {
                             return false;
                         }
-
                         break;
-
                     case 3:
                         this.slice_from$esjava$1('\u00E9');
-
                         if (!this.r_palatalise$esjava$0()) {
                             return false;
                         }
-
                         break;
-
                     case 4:
                         this.slice_from$esjava$1("i");
-
                         if (!this.r_palatalise$esjava$0()) {
                             return false;
                         }
-
                         break;
-
                     case 5:
                         this.slice_from$esjava$1('\u00ED');
-
                         if (!this.r_palatalise$esjava$0()) {
                             return false;
                         }
-
                         break;
-
                     case 6:
                         this.slice_from$esjava$1('\u00E1');
                         break;
-
                     case 7:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 8:
                         this.slice_from$esjava$1("o");
                         break;
-
                     case 9:
                         this.slice_from$esjava$1("u");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_do_comparative$esjava$0',
             value: function r_do_comparative$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(czechStemmer.a_7);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1('\u011B');
-
                         if (!this.r_palatalise$esjava$0()) {
                             return false;
                         }
-
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("e");
-
                         if (!this.r_palatalise$esjava$0()) {
                             return false;
                         }
-
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_do_aggressive$esjava$0',
             value: function r_do_aggressive$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     if (!this.r_do_comparative$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_1;
                 v_2 = this.limit - this.cursor;
-
                 lab1: do {
                     if (!this.r_do_diminutive$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_2;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_do_augmentative$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
-
                 lab3: do {
                     v_4 = this.limit - this.cursor;
-
                     lab4: do {
                         if (!this.r_do_derivational$esjava$0()) {
                             break lab4;
                         }
-
                         break lab3;
                     } while (false);
-
                     this.cursor = this.limit - v_4;
-
                     if (!this.r_do_deriv_single$esjava$0()) {
                         return false;
                     }
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
-
                 if (!this.r_do_case$esjava$0()) {
                     return false;
                 }
-
                 if (!this.r_do_possessive$esjava$0()) {
                     return false;
                 }
-
                 if (!this.r_do_aggressive$esjava$0()) {
                     return false;
                 }
-
                 this.cursor = this.limit_backward;
                 return true;
             }
@@ -4561,7 +3887,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get29 = _get(Object.getPrototypeOf(czechStemmer.prototype), 'stem', this)).call.apply(_get29, [this].concat(args));
             }
         }, {
@@ -4651,149 +3976,118 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(danishStemmer, [{
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 this.I_p1 = this.limit;
                 v_1 = this.cursor;
                 {
                     var c = this.cursor + 3;
-
                     if (0 > c || c > this.limit) {
                         return false;
                     }
-
                     this.cursor = c;
                 }
                 this.I_x = this.cursor;
                 this.cursor = v_1;
-
                 golab0: while (true) {
                     v_2 = this.cursor;
-
                     lab1: do {
                         if (!this.in_grouping$esjava$3(danishStemmer.g_v, 97, 248)) {
                             break lab1;
                         }
-
                         this.cursor = v_2;
                         break golab0;
                     } while (false);
-
                     this.cursor = v_2;
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 golab2: while (true) {
                     lab3: do {
                         if (!this.out_grouping$esjava$3(danishStemmer.g_v, 97, 248)) {
                             break lab3;
                         }
-
                         break golab2;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 this.I_p1 = this.cursor;
-
                 lab4: do {
                     if (!(this.I_p1 < this.I_x)) {
                         break lab4;
                     }
-
                     this.I_p1 = this.I_x;
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'r_main_suffix$esjava$0',
             value: function r_main_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(danishStemmer.a_0);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_2;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.in_grouping_b$esjava$3(danishStemmer.g_s_ending, 97, 229)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_consonant_pair$esjava$0',
             value: function r_consonant_pair$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 v_1 = this.limit - this.cursor;
                 v_2 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_3 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_2;
                 this.ket = this.cursor;
-
                 if (this.find_among_b$esjava$1(danishStemmer.a_1) === 0) {
                     this.limit_backward = v_3;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_3;
                 this.cursor = this.limit - v_1;
-
                 if (this.cursor <= this.limit_backward) {
                     return false;
                 }
-
                 this.cursor--;
                 this.bra = this.cursor;
                 this.slice_del$esjava$0();
@@ -4802,162 +4096,130 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_other_suffix$esjava$0',
             value: function r_other_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1("st")) {
                         break lab0;
                     }
-
                     this.bra = this.cursor;
-
                     if (!this.eq_s_b$esjava$1("ig")) {
                         break lab0;
                     }
-
                     this.slice_del$esjava$0();
                 } while (false);
-
                 this.cursor = this.limit - v_1;
                 v_2 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_3 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_2;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(danishStemmer.a_2);
-
                 if (among_var === 0) {
                     this.limit_backward = v_3;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_3;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         v_4 = this.limit - this.cursor;
-
                         lab1: do {
                             if (!this.r_consonant_pair$esjava$0()) {
                                 break lab1;
                             }
                         } while (false);
-
                         this.cursor = this.limit - v_4;
                         break;
-
                     case 2:
                         this.slice_from$esjava$1('l\u00F8s');
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_undouble$esjava$0',
             value: function r_undouble$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
-
                 if (!this.out_grouping_b$esjava$3(danishStemmer.g_v, 97, 248)) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.S_ch = this.slice_to$esjava$1(this.S_ch);
                 this.limit_backward = v_2;
-
                 if (!this.eq_s_b$esjava$1(this.S_ch.toString())) {
                     return false;
                 }
-
                 this.slice_del$esjava$0();
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_2 = this.limit - this.cursor;
-
                 lab1: do {
                     if (!this.r_main_suffix$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_2;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_consonant_pair$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_4 = this.limit - this.cursor;
-
                 lab3: do {
                     if (!this.r_other_suffix$esjava$0()) {
                         break lab3;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_4;
                 v_5 = this.limit - this.cursor;
-
                 lab4: do {
                     if (!this.r_undouble$esjava$0()) {
                         break lab4;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_5;
                 this.cursor = this.limit_backward;
                 return true;
@@ -4975,7 +4237,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get30 = _get(Object.getPrototypeOf(danishStemmer.prototype), 'stem', this)).call.apply(_get30, [this].concat(args));
             }
         }, {
@@ -5049,145 +4310,108 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(dutchStemmer, [{
             key: 'r_prelude$esjava$0',
             value: function r_prelude$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
                 v_1 = this.cursor;
-
                 replab0: while (true) {
                     v_2 = this.cursor;
-
                     lab1: do {
                         this.bra = this.cursor;
                         among_var = this.find_among$esjava$1(dutchStemmer.a_0);
-
                         if (among_var === 0) {
                             break lab1;
                         }
-
                         this.ket = this.cursor;
-
                         switch (among_var) {
                             case 0:
                                 break lab1;
-
                             case 1:
                                 this.slice_from$esjava$1("a");
                                 break;
-
                             case 2:
                                 this.slice_from$esjava$1("e");
                                 break;
-
                             case 3:
                                 this.slice_from$esjava$1("i");
                                 break;
-
                             case 4:
                                 this.slice_from$esjava$1("o");
                                 break;
-
                             case 5:
                                 this.slice_from$esjava$1("u");
                                 break;
-
                             case 6:
                                 if (this.cursor >= this.limit) {
                                     break lab1;
                                 }
-
                                 this.cursor++;
                                 break;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_2;
                     break replab0;
                 }
-
                 this.cursor = v_1;
                 v_3 = this.cursor;
-
                 lab2: do {
                     this.bra = this.cursor;
-
                     if (!this.eq_s$esjava$1("y")) {
                         this.cursor = v_3;
                         break lab2;
                     }
-
                     this.ket = this.cursor;
                     this.slice_from$esjava$1("Y");
                 } while (false);
-
                 replab3: while (true) {
                     v_4 = this.cursor;
-
                     lab4: do {
                         golab5: while (true) {
                             v_5 = this.cursor;
-
                             lab6: do {
                                 if (!this.in_grouping$esjava$3(dutchStemmer.g_v, 97, 232)) {
                                     break lab6;
                                 }
-
                                 this.bra = this.cursor;
-
                                 lab7: do {
                                     v_6 = this.cursor;
-
                                     lab8: do {
                                         if (!this.eq_s$esjava$1("i")) {
                                             break lab8;
                                         }
-
                                         this.ket = this.cursor;
-
                                         if (!this.in_grouping$esjava$3(dutchStemmer.g_v, 97, 232)) {
                                             break lab8;
                                         }
-
                                         this.slice_from$esjava$1("I");
                                         break lab7;
                                     } while (false);
-
                                     this.cursor = v_6;
-
                                     if (!this.eq_s$esjava$1("y")) {
                                         break lab6;
                                     }
-
                                     this.ket = this.cursor;
                                     this.slice_from$esjava$1("Y");
                                 } while (false);
-
                                 this.cursor = v_5;
                                 break golab5;
                             } while (false);
-
                             this.cursor = v_5;
-
                             if (this.cursor >= this.limit) {
                                 break lab4;
                             }
-
                             this.cursor++;
                         }
-
                         continue replab3;
                     } while (false);
-
                     this.cursor = v_4;
                     break replab3;
                 }
-
                 return true;
             }
         }, {
@@ -5195,131 +4419,99 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             value: function r_mark_regions$esjava$0() {
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
-
                 golab0: while (true) {
                     lab1: do {
                         if (!this.in_grouping$esjava$3(dutchStemmer.g_v, 97, 232)) {
                             break lab1;
                         }
-
                         break golab0;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 golab2: while (true) {
                     lab3: do {
                         if (!this.out_grouping$esjava$3(dutchStemmer.g_v, 97, 232)) {
                             break lab3;
                         }
-
                         break golab2;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 this.I_p1 = this.cursor;
-
                 lab4: do {
                     if (!(this.I_p1 < 3)) {
                         break lab4;
                     }
-
                     this.I_p1 = 3;
                 } while (false);
-
                 golab5: while (true) {
                     lab6: do {
                         if (!this.in_grouping$esjava$3(dutchStemmer.g_v, 97, 232)) {
                             break lab6;
                         }
-
                         break golab5;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 golab7: while (true) {
                     lab8: do {
                         if (!this.out_grouping$esjava$3(dutchStemmer.g_v, 97, 232)) {
                             break lab8;
                         }
-
                         break golab7;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 this.I_p2 = this.cursor;
                 return true;
             }
         }, {
             key: 'r_postlude$esjava$0',
             value: function r_postlude$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-
+                var among_var = void 0;
+                var v_1 = void 0;
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         this.bra = this.cursor;
                         among_var = this.find_among$esjava$1(dutchStemmer.a_1);
-
                         if (among_var === 0) {
                             break lab1;
                         }
-
                         this.ket = this.cursor;
-
                         switch (among_var) {
                             case 0:
                                 break lab1;
-
                             case 1:
                                 this.slice_from$esjava$1("y");
                                 break;
-
                             case 2:
                                 this.slice_from$esjava$1("i");
                                 break;
-
                             case 3:
                                 if (this.cursor >= this.limit) {
                                     break lab1;
                                 }
-
                                 this.cursor++;
                                 break;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
@@ -5328,7 +4520,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -5337,26 +4528,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_undouble$esjava$0',
             value: function r_undouble$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.find_among_b$esjava$1(dutchStemmer.a_2) === 0) {
                     return false;
                 }
-
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
-
                 if (this.cursor <= this.limit_backward) {
                     return false;
                 }
-
                 this.cursor--;
                 this.bra = this.cursor;
                 this.slice_del$esjava$0();
@@ -5365,385 +4551,293 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_e_ending$esjava$0',
             value: function r_e_ending$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 this.B_e_found = false;
                 this.ket = this.cursor;
-
                 if (!this.eq_s_b$esjava$1("e")) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 v_1 = this.limit - this.cursor;
-
                 if (!this.out_grouping_b$esjava$3(dutchStemmer.g_v, 97, 232)) {
                     return false;
                 }
-
                 this.cursor = this.limit - v_1;
                 this.slice_del$esjava$0();
                 this.B_e_found = true;
-
                 if (!this.r_undouble$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_en_ending$esjava$0',
             value: function r_en_ending$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 v_1 = this.limit - this.cursor;
-
                 if (!this.out_grouping_b$esjava$3(dutchStemmer.g_v, 97, 232)) {
                     return false;
                 }
-
                 this.cursor = this.limit - v_1;
                 {
                     v_2 = this.limit - this.cursor;
-
                     lab0: do {
                         if (!this.eq_s_b$esjava$1("gem")) {
                             break lab0;
                         }
-
                         return false;
                     } while (false);
-
                     this.cursor = this.limit - v_2;
                 }
                 this.slice_del$esjava$0();
-
                 if (!this.r_undouble$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_standard_suffix$esjava$0',
             value: function r_standard_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     this.ket = this.cursor;
                     among_var = this.find_among_b$esjava$1(dutchStemmer.a_3);
-
                     if (among_var === 0) {
                         break lab0;
                     }
-
                     this.bra = this.cursor;
-
                     switch (among_var) {
                         case 0:
                             break lab0;
-
                         case 1:
                             if (!this.r_R1$esjava$0()) {
                                 break lab0;
                             }
-
                             this.slice_from$esjava$1("heid");
                             break;
-
                         case 2:
                             if (!this.r_en_ending$esjava$0()) {
                                 break lab0;
                             }
-
                             break;
-
                         case 3:
                             if (!this.r_R1$esjava$0()) {
                                 break lab0;
                             }
-
                             if (!this.out_grouping_b$esjava$3(dutchStemmer.g_v_j, 97, 232)) {
                                 break lab0;
                             }
-
                             this.slice_del$esjava$0();
                             break;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_1;
                 v_2 = this.limit - this.cursor;
-
                 lab1: do {
                     if (!this.r_e_ending$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_2;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1("heid")) {
                         break lab2;
                     }
-
                     this.bra = this.cursor;
-
                     if (!this.r_R2$esjava$0()) {
                         break lab2;
                     }
-
                     {
                         v_4 = this.limit - this.cursor;
-
                         lab3: do {
                             if (!this.eq_s_b$esjava$1("c")) {
                                 break lab3;
                             }
-
                             break lab2;
                         } while (false);
-
                         this.cursor = this.limit - v_4;
                     }
                     this.slice_del$esjava$0();
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1("en")) {
                         break lab2;
                     }
-
                     this.bra = this.cursor;
-
                     if (!this.r_en_ending$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_5 = this.limit - this.cursor;
-
                 lab4: do {
                     this.ket = this.cursor;
                     among_var = this.find_among_b$esjava$1(dutchStemmer.a_4);
-
                     if (among_var === 0) {
                         break lab4;
                     }
-
                     this.bra = this.cursor;
-
                     switch (among_var) {
                         case 0:
                             break lab4;
-
                         case 1:
                             if (!this.r_R2$esjava$0()) {
                                 break lab4;
                             }
-
                             this.slice_del$esjava$0();
-
                             lab5: do {
                                 v_6 = this.limit - this.cursor;
-
                                 lab6: do {
                                     this.ket = this.cursor;
-
                                     if (!this.eq_s_b$esjava$1("ig")) {
                                         break lab6;
                                     }
-
                                     this.bra = this.cursor;
-
                                     if (!this.r_R2$esjava$0()) {
                                         break lab6;
                                     }
-
                                     {
                                         v_7 = this.limit - this.cursor;
-
                                         lab7: do {
                                             if (!this.eq_s_b$esjava$1("e")) {
                                                 break lab7;
                                             }
-
                                             break lab6;
                                         } while (false);
-
                                         this.cursor = this.limit - v_7;
                                     }
                                     this.slice_del$esjava$0();
                                     break lab5;
                                 } while (false);
-
                                 this.cursor = this.limit - v_6;
-
                                 if (!this.r_undouble$esjava$0()) {
                                     break lab4;
                                 }
                             } while (false);
-
                             break;
-
                         case 2:
                             if (!this.r_R2$esjava$0()) {
                                 break lab4;
                             }
-
                             {
                                 v_8 = this.limit - this.cursor;
-
                                 lab8: do {
                                     if (!this.eq_s_b$esjava$1("e")) {
                                         break lab8;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_8;
                             }
                             this.slice_del$esjava$0();
                             break;
-
                         case 3:
                             if (!this.r_R2$esjava$0()) {
                                 break lab4;
                             }
-
                             this.slice_del$esjava$0();
-
                             if (!this.r_e_ending$esjava$0()) {
                                 break lab4;
                             }
-
                             break;
-
                         case 4:
                             if (!this.r_R2$esjava$0()) {
                                 break lab4;
                             }
-
                             this.slice_del$esjava$0();
                             break;
-
                         case 5:
                             if (!this.r_R2$esjava$0()) {
                                 break lab4;
                             }
-
                             if (!this.B_e_found) {
                                 break lab4;
                             }
-
                             this.slice_del$esjava$0();
                             break;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_5;
                 v_9 = this.limit - this.cursor;
-
                 lab9: do {
                     if (!this.out_grouping_b$esjava$3(dutchStemmer.g_v_I, 73, 232)) {
                         break lab9;
                     }
-
                     v_10 = this.limit - this.cursor;
-
                     if (this.find_among_b$esjava$1(dutchStemmer.a_5) === 0) {
                         break lab9;
                     }
-
                     if (!this.out_grouping_b$esjava$3(dutchStemmer.g_v, 97, 232)) {
                         break lab9;
                     }
-
                     this.cursor = this.limit - v_10;
                     this.ket = this.cursor;
-
                     if (this.cursor <= this.limit_backward) {
                         break lab9;
                     }
-
                     this.cursor--;
                     this.bra = this.cursor;
                     this.slice_del$esjava$0();
                 } while (false);
-
                 this.cursor = this.limit - v_9;
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_prelude$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 v_2 = this.cursor;
-
                 lab1: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = v_2;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_standard_suffix$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 this.cursor = this.limit_backward;
                 v_4 = this.cursor;
-
                 lab3: do {
                     if (!this.r_postlude$esjava$0()) {
                         break lab3;
                     }
                 } while (false);
-
                 this.cursor = v_4;
                 return true;
             }
@@ -5760,7 +4854,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get31 = _get(Object.getPrototypeOf(dutchStemmer.prototype), 'stem', this)).call.apply(_get31, [this].concat(args));
             }
         }, {
@@ -5858,224 +4951,171 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(englishStemmer, [{
             key: 'r_prelude$esjava$0',
             value: function r_prelude$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
                 this.B_Y_found = false;
                 v_1 = this.cursor;
-
                 lab0: do {
                     this.bra = this.cursor;
-
                     if (!this.eq_s$esjava$1("'")) {
                         break lab0;
                     }
-
                     this.ket = this.cursor;
                     this.slice_del$esjava$0();
                 } while (false);
-
                 this.cursor = v_1;
                 v_2 = this.cursor;
-
                 lab1: do {
                     this.bra = this.cursor;
-
                     if (!this.eq_s$esjava$1("y")) {
                         break lab1;
                     }
-
                     this.ket = this.cursor;
                     this.slice_from$esjava$1("Y");
                     this.B_Y_found = true;
                 } while (false);
-
                 this.cursor = v_2;
                 v_3 = this.cursor;
-
                 lab2: do {
                     replab3: while (true) {
                         v_4 = this.cursor;
-
                         lab4: do {
                             golab5: while (true) {
                                 v_5 = this.cursor;
-
                                 lab6: do {
                                     if (!this.in_grouping$esjava$3(englishStemmer.g_v, 97, 121)) {
                                         break lab6;
                                     }
-
                                     this.bra = this.cursor;
-
                                     if (!this.eq_s$esjava$1("y")) {
                                         break lab6;
                                     }
-
                                     this.ket = this.cursor;
                                     this.cursor = v_5;
                                     break golab5;
                                 } while (false);
-
                                 this.cursor = v_5;
-
                                 if (this.cursor >= this.limit) {
                                     break lab4;
                                 }
-
                                 this.cursor++;
                             }
-
                             this.slice_from$esjava$1("Y");
                             this.B_Y_found = true;
                             continue replab3;
                         } while (false);
-
                         this.cursor = v_4;
                         break replab3;
                     }
                 } while (false);
-
                 this.cursor = v_3;
                 return true;
             }
         }, {
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
                 v_1 = this.cursor;
-
                 lab0: do {
                     lab1: do {
                         v_2 = this.cursor;
-
                         lab2: do {
                             if (this.find_among$esjava$1(englishStemmer.a_0) === 0) {
                                 break lab2;
                             }
-
                             break lab1;
                         } while (false);
-
                         this.cursor = v_2;
-
                         golab3: while (true) {
                             lab4: do {
                                 if (!this.in_grouping$esjava$3(englishStemmer.g_v, 97, 121)) {
                                     break lab4;
                                 }
-
                                 break golab3;
                             } while (false);
-
                             if (this.cursor >= this.limit) {
                                 break lab0;
                             }
-
                             this.cursor++;
                         }
-
                         golab5: while (true) {
                             lab6: do {
                                 if (!this.out_grouping$esjava$3(englishStemmer.g_v, 97, 121)) {
                                     break lab6;
                                 }
-
                                 break golab5;
                             } while (false);
-
                             if (this.cursor >= this.limit) {
                                 break lab0;
                             }
-
                             this.cursor++;
                         }
                     } while (false);
-
                     this.I_p1 = this.cursor;
-
                     golab7: while (true) {
                         lab8: do {
                             if (!this.in_grouping$esjava$3(englishStemmer.g_v, 97, 121)) {
                                 break lab8;
                             }
-
                             break golab7;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     golab9: while (true) {
                         lab10: do {
                             if (!this.out_grouping$esjava$3(englishStemmer.g_v, 97, 121)) {
                                 break lab10;
                             }
-
                             break golab9;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p2 = this.cursor;
                 } while (false);
-
                 this.cursor = v_1;
                 return true;
             }
         }, {
             key: 'r_shortv$esjava$0',
             value: function r_shortv$esjava$0() {
-                var v_1 = undefined;
-
+                var v_1 = void 0;
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         if (!this.out_grouping_b$esjava$3(englishStemmer.g_v_WXY, 89, 121)) {
                             break lab1;
                         }
-
                         if (!this.in_grouping_b$esjava$3(englishStemmer.g_v, 97, 121)) {
                             break lab1;
                         }
-
                         if (!this.out_grouping_b$esjava$3(englishStemmer.g_v, 97, 121)) {
                             break lab1;
                         }
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     if (!this.out_grouping_b$esjava$3(englishStemmer.g_v, 97, 121)) {
                         return false;
                     }
-
                     if (!this.in_grouping_b$esjava$3(englishStemmer.g_v, 97, 121)) {
                         return false;
                     }
-
                     if (this.cursor > this.limit_backward) {
                         return false;
                     }
                 } while (false);
-
                 return true;
             }
         }, {
@@ -6084,7 +5124,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -6093,171 +5132,131 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Step_1a$esjava$0',
             value: function r_Step_1a$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     this.ket = this.cursor;
                     among_var = this.find_among_b$esjava$1(englishStemmer.a_1);
-
                     if (among_var === 0) {
                         this.cursor = this.limit - v_1;
                         break lab0;
                     }
-
                     this.bra = this.cursor;
-
                     switch (among_var) {
                         case 0:
                             this.cursor = this.limit - v_1;
                             break lab0;
-
                         case 1:
                             this.slice_del$esjava$0();
                             break;
                     }
                 } while (false);
-
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(englishStemmer.a_2);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("ss");
                         break;
-
                     case 2:
                         lab1: do {
                             v_2 = this.limit - this.cursor;
-
                             lab2: do {
                                 {
                                     var c = this.cursor - 2;
-
                                     if (this.limit_backward > c || c > this.limit) {
                                         break lab2;
                                     }
-
                                     this.cursor = c;
                                 }
                                 this.slice_from$esjava$1("i");
                                 break lab1;
                             } while (false);
-
                             this.cursor = this.limit - v_2;
                             this.slice_from$esjava$1("ie");
                         } while (false);
-
                         break;
-
                     case 3:
                         if (this.cursor <= this.limit_backward) {
                             return false;
                         }
-
                         this.cursor--;
-
                         golab3: while (true) {
                             lab4: do {
                                 if (!this.in_grouping_b$esjava$3(englishStemmer.g_v, 97, 121)) {
                                     break lab4;
                                 }
-
                                 break golab3;
                             } while (false);
-
                             if (this.cursor <= this.limit_backward) {
                                 return false;
                             }
-
                             this.cursor--;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Step_1b$esjava$0',
             value: function r_Step_1b$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(englishStemmer.a_4);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("ee");
                         break;
-
                     case 2:
                         v_1 = this.limit - this.cursor;
-
                         golab0: while (true) {
                             lab1: do {
                                 if (!this.in_grouping_b$esjava$3(englishStemmer.g_v, 97, 121)) {
                                     break lab1;
                                 }
-
                                 break golab0;
                             } while (false);
-
                             if (this.cursor <= this.limit_backward) {
                                 return false;
                             }
-
                             this.cursor--;
                         }
-
                         this.cursor = this.limit - v_1;
                         this.slice_del$esjava$0();
                         v_3 = this.limit - this.cursor;
                         among_var = this.find_among_b$esjava$1(englishStemmer.a_3);
-
                         if (among_var === 0) {
                             return false;
                         }
-
                         this.cursor = this.limit - v_3;
-
                         switch (among_var) {
                             case 0:
                                 return false;
-
                             case 1:
                                 {
                                     var c = this.cursor;
@@ -6265,86 +5264,66 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                                     this.cursor = c;
                                 }
                                 break;
-
                             case 2:
                                 this.ket = this.cursor;
-
                                 if (this.cursor <= this.limit_backward) {
                                     return false;
                                 }
-
                                 this.cursor--;
                                 this.bra = this.cursor;
                                 this.slice_del$esjava$0();
                                 break;
-
                             case 3:
                                 if (this.cursor !== this.I_p1) {
                                     return false;
                                 }
-
                                 v_4 = this.limit - this.cursor;
-
                                 if (!this.r_shortv$esjava$0()) {
                                     return false;
                                 }
-
                                 this.cursor = this.limit - v_4;
                                 {
-                                    var c = this.cursor;
+                                    var _c = this.cursor;
                                     this.insert$esjava$3(this.cursor, this.cursor, "e");
-                                    this.cursor = c;
+                                    this.cursor = _c;
                                 }
                                 break;
                         }
-
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Step_1c$esjava$0',
             value: function r_Step_1c$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 this.ket = this.cursor;
-
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         if (!this.eq_s_b$esjava$1("y")) {
                             break lab1;
                         }
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     if (!this.eq_s_b$esjava$1("Y")) {
                         return false;
                     }
                 } while (false);
-
                 this.bra = this.cursor;
-
                 if (!this.out_grouping_b$esjava$3(englishStemmer.g_v, 97, 121)) {
                     return false;
                 }
-
                 {
                     v_2 = this.limit - this.cursor;
-
                     lab2: do {
                         if (this.cursor > this.limit_backward) {
                             break lab2;
                         }
-
                         return false;
                     } while (false);
-
                     this.cursor = this.limit - v_2;
                 }
                 this.slice_from$esjava$1("i");
@@ -6353,568 +5332,436 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_Step_2$esjava$0',
             value: function r_Step_2$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(englishStemmer.a_5);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("tion");
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("ence");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("ance");
                         break;
-
                     case 4:
                         this.slice_from$esjava$1("able");
                         break;
-
                     case 5:
                         this.slice_from$esjava$1("ent");
                         break;
-
                     case 6:
                         this.slice_from$esjava$1("ize");
                         break;
-
                     case 7:
                         this.slice_from$esjava$1("ate");
                         break;
-
                     case 8:
                         this.slice_from$esjava$1("al");
                         break;
-
                     case 9:
                         this.slice_from$esjava$1("ful");
                         break;
-
                     case 10:
                         this.slice_from$esjava$1("ous");
                         break;
-
                     case 11:
                         this.slice_from$esjava$1("ive");
                         break;
-
                     case 12:
                         this.slice_from$esjava$1("ble");
                         break;
-
                     case 13:
                         if (!this.eq_s_b$esjava$1("l")) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("og");
                         break;
-
                     case 14:
                         this.slice_from$esjava$1("ful");
                         break;
-
                     case 15:
                         this.slice_from$esjava$1("less");
                         break;
-
                     case 16:
                         if (!this.in_grouping_b$esjava$3(englishStemmer.g_valid_LI, 99, 116)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Step_3$esjava$0',
             value: function r_Step_3$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(englishStemmer.a_6);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("tion");
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("ate");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("al");
                         break;
-
                     case 4:
                         this.slice_from$esjava$1("ic");
                         break;
-
                     case 5:
                         this.slice_del$esjava$0();
                         break;
-
                     case 6:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Step_4$esjava$0',
             value: function r_Step_4$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(englishStemmer.a_7);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R2$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         lab0: do {
                             v_1 = this.limit - this.cursor;
-
                             lab1: do {
                                 if (!this.eq_s_b$esjava$1("s")) {
                                     break lab1;
                                 }
-
                                 break lab0;
                             } while (false);
-
                             this.cursor = this.limit - v_1;
-
                             if (!this.eq_s_b$esjava$1("t")) {
                                 return false;
                             }
                         } while (false);
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Step_5$esjava$0',
             value: function r_Step_5$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(englishStemmer.a_8);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         lab0: do {
                             v_1 = this.limit - this.cursor;
-
                             lab1: do {
                                 if (!this.r_R2$esjava$0()) {
                                     break lab1;
                                 }
-
                                 break lab0;
                             } while (false);
-
                             this.cursor = this.limit - v_1;
-
                             if (!this.r_R1$esjava$0()) {
                                 return false;
                             }
-
                             {
                                 v_2 = this.limit - this.cursor;
-
                                 lab2: do {
                                     if (!this.r_shortv$esjava$0()) {
                                         break lab2;
                                     }
-
                                     return false;
                                 } while (false);
-
                                 this.cursor = this.limit - v_2;
                             }
                         } while (false);
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         if (!this.eq_s_b$esjava$1("l")) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_exception2$esjava$0',
             value: function r_exception2$esjava$0() {
                 this.ket = this.cursor;
-
                 if (this.find_among_b$esjava$1(englishStemmer.a_9) === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (this.cursor > this.limit_backward) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_exception1$esjava$0',
             value: function r_exception1$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.bra = this.cursor;
                 among_var = this.find_among$esjava$1(englishStemmer.a_10);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.ket = this.cursor;
-
                 if (this.cursor < this.limit) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("ski");
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("sky");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("die");
                         break;
-
                     case 4:
                         this.slice_from$esjava$1("lie");
                         break;
-
                     case 5:
                         this.slice_from$esjava$1("tie");
                         break;
-
                     case 6:
                         this.slice_from$esjava$1("idl");
                         break;
-
                     case 7:
                         this.slice_from$esjava$1("gentl");
                         break;
-
                     case 8:
                         this.slice_from$esjava$1("ugli");
                         break;
-
                     case 9:
                         this.slice_from$esjava$1("earli");
                         break;
-
                     case 10:
                         this.slice_from$esjava$1("onli");
                         break;
-
                     case 11:
                         this.slice_from$esjava$1("singl");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_postlude$esjava$0',
             value: function r_postlude$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
                 if (!this.B_Y_found) {
                     return false;
                 }
-
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         golab2: while (true) {
                             v_2 = this.cursor;
-
                             lab3: do {
                                 this.bra = this.cursor;
-
                                 if (!this.eq_s$esjava$1("Y")) {
                                     break lab3;
                                 }
-
                                 this.ket = this.cursor;
                                 this.cursor = v_2;
                                 break golab2;
                             } while (false);
-
                             this.cursor = v_2;
-
                             if (this.cursor >= this.limit) {
                                 break lab1;
                             }
-
                             this.cursor++;
                         }
-
                         this.slice_from$esjava$1("y");
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
-                var v_11 = undefined;
-                var v_12 = undefined;
-                var v_13 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
+                var v_11 = void 0;
+                var v_12 = void 0;
+                var v_13 = void 0;
                 lab0: do {
                     v_1 = this.cursor;
-
                     lab1: do {
                         if (!this.r_exception1$esjava$0()) {
                             break lab1;
                         }
-
                         break lab0;
                     } while (false);
-
                     this.cursor = v_1;
-
                     lab2: do {
                         {
                             v_2 = this.cursor;
-
                             lab3: do {
                                 {
                                     var c = this.cursor + 3;
-
                                     if (0 > c || c > this.limit) {
                                         break lab3;
                                     }
-
                                     this.cursor = c;
                                 }
                                 break lab2;
                             } while (false);
-
                             this.cursor = v_2;
                         }
                         break lab0;
                     } while (false);
-
                     this.cursor = v_1;
                     v_3 = this.cursor;
-
                     lab4: do {
                         if (!this.r_prelude$esjava$0()) {
                             break lab4;
                         }
                     } while (false);
-
                     this.cursor = v_3;
                     v_4 = this.cursor;
-
                     lab5: do {
                         if (!this.r_mark_regions$esjava$0()) {
                             break lab5;
                         }
                     } while (false);
-
                     this.cursor = v_4;
                     this.limit_backward = this.cursor;
                     this.cursor = this.limit;
                     v_5 = this.limit - this.cursor;
-
                     lab6: do {
                         if (!this.r_Step_1a$esjava$0()) {
                             break lab6;
                         }
                     } while (false);
-
                     this.cursor = this.limit - v_5;
-
                     lab7: do {
                         v_6 = this.limit - this.cursor;
-
                         lab8: do {
                             if (!this.r_exception2$esjava$0()) {
                                 break lab8;
                             }
-
                             break lab7;
                         } while (false);
-
                         this.cursor = this.limit - v_6;
                         v_7 = this.limit - this.cursor;
-
                         lab9: do {
                             if (!this.r_Step_1b$esjava$0()) {
                                 break lab9;
                             }
                         } while (false);
-
                         this.cursor = this.limit - v_7;
                         v_8 = this.limit - this.cursor;
-
                         lab10: do {
                             if (!this.r_Step_1c$esjava$0()) {
                                 break lab10;
                             }
                         } while (false);
-
                         this.cursor = this.limit - v_8;
                         v_9 = this.limit - this.cursor;
-
                         lab11: do {
                             if (!this.r_Step_2$esjava$0()) {
                                 break lab11;
                             }
                         } while (false);
-
                         this.cursor = this.limit - v_9;
                         v_10 = this.limit - this.cursor;
-
                         lab12: do {
                             if (!this.r_Step_3$esjava$0()) {
                                 break lab12;
                             }
                         } while (false);
-
                         this.cursor = this.limit - v_10;
                         v_11 = this.limit - this.cursor;
-
                         lab13: do {
                             if (!this.r_Step_4$esjava$0()) {
                                 break lab13;
                             }
                         } while (false);
-
                         this.cursor = this.limit - v_11;
                         v_12 = this.limit - this.cursor;
-
                         lab14: do {
                             if (!this.r_Step_5$esjava$0()) {
                                 break lab14;
                             }
                         } while (false);
-
                         this.cursor = this.limit - v_12;
                     } while (false);
-
                     this.cursor = this.limit_backward;
                     v_13 = this.cursor;
-
                     lab15: do {
                         if (!this.r_postlude$esjava$0()) {
                             break lab15;
                         }
                     } while (false);
-
                     this.cursor = v_13;
                 } while (false);
-
                 return true;
             }
         }, {
@@ -6930,7 +5777,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get32 = _get(Object.getPrototypeOf(englishStemmer.prototype), 'stem', this)).call.apply(_get32, [this].concat(args));
             }
         }, {
@@ -7058,87 +5904,65 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(finnishStemmer, [{
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_3 = undefined;
+                var v_1 = void 0;
+                var v_3 = void 0;
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
-
                 golab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         if (!this.in_grouping$esjava$3(finnishStemmer.g_V1, 97, 246)) {
                             break lab1;
                         }
-
                         this.cursor = v_1;
                         break golab0;
                     } while (false);
-
                     this.cursor = v_1;
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 golab2: while (true) {
                     lab3: do {
                         if (!this.out_grouping$esjava$3(finnishStemmer.g_V1, 97, 246)) {
                             break lab3;
                         }
-
                         break golab2;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 this.I_p1 = this.cursor;
-
                 golab4: while (true) {
                     v_3 = this.cursor;
-
                     lab5: do {
                         if (!this.in_grouping$esjava$3(finnishStemmer.g_V1, 97, 246)) {
                             break lab5;
                         }
-
                         this.cursor = v_3;
                         break golab4;
                     } while (false);
-
                     this.cursor = v_3;
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 golab6: while (true) {
                     lab7: do {
                         if (!this.out_grouping$esjava$3(finnishStemmer.g_V1, 97, 246)) {
                             break lab7;
                         }
-
                         break golab6;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 this.I_p2 = this.cursor;
                 return true;
             }
@@ -7148,148 +5972,117 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_particle_etc$esjava$0',
             value: function r_particle_etc$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(finnishStemmer.a_0);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_2;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.in_grouping_b$esjava$3(finnishStemmer.g_particle_end, 97, 246)) {
                             return false;
                         }
-
                         break;
-
                     case 2:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         break;
                 }
-
                 this.slice_del$esjava$0();
                 return true;
             }
         }, {
             key: 'r_possessive$esjava$0',
             value: function r_possessive$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(finnishStemmer.a_4);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_2;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         {
                             v_3 = this.limit - this.cursor;
-
                             lab0: do {
                                 if (!this.eq_s_b$esjava$1("k")) {
                                     break lab0;
                                 }
-
                                 return false;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
                         }
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_del$esjava$0();
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1("kse")) {
                             return false;
                         }
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1("ksi");
                         break;
-
                     case 3:
                         this.slice_del$esjava$0();
                         break;
-
                     case 4:
                         if (this.find_among_b$esjava$1(finnishStemmer.a_1) === 0) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 5:
                         if (this.find_among_b$esjava$1(finnishStemmer.a_2) === 0) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 6:
                         if (this.find_among_b$esjava$1(finnishStemmer.a_3) === 0) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
@@ -7298,7 +6091,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (this.find_among_b$esjava$1(finnishStemmer.a_5) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -7307,146 +6099,110 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.eq_s_b$esjava$1("i")) {
                     return false;
                 }
-
                 if (!this.in_grouping_b$esjava$3(finnishStemmer.g_V2, 97, 246)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_case_ending$esjava$0',
             value: function r_case_ending$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(this.a_6);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_2;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.eq_s_b$esjava$1("a")) {
                             return false;
                         }
-
                         break;
-
                     case 2:
                         if (!this.eq_s_b$esjava$1("e")) {
                             return false;
                         }
-
                         break;
-
                     case 3:
                         if (!this.eq_s_b$esjava$1("i")) {
                             return false;
                         }
-
                         break;
-
                     case 4:
                         if (!this.eq_s_b$esjava$1("o")) {
                             return false;
                         }
-
                         break;
-
                     case 5:
                         if (!this.eq_s_b$esjava$1('\u00E4')) {
                             return false;
                         }
-
                         break;
-
                     case 6:
                         if (!this.eq_s_b$esjava$1('\u00F6')) {
                             return false;
                         }
-
                         break;
-
                     case 7:
                         v_3 = this.limit - this.cursor;
-
                         lab0: do {
                             v_4 = this.limit - this.cursor;
-
                             lab1: do {
                                 v_5 = this.limit - this.cursor;
-
                                 lab2: do {
                                     if (!this.r_LONG$esjava$0()) {
                                         break lab2;
                                     }
-
                                     break lab1;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 if (!this.eq_s_b$esjava$1("ie")) {
                                     this.cursor = this.limit - v_3;
                                     break lab0;
                                 }
                             } while (false);
-
                             this.cursor = this.limit - v_4;
-
                             if (this.cursor <= this.limit_backward) {
                                 this.cursor = this.limit - v_3;
                                 break lab0;
                             }
-
                             this.cursor--;
                             this.bra = this.cursor;
                         } while (false);
-
                         break;
-
                     case 8:
                         if (!this.in_grouping_b$esjava$3(finnishStemmer.g_V1, 97, 246)) {
                             return false;
                         }
-
                         if (!this.out_grouping_b$esjava$3(finnishStemmer.g_V1, 97, 246)) {
                             return false;
                         }
-
                         break;
-
                     case 9:
                         if (!this.eq_s_b$esjava$1("e")) {
                             return false;
                         }
-
                         break;
                 }
-
                 this.slice_del$esjava$0();
                 this.B_ending_removed = true;
                 return true;
@@ -7454,77 +6210,63 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_other_endings$esjava$0',
             value: function r_other_endings$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p2) {
                     return false;
                 }
-
                 this.cursor = this.I_p2;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(finnishStemmer.a_7);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_2;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         {
                             v_3 = this.limit - this.cursor;
-
                             lab0: do {
                                 if (!this.eq_s_b$esjava$1("po")) {
                                     break lab0;
                                 }
-
                                 return false;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
                         }
                         break;
                 }
-
                 this.slice_del$esjava$0();
                 return true;
             }
         }, {
             key: 'r_i_plural$esjava$0',
             value: function r_i_plural$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
-
                 if (this.find_among_b$esjava$1(finnishStemmer.a_8) === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_2;
                 this.slice_del$esjava$0();
@@ -7533,342 +6275,264 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_t_plural$esjava$0',
             value: function r_t_plural$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
-
                 if (!this.eq_s_b$esjava$1("t")) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 v_3 = this.limit - this.cursor;
-
                 if (!this.in_grouping_b$esjava$3(finnishStemmer.g_V1, 97, 246)) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.cursor = this.limit - v_3;
                 this.slice_del$esjava$0();
                 this.limit_backward = v_2;
                 v_4 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p2) {
                     return false;
                 }
-
                 this.cursor = this.I_p2;
                 v_5 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_4;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(finnishStemmer.a_9);
-
                 if (among_var === 0) {
                     this.limit_backward = v_5;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_5;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         {
                             v_6 = this.limit - this.cursor;
-
                             lab0: do {
                                 if (!this.eq_s_b$esjava$1("po")) {
                                     break lab0;
                                 }
-
                                 return false;
                             } while (false);
-
                             this.cursor = this.limit - v_6;
                         }
                         break;
                 }
-
                 this.slice_del$esjava$0();
                 return true;
             }
         }, {
             key: 'r_tidy$esjava$0',
             value: function r_tidy$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 v_3 = this.limit - this.cursor;
-
                 lab0: do {
                     v_4 = this.limit - this.cursor;
-
                     if (!this.r_LONG$esjava$0()) {
                         break lab0;
                     }
-
                     this.cursor = this.limit - v_4;
                     this.ket = this.cursor;
-
                     if (this.cursor <= this.limit_backward) {
                         break lab0;
                     }
-
                     this.cursor--;
                     this.bra = this.cursor;
                     this.slice_del$esjava$0();
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_5 = this.limit - this.cursor;
-
                 lab1: do {
                     this.ket = this.cursor;
-
                     if (!this.in_grouping_b$esjava$3(finnishStemmer.g_AEI, 97, 228)) {
                         break lab1;
                     }
-
                     this.bra = this.cursor;
-
                     if (!this.out_grouping_b$esjava$3(finnishStemmer.g_V1, 97, 246)) {
                         break lab1;
                     }
-
                     this.slice_del$esjava$0();
                 } while (false);
-
                 this.cursor = this.limit - v_5;
                 v_6 = this.limit - this.cursor;
-
                 lab2: do {
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1("j")) {
                         break lab2;
                     }
-
                     this.bra = this.cursor;
-
                     lab3: do {
                         v_7 = this.limit - this.cursor;
-
                         lab4: do {
                             if (!this.eq_s_b$esjava$1("o")) {
                                 break lab4;
                             }
-
                             break lab3;
                         } while (false);
-
                         this.cursor = this.limit - v_7;
-
                         if (!this.eq_s_b$esjava$1("u")) {
                             break lab2;
                         }
                     } while (false);
-
                     this.slice_del$esjava$0();
                 } while (false);
-
                 this.cursor = this.limit - v_6;
                 v_8 = this.limit - this.cursor;
-
                 lab5: do {
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1("o")) {
                         break lab5;
                     }
-
                     this.bra = this.cursor;
-
                     if (!this.eq_s_b$esjava$1("j")) {
                         break lab5;
                     }
-
                     this.slice_del$esjava$0();
                 } while (false);
-
                 this.cursor = this.limit - v_8;
                 this.limit_backward = v_2;
-
                 golab6: while (true) {
                     v_9 = this.limit - this.cursor;
-
                     lab7: do {
                         if (!this.out_grouping_b$esjava$3(finnishStemmer.g_V1, 97, 246)) {
                             break lab7;
                         }
-
                         this.cursor = this.limit - v_9;
                         break golab6;
                     } while (false);
-
                     this.cursor = this.limit - v_9;
-
                     if (this.cursor <= this.limit_backward) {
                         return false;
                     }
-
                     this.cursor--;
                 }
-
                 this.ket = this.cursor;
-
                 if (this.cursor <= this.limit_backward) {
                     return false;
                 }
-
                 this.cursor--;
                 this.bra = this.cursor;
                 this.S_x = this.slice_to$esjava$1(this.S_x);
-
                 if (!this.eq_s_b$esjava$1(this.S_x.toString())) {
                     return false;
                 }
-
                 this.slice_del$esjava$0();
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 this.B_ending_removed = false;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_2 = this.limit - this.cursor;
-
                 lab1: do {
                     if (!this.r_particle_etc$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_2;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_possessive$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_4 = this.limit - this.cursor;
-
                 lab3: do {
                     if (!this.r_case_ending$esjava$0()) {
                         break lab3;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_4;
                 v_5 = this.limit - this.cursor;
-
                 lab4: do {
                     if (!this.r_other_endings$esjava$0()) {
                         break lab4;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_5;
-
                 lab5: do {
                     v_6 = this.limit - this.cursor;
-
                     lab6: do {
                         if (!this.B_ending_removed) {
                             break lab6;
                         }
-
                         v_7 = this.limit - this.cursor;
-
                         lab7: do {
                             if (!this.r_i_plural$esjava$0()) {
                                 break lab7;
                             }
                         } while (false);
-
                         this.cursor = this.limit - v_7;
                         break lab5;
                     } while (false);
-
                     this.cursor = this.limit - v_6;
                     v_8 = this.limit - this.cursor;
-
                     lab8: do {
                         if (!this.r_t_plural$esjava$0()) {
                             break lab8;
                         }
                     } while (false);
-
                     this.cursor = this.limit - v_8;
                 } while (false);
-
                 v_9 = this.limit - this.cursor;
-
                 lab9: do {
                     if (!this.r_tidy$esjava$0()) {
                         break lab9;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_9;
                 this.cursor = this.limit_backward;
                 return true;
@@ -7886,7 +6550,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get33 = _get(Object.getPrototypeOf(finnishStemmer.prototype), 'stem', this)).call.apply(_get33, [this].concat(args));
             }
         }, {
@@ -7902,7 +6565,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.r_LONG$esjava$0.apply(this, args);
                 }
-
                 return (_get34 = _get(Object.getPrototypeOf(finnishStemmer.prototype), 'r_LONG', this)).call.apply(_get34, [this].concat(args));
             }
         }, {
@@ -7918,7 +6580,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.r_VI$esjava$0.apply(this, args);
                 }
-
                 return (_get35 = _get(Object.getPrototypeOf(finnishStemmer.prototype), 'r_VI', this)).call.apply(_get35, [this].concat(args));
             }
         }, {
@@ -8064,331 +6725,245 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(frenchStemmer, [{
             key: 'r_prelude$esjava$0',
             value: function r_prelude$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         golab2: while (true) {
                             v_2 = this.cursor;
-
                             lab3: do {
                                 lab4: do {
                                     v_3 = this.cursor;
-
                                     lab5: do {
                                         if (!this.in_grouping$esjava$3(frenchStemmer.g_v, 97, 251)) {
                                             break lab5;
                                         }
-
                                         this.bra = this.cursor;
-
                                         lab6: do {
                                             v_4 = this.cursor;
-
                                             lab7: do {
                                                 if (!this.eq_s$esjava$1("u")) {
                                                     break lab7;
                                                 }
-
                                                 this.ket = this.cursor;
-
                                                 if (!this.in_grouping$esjava$3(frenchStemmer.g_v, 97, 251)) {
                                                     break lab7;
                                                 }
-
                                                 this.slice_from$esjava$1("U");
                                                 break lab6;
                                             } while (false);
-
                                             this.cursor = v_4;
-
                                             lab8: do {
                                                 if (!this.eq_s$esjava$1("i")) {
                                                     break lab8;
                                                 }
-
                                                 this.ket = this.cursor;
-
                                                 if (!this.in_grouping$esjava$3(frenchStemmer.g_v, 97, 251)) {
                                                     break lab8;
                                                 }
-
                                                 this.slice_from$esjava$1("I");
                                                 break lab6;
                                             } while (false);
-
                                             this.cursor = v_4;
-
                                             if (!this.eq_s$esjava$1("y")) {
                                                 break lab5;
                                             }
-
                                             this.ket = this.cursor;
                                             this.slice_from$esjava$1("Y");
                                         } while (false);
-
                                         break lab4;
                                     } while (false);
-
                                     this.cursor = v_3;
-
                                     lab9: do {
                                         this.bra = this.cursor;
-
                                         if (!this.eq_s$esjava$1("y")) {
                                             break lab9;
                                         }
-
                                         this.ket = this.cursor;
-
                                         if (!this.in_grouping$esjava$3(frenchStemmer.g_v, 97, 251)) {
                                             break lab9;
                                         }
-
                                         this.slice_from$esjava$1("Y");
                                         break lab4;
                                     } while (false);
-
                                     this.cursor = v_3;
-
                                     if (!this.eq_s$esjava$1("q")) {
                                         break lab3;
                                     }
-
                                     this.bra = this.cursor;
-
                                     if (!this.eq_s$esjava$1("u")) {
                                         break lab3;
                                     }
-
                                     this.ket = this.cursor;
                                     this.slice_from$esjava$1("U");
                                 } while (false);
-
                                 this.cursor = v_2;
                                 break golab2;
                             } while (false);
-
                             this.cursor = v_2;
-
                             if (this.cursor >= this.limit) {
                                 break lab1;
                             }
-
                             this.cursor++;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_4 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_4 = void 0;
                 this.I_pV = this.limit;
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
                 v_1 = this.cursor;
-
                 lab0: do {
                     lab1: do {
                         v_2 = this.cursor;
-
                         lab2: do {
                             if (!this.in_grouping$esjava$3(frenchStemmer.g_v, 97, 251)) {
                                 break lab2;
                             }
-
                             if (!this.in_grouping$esjava$3(frenchStemmer.g_v, 97, 251)) {
                                 break lab2;
                             }
-
                             if (this.cursor >= this.limit) {
                                 break lab2;
                             }
-
                             this.cursor++;
                             break lab1;
                         } while (false);
-
                         this.cursor = v_2;
-
                         lab3: do {
                             if (this.find_among$esjava$1(frenchStemmer.a_0) === 0) {
                                 break lab3;
                             }
-
                             break lab1;
                         } while (false);
-
                         this.cursor = v_2;
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
-
                         golab4: while (true) {
                             lab5: do {
                                 if (!this.in_grouping$esjava$3(frenchStemmer.g_v, 97, 251)) {
                                     break lab5;
                                 }
-
                                 break golab4;
                             } while (false);
-
                             if (this.cursor >= this.limit) {
                                 break lab0;
                             }
-
                             this.cursor++;
                         }
                     } while (false);
-
                     this.I_pV = this.cursor;
                 } while (false);
-
                 this.cursor = v_1;
                 v_4 = this.cursor;
-
                 lab6: do {
                     golab7: while (true) {
                         lab8: do {
                             if (!this.in_grouping$esjava$3(frenchStemmer.g_v, 97, 251)) {
                                 break lab8;
                             }
-
                             break golab7;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab6;
                         }
-
                         this.cursor++;
                     }
-
                     golab9: while (true) {
                         lab10: do {
                             if (!this.out_grouping$esjava$3(frenchStemmer.g_v, 97, 251)) {
                                 break lab10;
                             }
-
                             break golab9;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab6;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p1 = this.cursor;
-
                     golab11: while (true) {
                         lab12: do {
                             if (!this.in_grouping$esjava$3(frenchStemmer.g_v, 97, 251)) {
                                 break lab12;
                             }
-
                             break golab11;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab6;
                         }
-
                         this.cursor++;
                     }
-
                     golab13: while (true) {
                         lab14: do {
                             if (!this.out_grouping$esjava$3(frenchStemmer.g_v, 97, 251)) {
                                 break lab14;
                             }
-
                             break golab13;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab6;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p2 = this.cursor;
                 } while (false);
-
                 this.cursor = v_4;
                 return true;
             }
         }, {
             key: 'r_postlude$esjava$0',
             value: function r_postlude$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-
+                var among_var = void 0;
+                var v_1 = void 0;
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         this.bra = this.cursor;
                         among_var = this.find_among$esjava$1(frenchStemmer.a_1);
-
                         if (among_var === 0) {
                             break lab1;
                         }
-
                         this.ket = this.cursor;
-
                         switch (among_var) {
                             case 0:
                                 break lab1;
-
                             case 1:
                                 this.slice_from$esjava$1("i");
                                 break;
-
                             case 2:
                                 this.slice_from$esjava$1("u");
                                 break;
-
                             case 3:
                                 this.slice_from$esjava$1("y");
                                 break;
-
                             case 4:
                                 if (this.cursor >= this.limit) {
                                     break lab1;
                                 }
-
                                 this.cursor++;
                                 break;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
@@ -8397,7 +6972,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_pV <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -8406,7 +6980,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -8415,643 +6988,493 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_standard_suffix$esjava$0',
             value: function r_standard_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
-                var v_11 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
+                var v_11 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(frenchStemmer.a_4);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_1 = this.limit - this.cursor;
-
                         lab0: do {
                             this.ket = this.cursor;
-
                             if (!this.eq_s_b$esjava$1("ic")) {
                                 this.cursor = this.limit - v_1;
                                 break lab0;
                             }
-
                             this.bra = this.cursor;
-
                             lab1: do {
                                 v_2 = this.limit - this.cursor;
-
                                 lab2: do {
                                     if (!this.r_R2$esjava$0()) {
                                         break lab2;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break lab1;
                                 } while (false);
-
                                 this.cursor = this.limit - v_2;
                                 this.slice_from$esjava$1("iqU");
                             } while (false);
                         } while (false);
-
                         break;
-
                     case 3:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("log");
                         break;
-
                     case 4:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("u");
                         break;
-
                     case 5:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("ent");
                         break;
-
                     case 6:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_3 = this.limit - this.cursor;
-
                         lab3: do {
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(frenchStemmer.a_2);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_3;
                                 break lab3;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_3;
                                     break lab3;
-
                                 case 1:
                                     if (!this.r_R2$esjava$0()) {
                                         this.cursor = this.limit - v_3;
                                         break lab3;
                                     }
-
                                     this.slice_del$esjava$0();
                                     this.ket = this.cursor;
-
                                     if (!this.eq_s_b$esjava$1("at")) {
                                         this.cursor = this.limit - v_3;
                                         break lab3;
                                     }
-
                                     this.bra = this.cursor;
-
                                     if (!this.r_R2$esjava$0()) {
                                         this.cursor = this.limit - v_3;
                                         break lab3;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break;
-
                                 case 2:
                                     lab4: do {
                                         v_4 = this.limit - this.cursor;
-
                                         lab5: do {
                                             if (!this.r_R2$esjava$0()) {
                                                 break lab5;
                                             }
-
                                             this.slice_del$esjava$0();
                                             break lab4;
                                         } while (false);
-
                                         this.cursor = this.limit - v_4;
-
                                         if (!this.r_R1$esjava$0()) {
                                             this.cursor = this.limit - v_3;
                                             break lab3;
                                         }
-
                                         this.slice_from$esjava$1("eux");
                                     } while (false);
-
                                     break;
-
                                 case 3:
                                     if (!this.r_R2$esjava$0()) {
                                         this.cursor = this.limit - v_3;
                                         break lab3;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break;
-
                                 case 4:
                                     if (!this.r_RV$esjava$0()) {
                                         this.cursor = this.limit - v_3;
                                         break lab3;
                                     }
-
                                     this.slice_from$esjava$1("i");
                                     break;
                             }
                         } while (false);
-
                         break;
-
                     case 7:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_5 = this.limit - this.cursor;
-
                         lab6: do {
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(frenchStemmer.a_3);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_5;
                                 break lab6;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_5;
                                     break lab6;
-
                                 case 1:
                                     lab7: do {
                                         v_6 = this.limit - this.cursor;
-
                                         lab8: do {
                                             if (!this.r_R2$esjava$0()) {
                                                 break lab8;
                                             }
-
                                             this.slice_del$esjava$0();
                                             break lab7;
                                         } while (false);
-
                                         this.cursor = this.limit - v_6;
                                         this.slice_from$esjava$1("abl");
                                     } while (false);
-
                                     break;
-
                                 case 2:
                                     lab9: do {
                                         v_7 = this.limit - this.cursor;
-
                                         lab10: do {
                                             if (!this.r_R2$esjava$0()) {
                                                 break lab10;
                                             }
-
                                             this.slice_del$esjava$0();
                                             break lab9;
                                         } while (false);
-
                                         this.cursor = this.limit - v_7;
                                         this.slice_from$esjava$1("iqU");
                                     } while (false);
-
                                     break;
-
                                 case 3:
                                     if (!this.r_R2$esjava$0()) {
                                         this.cursor = this.limit - v_5;
                                         break lab6;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         break;
-
                     case 8:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_8 = this.limit - this.cursor;
-
                         lab11: do {
                             this.ket = this.cursor;
-
                             if (!this.eq_s_b$esjava$1("at")) {
                                 this.cursor = this.limit - v_8;
                                 break lab11;
                             }
-
                             this.bra = this.cursor;
-
                             if (!this.r_R2$esjava$0()) {
                                 this.cursor = this.limit - v_8;
                                 break lab11;
                             }
-
                             this.slice_del$esjava$0();
                             this.ket = this.cursor;
-
                             if (!this.eq_s_b$esjava$1("ic")) {
                                 this.cursor = this.limit - v_8;
                                 break lab11;
                             }
-
                             this.bra = this.cursor;
-
                             lab12: do {
                                 v_9 = this.limit - this.cursor;
-
                                 lab13: do {
                                     if (!this.r_R2$esjava$0()) {
                                         break lab13;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break lab12;
                                 } while (false);
-
                                 this.cursor = this.limit - v_9;
                                 this.slice_from$esjava$1("iqU");
                             } while (false);
                         } while (false);
-
                         break;
-
                     case 9:
                         this.slice_from$esjava$1("eau");
                         break;
-
                     case 10:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("al");
                         break;
-
                     case 11:
                         lab14: do {
                             v_10 = this.limit - this.cursor;
-
                             lab15: do {
                                 if (!this.r_R2$esjava$0()) {
                                     break lab15;
                                 }
-
                                 this.slice_del$esjava$0();
                                 break lab14;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             if (!this.r_R1$esjava$0()) {
                                 return false;
                             }
-
                             this.slice_from$esjava$1("eux");
                         } while (false);
-
                         break;
-
                     case 12:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         if (!this.out_grouping_b$esjava$3(frenchStemmer.g_v, 97, 251)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 13:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("ant");
                         return false;
-
                     case 14:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("ent");
                         return false;
-
                     case 15:
                         v_11 = this.limit - this.cursor;
-
                         if (!this.in_grouping_b$esjava$3(frenchStemmer.g_v, 97, 251)) {
                             return false;
                         }
-
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.cursor = this.limit - v_11;
                         this.slice_del$esjava$0();
                         return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_i_verb_suffix$esjava$0',
             value: function r_i_verb_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_pV) {
                     return false;
                 }
-
                 this.cursor = this.I_pV;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(frenchStemmer.a_5);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         this.limit_backward = v_2;
                         return false;
-
                     case 1:
                         if (!this.out_grouping_b$esjava$3(frenchStemmer.g_v, 97, 251)) {
                             this.limit_backward = v_2;
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 this.limit_backward = v_2;
                 return true;
             }
         }, {
             key: 'r_verb_suffix$esjava$0',
             value: function r_verb_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_pV) {
                     return false;
                 }
-
                 this.cursor = this.I_pV;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(frenchStemmer.a_6);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         this.limit_backward = v_2;
                         return false;
-
                     case 1:
                         if (!this.r_R2$esjava$0()) {
                             this.limit_backward = v_2;
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_del$esjava$0();
                         break;
-
                     case 3:
                         this.slice_del$esjava$0();
                         v_3 = this.limit - this.cursor;
-
                         lab0: do {
                             this.ket = this.cursor;
-
                             if (!this.eq_s_b$esjava$1("e")) {
                                 this.cursor = this.limit - v_3;
                                 break lab0;
                             }
-
                             this.bra = this.cursor;
                             this.slice_del$esjava$0();
                         } while (false);
-
                         break;
                 }
-
                 this.limit_backward = v_2;
                 return true;
             }
         }, {
             key: 'r_residual_suffix$esjava$0',
             value: function r_residual_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1("s")) {
                         this.cursor = this.limit - v_1;
                         break lab0;
                     }
-
                     this.bra = this.cursor;
                     v_2 = this.limit - this.cursor;
-
                     if (!this.out_grouping_b$esjava$3(frenchStemmer.g_keep_with_s, 97, 232)) {
                         this.cursor = this.limit - v_1;
                         break lab0;
                     }
-
                     this.cursor = this.limit - v_2;
                     this.slice_del$esjava$0();
                 } while (false);
-
                 v_3 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_pV) {
                     return false;
                 }
-
                 this.cursor = this.I_pV;
                 v_4 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_3;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(frenchStemmer.a_7);
-
                 if (among_var === 0) {
                     this.limit_backward = v_4;
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         this.limit_backward = v_4;
                         return false;
-
                     case 1:
                         if (!this.r_R2$esjava$0()) {
                             this.limit_backward = v_4;
                             return false;
                         }
-
                         lab1: do {
                             v_5 = this.limit - this.cursor;
-
                             lab2: do {
                                 if (!this.eq_s_b$esjava$1("s")) {
                                     break lab2;
                                 }
-
                                 break lab1;
                             } while (false);
-
                             this.cursor = this.limit - v_5;
-
                             if (!this.eq_s_b$esjava$1("t")) {
                                 this.limit_backward = v_4;
                                 return false;
                             }
                         } while (false);
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("i");
                         break;
-
                     case 3:
                         this.slice_del$esjava$0();
                         break;
-
                     case 4:
                         if (!this.eq_s_b$esjava$1("gu")) {
                             this.limit_backward = v_4;
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 this.limit_backward = v_4;
                 return true;
             }
         }, {
             key: 'r_un_double$esjava$0',
             value: function r_un_double$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.find_among_b$esjava$1(frenchStemmer.a_8) === 0) {
                     return false;
                 }
-
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
-
                 if (this.cursor <= this.limit_backward) {
                     return false;
                 }
-
                 this.cursor--;
                 this.bra = this.cursor;
                 this.slice_del$esjava$0();
@@ -9060,47 +7483,37 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_un_accent$esjava$0',
             value: function r_un_accent$esjava$0() {
-                var v_3 = undefined;
+                var v_3 = void 0;
                 {
                     var v_1 = 1;
-
                     replab0: while (true) {
                         lab1: do {
                             if (!this.out_grouping_b$esjava$3(frenchStemmer.g_v, 97, 251)) {
                                 break lab1;
                             }
-
                             v_1--;
                             continue replab0;
                         } while (false);
-
                         break replab0;
                     }
-
                     if (v_1 > 0) {
                         return false;
                     }
                 }
                 this.ket = this.cursor;
-
                 lab2: do {
                     v_3 = this.limit - this.cursor;
-
                     lab3: do {
                         if (!this.eq_s_b$esjava$1('\u00E9')) {
                             break lab3;
                         }
-
                         break lab2;
                     } while (false);
-
                     this.cursor = this.limit - v_3;
-
                     if (!this.eq_s_b$esjava$1('\u00E8')) {
                         return false;
                     }
                 } while (false);
-
                 this.bra = this.cursor;
                 this.slice_from$esjava$1("e");
                 return true;
@@ -9108,144 +7521,112 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
-                var v_11 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
+                var v_11 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_prelude$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 v_2 = this.cursor;
-
                 lab1: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = v_2;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     lab3: do {
                         v_4 = this.limit - this.cursor;
-
                         lab4: do {
                             v_5 = this.limit - this.cursor;
-
                             lab5: do {
                                 v_6 = this.limit - this.cursor;
-
                                 lab6: do {
                                     if (!this.r_standard_suffix$esjava$0()) {
                                         break lab6;
                                     }
-
                                     break lab5;
                                 } while (false);
-
                                 this.cursor = this.limit - v_6;
-
                                 lab7: do {
                                     if (!this.r_i_verb_suffix$esjava$0()) {
                                         break lab7;
                                     }
-
                                     break lab5;
                                 } while (false);
-
                                 this.cursor = this.limit - v_6;
-
                                 if (!this.r_verb_suffix$esjava$0()) {
                                     break lab4;
                                 }
                             } while (false);
-
                             this.cursor = this.limit - v_5;
                             v_7 = this.limit - this.cursor;
-
                             lab8: do {
                                 this.ket = this.cursor;
-
                                 lab9: do {
                                     v_8 = this.limit - this.cursor;
-
                                     lab10: do {
                                         if (!this.eq_s_b$esjava$1("Y")) {
                                             break lab10;
                                         }
-
                                         this.bra = this.cursor;
                                         this.slice_from$esjava$1("i");
                                         break lab9;
                                     } while (false);
-
                                     this.cursor = this.limit - v_8;
-
                                     if (!this.eq_s_b$esjava$1('\u00E7')) {
                                         this.cursor = this.limit - v_7;
                                         break lab8;
                                     }
-
                                     this.bra = this.cursor;
                                     this.slice_from$esjava$1("c");
                                 } while (false);
                             } while (false);
-
                             break lab3;
                         } while (false);
-
                         this.cursor = this.limit - v_4;
-
                         if (!this.r_residual_suffix$esjava$0()) {
                             break lab2;
                         }
                     } while (false);
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_9 = this.limit - this.cursor;
-
                 lab11: do {
                     if (!this.r_un_double$esjava$0()) {
                         break lab11;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_9;
                 v_10 = this.limit - this.cursor;
-
                 lab12: do {
                     if (!this.r_un_accent$esjava$0()) {
                         break lab12;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_10;
                 this.cursor = this.limit_backward;
                 v_11 = this.cursor;
-
                 lab13: do {
                     if (!this.r_postlude$esjava$0()) {
                         break lab13;
                     }
                 } while (false);
-
                 this.cursor = v_11;
                 return true;
             }
@@ -9262,7 +7643,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get36 = _get(Object.getPrototypeOf(frenchStemmer.prototype), 'stem', this)).call.apply(_get36, [this].concat(args));
             }
         }, {
@@ -9372,275 +7752,206 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(germanStemmer, [{
             key: 'r_prelude$esjava$0',
             value: function r_prelude$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
                 v_1 = this.cursor;
-
                 replab0: while (true) {
                     v_2 = this.cursor;
-
                     lab1: do {
                         lab2: do {
                             v_3 = this.cursor;
-
                             lab3: do {
                                 this.bra = this.cursor;
-
                                 if (!this.eq_s$esjava$1('\u00DF')) {
                                     break lab3;
                                 }
-
                                 this.ket = this.cursor;
                                 this.slice_from$esjava$1("ss");
                                 break lab2;
                             } while (false);
-
                             this.cursor = v_3;
-
                             if (this.cursor >= this.limit) {
                                 break lab1;
                             }
-
                             this.cursor++;
                         } while (false);
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_2;
                     break replab0;
                 }
-
                 this.cursor = v_1;
-
                 replab4: while (true) {
                     v_4 = this.cursor;
-
                     lab5: do {
                         golab6: while (true) {
                             v_5 = this.cursor;
-
                             lab7: do {
                                 if (!this.in_grouping$esjava$3(germanStemmer.g_v, 97, 252)) {
                                     break lab7;
                                 }
-
                                 this.bra = this.cursor;
-
                                 lab8: do {
                                     v_6 = this.cursor;
-
                                     lab9: do {
                                         if (!this.eq_s$esjava$1("u")) {
                                             break lab9;
                                         }
-
                                         this.ket = this.cursor;
-
                                         if (!this.in_grouping$esjava$3(germanStemmer.g_v, 97, 252)) {
                                             break lab9;
                                         }
-
                                         this.slice_from$esjava$1("U");
                                         break lab8;
                                     } while (false);
-
                                     this.cursor = v_6;
-
                                     if (!this.eq_s$esjava$1("y")) {
                                         break lab7;
                                     }
-
                                     this.ket = this.cursor;
-
                                     if (!this.in_grouping$esjava$3(germanStemmer.g_v, 97, 252)) {
                                         break lab7;
                                     }
-
                                     this.slice_from$esjava$1("Y");
                                 } while (false);
-
                                 this.cursor = v_5;
                                 break golab6;
                             } while (false);
-
                             this.cursor = v_5;
-
                             if (this.cursor >= this.limit) {
                                 break lab5;
                             }
-
                             this.cursor++;
                         }
-
                         continue replab4;
                     } while (false);
-
                     this.cursor = v_4;
                     break replab4;
                 }
-
                 return true;
             }
         }, {
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
                 v_1 = this.cursor;
                 {
                     var c = this.cursor + 3;
-
                     if (0 > c || c > this.limit) {
                         return false;
                     }
-
                     this.cursor = c;
                 }
                 this.I_x = this.cursor;
                 this.cursor = v_1;
-
                 golab0: while (true) {
                     lab1: do {
                         if (!this.in_grouping$esjava$3(germanStemmer.g_v, 97, 252)) {
                             break lab1;
                         }
-
                         break golab0;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 golab2: while (true) {
                     lab3: do {
                         if (!this.out_grouping$esjava$3(germanStemmer.g_v, 97, 252)) {
                             break lab3;
                         }
-
                         break golab2;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 this.I_p1 = this.cursor;
-
                 lab4: do {
                     if (!(this.I_p1 < this.I_x)) {
                         break lab4;
                     }
-
                     this.I_p1 = this.I_x;
                 } while (false);
-
                 golab5: while (true) {
                     lab6: do {
                         if (!this.in_grouping$esjava$3(germanStemmer.g_v, 97, 252)) {
                             break lab6;
                         }
-
                         break golab5;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 golab7: while (true) {
                     lab8: do {
                         if (!this.out_grouping$esjava$3(germanStemmer.g_v, 97, 252)) {
                             break lab8;
                         }
-
                         break golab7;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 this.I_p2 = this.cursor;
                 return true;
             }
         }, {
             key: 'r_postlude$esjava$0',
             value: function r_postlude$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-
+                var among_var = void 0;
+                var v_1 = void 0;
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         this.bra = this.cursor;
                         among_var = this.find_among$esjava$1(germanStemmer.a_0);
-
                         if (among_var === 0) {
                             break lab1;
                         }
-
                         this.ket = this.cursor;
-
                         switch (among_var) {
                             case 0:
                                 break lab1;
-
                             case 1:
                                 this.slice_from$esjava$1("y");
                                 break;
-
                             case 2:
                                 this.slice_from$esjava$1("u");
                                 break;
-
                             case 3:
                                 this.slice_from$esjava$1("a");
                                 break;
-
                             case 4:
                                 this.slice_from$esjava$1("o");
                                 break;
-
                             case 5:
                                 this.slice_from$esjava$1("u");
                                 break;
-
                             case 6:
                                 if (this.cursor >= this.limit) {
                                     break lab1;
                                 }
-
                                 this.cursor++;
                                 break;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
@@ -9649,7 +7960,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -9658,322 +7968,247 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_standard_suffix$esjava$0',
             value: function r_standard_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     this.ket = this.cursor;
                     among_var = this.find_among_b$esjava$1(germanStemmer.a_1);
-
                     if (among_var === 0) {
                         break lab0;
                     }
-
                     this.bra = this.cursor;
-
                     if (!this.r_R1$esjava$0()) {
                         break lab0;
                     }
-
                     switch (among_var) {
                         case 0:
                             break lab0;
-
                         case 1:
                             this.slice_del$esjava$0();
                             break;
-
                         case 2:
                             this.slice_del$esjava$0();
                             v_2 = this.limit - this.cursor;
-
                             lab1: do {
                                 this.ket = this.cursor;
-
                                 if (!this.eq_s_b$esjava$1("s")) {
                                     this.cursor = this.limit - v_2;
                                     break lab1;
                                 }
-
                                 this.bra = this.cursor;
-
                                 if (!this.eq_s_b$esjava$1("nis")) {
                                     this.cursor = this.limit - v_2;
                                     break lab1;
                                 }
-
                                 this.slice_del$esjava$0();
                             } while (false);
-
                             break;
-
                         case 3:
                             if (!this.in_grouping_b$esjava$3(germanStemmer.g_s_ending, 98, 116)) {
                                 break lab0;
                             }
-
                             this.slice_del$esjava$0();
                             break;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_1;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     this.ket = this.cursor;
                     among_var = this.find_among_b$esjava$1(germanStemmer.a_2);
-
                     if (among_var === 0) {
                         break lab2;
                     }
-
                     this.bra = this.cursor;
-
                     if (!this.r_R1$esjava$0()) {
                         break lab2;
                     }
-
                     switch (among_var) {
                         case 0:
                             break lab2;
-
                         case 1:
                             this.slice_del$esjava$0();
                             break;
-
                         case 2:
                             if (!this.in_grouping_b$esjava$3(germanStemmer.g_st_ending, 98, 116)) {
                                 break lab2;
                             }
-
                             {
                                 var c = this.cursor - 3;
-
                                 if (this.limit_backward > c || c > this.limit) {
                                     break lab2;
                                 }
-
                                 this.cursor = c;
                             }
                             this.slice_del$esjava$0();
                             break;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_4 = this.limit - this.cursor;
-
                 lab3: do {
                     this.ket = this.cursor;
                     among_var = this.find_among_b$esjava$1(germanStemmer.a_4);
-
                     if (among_var === 0) {
                         break lab3;
                     }
-
                     this.bra = this.cursor;
-
                     if (!this.r_R2$esjava$0()) {
                         break lab3;
                     }
-
                     switch (among_var) {
                         case 0:
                             break lab3;
-
                         case 1:
                             this.slice_del$esjava$0();
                             v_5 = this.limit - this.cursor;
-
                             lab4: do {
                                 this.ket = this.cursor;
-
                                 if (!this.eq_s_b$esjava$1("ig")) {
                                     this.cursor = this.limit - v_5;
                                     break lab4;
                                 }
-
                                 this.bra = this.cursor;
                                 {
                                     v_6 = this.limit - this.cursor;
-
                                     lab5: do {
                                         if (!this.eq_s_b$esjava$1("e")) {
                                             break lab5;
                                         }
-
                                         this.cursor = this.limit - v_5;
                                         break lab4;
                                     } while (false);
-
                                     this.cursor = this.limit - v_6;
                                 }
-
                                 if (!this.r_R2$esjava$0()) {
                                     this.cursor = this.limit - v_5;
                                     break lab4;
                                 }
-
                                 this.slice_del$esjava$0();
                             } while (false);
-
                             break;
-
                         case 2:
                             {
                                 v_7 = this.limit - this.cursor;
-
                                 lab6: do {
                                     if (!this.eq_s_b$esjava$1("e")) {
                                         break lab6;
                                     }
-
                                     break lab3;
                                 } while (false);
-
                                 this.cursor = this.limit - v_7;
                             }
                             this.slice_del$esjava$0();
                             break;
-
                         case 3:
                             this.slice_del$esjava$0();
                             v_8 = this.limit - this.cursor;
-
                             lab7: do {
                                 this.ket = this.cursor;
-
                                 lab8: do {
                                     v_9 = this.limit - this.cursor;
-
                                     lab9: do {
                                         if (!this.eq_s_b$esjava$1("er")) {
                                             break lab9;
                                         }
-
                                         break lab8;
                                     } while (false);
-
                                     this.cursor = this.limit - v_9;
-
                                     if (!this.eq_s_b$esjava$1("en")) {
                                         this.cursor = this.limit - v_8;
                                         break lab7;
                                     }
                                 } while (false);
-
                                 this.bra = this.cursor;
-
                                 if (!this.r_R1$esjava$0()) {
                                     this.cursor = this.limit - v_8;
                                     break lab7;
                                 }
-
                                 this.slice_del$esjava$0();
                             } while (false);
-
                             break;
-
                         case 4:
                             this.slice_del$esjava$0();
                             v_10 = this.limit - this.cursor;
-
                             lab10: do {
                                 this.ket = this.cursor;
                                 among_var = this.find_among_b$esjava$1(germanStemmer.a_3);
-
                                 if (among_var === 0) {
                                     this.cursor = this.limit - v_10;
                                     break lab10;
                                 }
-
                                 this.bra = this.cursor;
-
                                 if (!this.r_R2$esjava$0()) {
                                     this.cursor = this.limit - v_10;
                                     break lab10;
                                 }
-
                                 switch (among_var) {
                                     case 0:
                                         this.cursor = this.limit - v_10;
                                         break lab10;
-
                                     case 1:
                                         this.slice_del$esjava$0();
                                         break;
                                 }
                             } while (false);
-
                             break;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_4;
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_prelude$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 v_2 = this.cursor;
-
                 lab1: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = v_2;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_standard_suffix$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 this.cursor = this.limit_backward;
                 v_4 = this.cursor;
-
                 lab3: do {
                     if (!this.r_postlude$esjava$0()) {
                         break lab3;
                     }
                 } while (false);
-
                 this.cursor = v_4;
                 return true;
             }
@@ -9990,7 +8225,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get37 = _get(Object.getPrototypeOf(germanStemmer.prototype), 'stem', this)).call.apply(_get37, [this].concat(args));
             }
         }, {
@@ -10082,89 +8316,66 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(hungarianStemmer, [{
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 this.I_p1 = this.limit;
-
                 lab0: do {
                     v_1 = this.cursor;
-
                     lab1: do {
                         if (!this.in_grouping$esjava$3(hungarianStemmer.g_v, 97, 369)) {
                             break lab1;
                         }
-
                         golab2: while (true) {
                             v_2 = this.cursor;
-
                             lab3: do {
                                 if (!this.out_grouping$esjava$3(hungarianStemmer.g_v, 97, 369)) {
                                     break lab3;
                                 }
-
                                 this.cursor = v_2;
                                 break golab2;
                             } while (false);
-
                             this.cursor = v_2;
-
                             if (this.cursor >= this.limit) {
                                 break lab1;
                             }
-
                             this.cursor++;
                         }
-
                         lab4: do {
                             v_3 = this.cursor;
-
                             lab5: do {
                                 if (this.find_among$esjava$1(hungarianStemmer.a_0) === 0) {
                                     break lab5;
                                 }
-
                                 break lab4;
                             } while (false);
-
                             this.cursor = v_3;
-
                             if (this.cursor >= this.limit) {
                                 break lab1;
                             }
-
                             this.cursor++;
                         } while (false);
-
                         this.I_p1 = this.cursor;
                         break lab0;
                     } while (false);
-
                     this.cursor = v_1;
-
                     if (!this.out_grouping$esjava$3(hungarianStemmer.g_v, 97, 369)) {
                         return false;
                     }
-
                     golab6: while (true) {
                         lab7: do {
                             if (!this.in_grouping$esjava$3(hungarianStemmer.g_v, 97, 369)) {
                                 break lab7;
                             }
-
                             break golab6;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             return false;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p1 = this.cursor;
                 } while (false);
-
                 return true;
             }
         }, {
@@ -10173,51 +8384,41 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_v_ending$esjava$0',
             value: function r_v_ending$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(hungarianStemmer.a_1);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("e");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_double$esjava$0',
             value: function r_double$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.find_among_b$esjava$1(hungarianStemmer.a_2) === 0) {
                     return false;
                 }
-
                 this.cursor = this.limit - v_1;
                 return true;
             }
@@ -10227,16 +8428,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (this.cursor <= this.limit_backward) {
                     return false;
                 }
-
                 this.cursor--;
                 this.ket = this.cursor;
                 {
                     var c = this.cursor - 1;
-
                     if (this.limit_backward > c || c > this.limit) {
                         return false;
                     }
-
                     this.cursor = c;
                 }
                 this.bra = this.cursor;
@@ -10246,650 +8444,500 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_instrum$esjava$0',
             value: function r_instrum$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(hungarianStemmer.a_3);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_double$esjava$0()) {
                             return false;
                         }
-
                         break;
-
                     case 2:
                         if (!this.r_double$esjava$0()) {
                             return false;
                         }
-
                         break;
                 }
-
                 this.slice_del$esjava$0();
-
                 if (!this.r_undouble$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_case$esjava$0',
             value: function r_case$esjava$0() {
                 this.ket = this.cursor;
-
                 if (this.find_among_b$esjava$1(hungarianStemmer.a_4) === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 this.slice_del$esjava$0();
-
                 if (!this.r_v_ending$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_case_special$esjava$0',
             value: function r_case_special$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(hungarianStemmer.a_5);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("a");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_case_other$esjava$0',
             value: function r_case_other$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(hungarianStemmer.a_6);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_del$esjava$0();
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 4:
                         this.slice_from$esjava$1("e");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_factive$esjava$0',
             value: function r_factive$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(hungarianStemmer.a_7);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_double$esjava$0()) {
                             return false;
                         }
-
                         break;
-
                     case 2:
                         if (!this.r_double$esjava$0()) {
                             return false;
                         }
-
                         break;
                 }
-
                 this.slice_del$esjava$0();
-
                 if (!this.r_undouble$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_plural$esjava$0',
             value: function r_plural$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(hungarianStemmer.a_8);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 3:
                         this.slice_del$esjava$0();
                         break;
-
                     case 4:
                         this.slice_del$esjava$0();
                         break;
-
                     case 5:
                         this.slice_del$esjava$0();
                         break;
-
                     case 6:
                         this.slice_del$esjava$0();
                         break;
-
                     case 7:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_owned$esjava$0',
             value: function r_owned$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(hungarianStemmer.a_9);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 4:
                         this.slice_del$esjava$0();
                         break;
-
                     case 5:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 6:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 7:
                         this.slice_del$esjava$0();
                         break;
-
                     case 8:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 9:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_sing_owner$esjava$0',
             value: function r_sing_owner$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(hungarianStemmer.a_10);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 4:
                         this.slice_del$esjava$0();
                         break;
-
                     case 5:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 6:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 7:
                         this.slice_del$esjava$0();
                         break;
-
                     case 8:
                         this.slice_del$esjava$0();
                         break;
-
                     case 9:
                         this.slice_del$esjava$0();
                         break;
-
                     case 10:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 11:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 12:
                         this.slice_del$esjava$0();
                         break;
-
                     case 13:
                         this.slice_del$esjava$0();
                         break;
-
                     case 14:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 15:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 16:
                         this.slice_del$esjava$0();
                         break;
-
                     case 17:
                         this.slice_del$esjava$0();
                         break;
-
                     case 18:
                         this.slice_del$esjava$0();
                         break;
-
                     case 19:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 20:
                         this.slice_from$esjava$1("e");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_plur_owner$esjava$0',
             value: function r_plur_owner$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(hungarianStemmer.a_11);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 4:
                         this.slice_del$esjava$0();
                         break;
-
                     case 5:
                         this.slice_del$esjava$0();
                         break;
-
                     case 6:
                         this.slice_del$esjava$0();
                         break;
-
                     case 7:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 8:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 9:
                         this.slice_del$esjava$0();
                         break;
-
                     case 10:
                         this.slice_del$esjava$0();
                         break;
-
                     case 11:
                         this.slice_del$esjava$0();
                         break;
-
                     case 12:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 13:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 14:
                         this.slice_del$esjava$0();
                         break;
-
                     case 15:
                         this.slice_del$esjava$0();
                         break;
-
                     case 16:
                         this.slice_del$esjava$0();
                         break;
-
                     case 17:
                         this.slice_del$esjava$0();
                         break;
-
                     case 18:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 19:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 20:
                         this.slice_del$esjava$0();
                         break;
-
                     case 21:
                         this.slice_del$esjava$0();
                         break;
-
                     case 22:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 23:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 24:
                         this.slice_del$esjava$0();
                         break;
-
                     case 25:
                         this.slice_del$esjava$0();
                         break;
-
                     case 26:
                         this.slice_del$esjava$0();
                         break;
-
                     case 27:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 28:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 29:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_2 = this.limit - this.cursor;
-
                 lab1: do {
                     if (!this.r_instrum$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_2;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_case$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_4 = this.limit - this.cursor;
-
                 lab3: do {
                     if (!this.r_case_special$esjava$0()) {
                         break lab3;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_4;
                 v_5 = this.limit - this.cursor;
-
                 lab4: do {
                     if (!this.r_case_other$esjava$0()) {
                         break lab4;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_5;
                 v_6 = this.limit - this.cursor;
-
                 lab5: do {
                     if (!this.r_factive$esjava$0()) {
                         break lab5;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_6;
                 v_7 = this.limit - this.cursor;
-
                 lab6: do {
                     if (!this.r_owned$esjava$0()) {
                         break lab6;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_7;
                 v_8 = this.limit - this.cursor;
-
                 lab7: do {
                     if (!this.r_sing_owner$esjava$0()) {
                         break lab7;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_8;
                 v_9 = this.limit - this.cursor;
-
                 lab8: do {
                     if (!this.r_plur_owner$esjava$0()) {
                         break lab8;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_9;
                 v_10 = this.limit - this.cursor;
-
                 lab9: do {
                     if (!this.r_plural$esjava$0()) {
                         break lab9;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_10;
                 this.cursor = this.limit_backward;
                 return true;
@@ -10907,7 +8955,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get38 = _get(Object.getPrototypeOf(hungarianStemmer.prototype), 'stem', this)).call.apply(_get38, [this].concat(args));
             }
         }, {
@@ -11013,211 +9060,161 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(irishStemmer, [{
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_3 = undefined;
+                var v_1 = void 0;
+                var v_3 = void 0;
                 this.I_pV = this.limit;
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
                 v_1 = this.cursor;
-
                 lab0: do {
                     golab1: while (true) {
                         lab2: do {
                             if (!this.in_grouping$esjava$3(irishStemmer.g_v, 97, 250)) {
                                 break lab2;
                             }
-
                             break golab1;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_pV = this.cursor;
                 } while (false);
-
                 this.cursor = v_1;
                 v_3 = this.cursor;
-
                 lab3: do {
                     golab4: while (true) {
                         lab5: do {
                             if (!this.in_grouping$esjava$3(irishStemmer.g_v, 97, 250)) {
                                 break lab5;
                             }
-
                             break golab4;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab3;
                         }
-
                         this.cursor++;
                     }
-
                     golab6: while (true) {
                         lab7: do {
                             if (!this.out_grouping$esjava$3(irishStemmer.g_v, 97, 250)) {
                                 break lab7;
                             }
-
                             break golab6;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab3;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p1 = this.cursor;
-
                     golab8: while (true) {
                         lab9: do {
                             if (!this.in_grouping$esjava$3(irishStemmer.g_v, 97, 250)) {
                                 break lab9;
                             }
-
                             break golab8;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab3;
                         }
-
                         this.cursor++;
                     }
-
                     golab10: while (true) {
                         lab11: do {
                             if (!this.out_grouping$esjava$3(irishStemmer.g_v, 97, 250)) {
                                 break lab11;
                             }
-
                             break golab10;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab3;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p2 = this.cursor;
                 } while (false);
-
                 this.cursor = v_3;
                 return true;
             }
         }, {
             key: 'r_initial_morph$esjava$0',
             value: function r_initial_morph$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.bra = this.cursor;
                 among_var = this.find_among$esjava$1(irishStemmer.a_0);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.ket = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_del$esjava$0();
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("f");
                         break;
-
                     case 4:
                         this.slice_del$esjava$0();
                         break;
-
                     case 5:
                         this.slice_from$esjava$1("s");
                         break;
-
                     case 6:
                         this.slice_from$esjava$1("b");
                         break;
-
                     case 7:
                         this.slice_from$esjava$1("c");
                         break;
-
                     case 8:
                         this.slice_from$esjava$1("d");
                         break;
-
                     case 9:
                         this.slice_from$esjava$1("f");
                         break;
-
                     case 10:
                         this.slice_from$esjava$1("g");
                         break;
-
                     case 11:
                         this.slice_from$esjava$1("p");
                         break;
-
                     case 12:
                         this.slice_from$esjava$1("s");
                         break;
-
                     case 13:
                         this.slice_from$esjava$1("t");
                         break;
-
                     case 14:
                         this.slice_from$esjava$1("b");
                         break;
-
                     case 15:
                         this.slice_from$esjava$1("c");
                         break;
-
                     case 16:
                         this.slice_from$esjava$1("d");
                         break;
-
                     case 17:
                         this.slice_from$esjava$1("f");
                         break;
-
                     case 18:
                         this.slice_from$esjava$1("g");
                         break;
-
                     case 19:
                         this.slice_from$esjava$1("m");
                         break;
-
                     case 20:
                         this.slice_from$esjava$1("p");
                         break;
-
                     case 21:
                         this.slice_from$esjava$1("t");
                         break;
                 }
-
                 return true;
             }
         }, {
@@ -11226,7 +9223,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_pV <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -11235,7 +9231,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -11244,183 +9239,145 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_noun_sfx$esjava$0',
             value: function r_noun_sfx$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(irishStemmer.a_1);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_deriv$esjava$0',
             value: function r_deriv$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(irishStemmer.a_2);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("arc");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("gin");
                         break;
-
                     case 4:
                         this.slice_from$esjava$1("graf");
                         break;
-
                     case 5:
                         this.slice_from$esjava$1("paite");
                         break;
-
                     case 6:
                         this.slice_from$esjava$1('\u00F3id');
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_verb_sfx$esjava$0',
             value: function r_verb_sfx$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(irishStemmer.a_3);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_initial_morph$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 v_2 = this.cursor;
-
                 lab1: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = v_2;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_noun_sfx$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_4 = this.limit - this.cursor;
-
                 lab3: do {
                     if (!this.r_deriv$esjava$0()) {
                         break lab3;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_4;
                 v_5 = this.limit - this.cursor;
-
                 lab4: do {
                     if (!this.r_verb_sfx$esjava$0()) {
                         break lab4;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_5;
                 this.cursor = this.limit_backward;
                 return true;
@@ -11438,7 +9395,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get39 = _get(Object.getPrototypeOf(irishStemmer.prototype), 'stem', this)).call.apply(_get39, [this].concat(args));
             }
         }, {
@@ -11512,390 +9468,291 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(italianStemmer, [{
             key: 'r_prelude$esjava$0',
             value: function r_prelude$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
                 v_1 = this.cursor;
-
                 replab0: while (true) {
                     v_2 = this.cursor;
-
                     lab1: do {
                         this.bra = this.cursor;
                         among_var = this.find_among$esjava$1(italianStemmer.a_0);
-
                         if (among_var === 0) {
                             break lab1;
                         }
-
                         this.ket = this.cursor;
-
                         switch (among_var) {
                             case 0:
                                 break lab1;
-
                             case 1:
                                 this.slice_from$esjava$1('\u00E0');
                                 break;
-
                             case 2:
                                 this.slice_from$esjava$1('\u00E8');
                                 break;
-
                             case 3:
                                 this.slice_from$esjava$1('\u00EC');
                                 break;
-
                             case 4:
                                 this.slice_from$esjava$1('\u00F2');
                                 break;
-
                             case 5:
                                 this.slice_from$esjava$1('\u00F9');
                                 break;
-
                             case 6:
                                 this.slice_from$esjava$1("qU");
                                 break;
-
                             case 7:
                                 if (this.cursor >= this.limit) {
                                     break lab1;
                                 }
-
                                 this.cursor++;
                                 break;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_2;
                     break replab0;
                 }
-
                 this.cursor = v_1;
-
                 replab2: while (true) {
                     v_3 = this.cursor;
-
                     lab3: do {
                         golab4: while (true) {
                             v_4 = this.cursor;
-
                             lab5: do {
                                 if (!this.in_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                     break lab5;
                                 }
-
                                 this.bra = this.cursor;
-
                                 lab6: do {
                                     v_5 = this.cursor;
-
                                     lab7: do {
                                         if (!this.eq_s$esjava$1("u")) {
                                             break lab7;
                                         }
-
                                         this.ket = this.cursor;
-
                                         if (!this.in_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                             break lab7;
                                         }
-
                                         this.slice_from$esjava$1("U");
                                         break lab6;
                                     } while (false);
-
                                     this.cursor = v_5;
-
                                     if (!this.eq_s$esjava$1("i")) {
                                         break lab5;
                                     }
-
                                     this.ket = this.cursor;
-
                                     if (!this.in_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                         break lab5;
                                     }
-
                                     this.slice_from$esjava$1("I");
                                 } while (false);
-
                                 this.cursor = v_4;
                                 break golab4;
                             } while (false);
-
                             this.cursor = v_4;
-
                             if (this.cursor >= this.limit) {
                                 break lab3;
                             }
-
                             this.cursor++;
                         }
-
                         continue replab2;
                     } while (false);
-
                     this.cursor = v_3;
                     break replab2;
                 }
-
                 return true;
             }
         }, {
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_6 = undefined;
-                var v_8 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_6 = void 0;
+                var v_8 = void 0;
                 this.I_pV = this.limit;
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
                 v_1 = this.cursor;
-
                 lab0: do {
                     lab1: do {
                         v_2 = this.cursor;
-
                         lab2: do {
                             if (!this.in_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                 break lab2;
                             }
-
                             lab3: do {
                                 v_3 = this.cursor;
-
                                 lab4: do {
                                     if (!this.out_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                         break lab4;
                                     }
-
                                     golab5: while (true) {
                                         lab6: do {
                                             if (!this.in_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                                 break lab6;
                                             }
-
                                             break golab5;
                                         } while (false);
-
                                         if (this.cursor >= this.limit) {
                                             break lab4;
                                         }
-
                                         this.cursor++;
                                     }
-
                                     break lab3;
                                 } while (false);
-
                                 this.cursor = v_3;
-
                                 if (!this.in_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                     break lab2;
                                 }
-
                                 golab7: while (true) {
                                     lab8: do {
                                         if (!this.out_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                             break lab8;
                                         }
-
                                         break golab7;
                                     } while (false);
-
                                     if (this.cursor >= this.limit) {
                                         break lab2;
                                     }
-
                                     this.cursor++;
                                 }
                             } while (false);
-
                             break lab1;
                         } while (false);
-
                         this.cursor = v_2;
-
                         if (!this.out_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                             break lab0;
                         }
-
                         lab9: do {
                             v_6 = this.cursor;
-
                             lab10: do {
                                 if (!this.out_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                     break lab10;
                                 }
-
                                 golab11: while (true) {
                                     lab12: do {
                                         if (!this.in_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                             break lab12;
                                         }
-
                                         break golab11;
                                     } while (false);
-
                                     if (this.cursor >= this.limit) {
                                         break lab10;
                                     }
-
                                     this.cursor++;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = v_6;
-
                             if (!this.in_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                 break lab0;
                             }
-
                             if (this.cursor >= this.limit) {
                                 break lab0;
                             }
-
                             this.cursor++;
                         } while (false);
                     } while (false);
-
                     this.I_pV = this.cursor;
                 } while (false);
-
                 this.cursor = v_1;
                 v_8 = this.cursor;
-
                 lab13: do {
                     golab14: while (true) {
                         lab15: do {
                             if (!this.in_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                 break lab15;
                             }
-
                             break golab14;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     golab16: while (true) {
                         lab17: do {
                             if (!this.out_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                 break lab17;
                             }
-
                             break golab16;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p1 = this.cursor;
-
                     golab18: while (true) {
                         lab19: do {
                             if (!this.in_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                 break lab19;
                             }
-
                             break golab18;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     golab20: while (true) {
                         lab21: do {
                             if (!this.out_grouping$esjava$3(italianStemmer.g_v, 97, 249)) {
                                 break lab21;
                             }
-
                             break golab20;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p2 = this.cursor;
                 } while (false);
-
                 this.cursor = v_8;
                 return true;
             }
         }, {
             key: 'r_postlude$esjava$0',
             value: function r_postlude$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-
+                var among_var = void 0;
+                var v_1 = void 0;
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         this.bra = this.cursor;
                         among_var = this.find_among$esjava$1(italianStemmer.a_1);
-
                         if (among_var === 0) {
                             break lab1;
                         }
-
                         this.ket = this.cursor;
-
                         switch (among_var) {
                             case 0:
                                 break lab1;
-
                             case 1:
                                 this.slice_from$esjava$1("i");
                                 break;
-
                             case 2:
                                 this.slice_from$esjava$1("u");
                                 break;
-
                             case 3:
                                 if (this.cursor >= this.limit) {
                                     break lab1;
                                 }
-
                                 this.cursor++;
                                 break;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
@@ -11904,7 +9761,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_pV <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -11913,7 +9769,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -11922,456 +9777,350 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_attached_pronoun$esjava$0',
             value: function r_attached_pronoun$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
-
                 if (this.find_among_b$esjava$1(italianStemmer.a_2) === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
                 among_var = this.find_among_b$esjava$1(italianStemmer.a_3);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 if (!this.r_RV$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("e");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_standard_suffix$esjava$0',
             value: function r_standard_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(italianStemmer.a_6);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_1 = this.limit - this.cursor;
-
                         lab0: do {
                             this.ket = this.cursor;
-
                             if (!this.eq_s_b$esjava$1("ic")) {
                                 this.cursor = this.limit - v_1;
                                 break lab0;
                             }
-
                             this.bra = this.cursor;
-
                             if (!this.r_R2$esjava$0()) {
                                 this.cursor = this.limit - v_1;
                                 break lab0;
                             }
-
                             this.slice_del$esjava$0();
                         } while (false);
-
                         break;
-
                     case 3:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("log");
                         break;
-
                     case 4:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("u");
                         break;
-
                     case 5:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("ente");
                         break;
-
                     case 6:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 7:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_2 = this.limit - this.cursor;
-
                         lab1: do {
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(italianStemmer.a_4);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_2;
                                 break lab1;
                             }
-
                             this.bra = this.cursor;
-
                             if (!this.r_R2$esjava$0()) {
                                 this.cursor = this.limit - v_2;
                                 break lab1;
                             }
-
                             this.slice_del$esjava$0();
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_2;
                                     break lab1;
-
                                 case 1:
                                     this.ket = this.cursor;
-
                                     if (!this.eq_s_b$esjava$1("at")) {
                                         this.cursor = this.limit - v_2;
                                         break lab1;
                                     }
-
                                     this.bra = this.cursor;
-
                                     if (!this.r_R2$esjava$0()) {
                                         this.cursor = this.limit - v_2;
                                         break lab1;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         break;
-
                     case 8:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_3 = this.limit - this.cursor;
-
                         lab2: do {
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(italianStemmer.a_5);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_3;
                                 break lab2;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_3;
                                     break lab2;
-
                                 case 1:
                                     if (!this.r_R2$esjava$0()) {
                                         this.cursor = this.limit - v_3;
                                         break lab2;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         break;
-
                     case 9:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_4 = this.limit - this.cursor;
-
                         lab3: do {
                             this.ket = this.cursor;
-
                             if (!this.eq_s_b$esjava$1("at")) {
                                 this.cursor = this.limit - v_4;
                                 break lab3;
                             }
-
                             this.bra = this.cursor;
-
                             if (!this.r_R2$esjava$0()) {
                                 this.cursor = this.limit - v_4;
                                 break lab3;
                             }
-
                             this.slice_del$esjava$0();
                             this.ket = this.cursor;
-
                             if (!this.eq_s_b$esjava$1("ic")) {
                                 this.cursor = this.limit - v_4;
                                 break lab3;
                             }
-
                             this.bra = this.cursor;
-
                             if (!this.r_R2$esjava$0()) {
                                 this.cursor = this.limit - v_4;
                                 break lab3;
                             }
-
                             this.slice_del$esjava$0();
                         } while (false);
-
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_verb_suffix$esjava$0',
             value: function r_verb_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_pV) {
                     return false;
                 }
-
                 this.cursor = this.I_pV;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(italianStemmer.a_7);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         this.limit_backward = v_2;
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 this.limit_backward = v_2;
                 return true;
             }
         }, {
             key: 'r_vowel_suffix$esjava$0',
             value: function r_vowel_suffix$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     this.ket = this.cursor;
-
                     if (!this.in_grouping_b$esjava$3(italianStemmer.g_AEIO, 97, 242)) {
                         this.cursor = this.limit - v_1;
                         break lab0;
                     }
-
                     this.bra = this.cursor;
-
                     if (!this.r_RV$esjava$0()) {
                         this.cursor = this.limit - v_1;
                         break lab0;
                     }
-
                     this.slice_del$esjava$0();
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1("i")) {
                         this.cursor = this.limit - v_1;
                         break lab0;
                     }
-
                     this.bra = this.cursor;
-
                     if (!this.r_RV$esjava$0()) {
                         this.cursor = this.limit - v_1;
                         break lab0;
                     }
-
                     this.slice_del$esjava$0();
                 } while (false);
-
                 v_2 = this.limit - this.cursor;
-
                 lab1: do {
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1("h")) {
                         this.cursor = this.limit - v_2;
                         break lab1;
                     }
-
                     this.bra = this.cursor;
-
                     if (!this.in_grouping_b$esjava$3(italianStemmer.g_CG, 99, 103)) {
                         this.cursor = this.limit - v_2;
                         break lab1;
                     }
-
                     if (!this.r_RV$esjava$0()) {
                         this.cursor = this.limit - v_2;
                         break lab1;
                     }
-
                     this.slice_del$esjava$0();
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_prelude$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 v_2 = this.cursor;
-
                 lab1: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = v_2;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_attached_pronoun$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_4 = this.limit - this.cursor;
-
                 lab3: do {
                     lab4: do {
                         v_5 = this.limit - this.cursor;
-
                         lab5: do {
                             if (!this.r_standard_suffix$esjava$0()) {
                                 break lab5;
                             }
-
                             break lab4;
                         } while (false);
-
                         this.cursor = this.limit - v_5;
-
                         if (!this.r_verb_suffix$esjava$0()) {
                             break lab3;
                         }
                     } while (false);
                 } while (false);
-
                 this.cursor = this.limit - v_4;
                 v_6 = this.limit - this.cursor;
-
                 lab6: do {
                     if (!this.r_vowel_suffix$esjava$0()) {
                         break lab6;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_6;
                 this.cursor = this.limit_backward;
                 v_7 = this.cursor;
-
                 lab7: do {
                     if (!this.r_postlude$esjava$0()) {
                         break lab7;
                     }
                 } while (false);
-
                 this.cursor = v_7;
                 return true;
             }
@@ -12388,7 +10137,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get40 = _get(Object.getPrototypeOf(italianStemmer.prototype), 'stem', this)).call.apply(_get40, [this].concat(args));
             }
         }, {
@@ -12498,172 +10246,135 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(norwegianStemmer, [{
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 this.I_p1 = this.limit;
                 v_1 = this.cursor;
                 {
                     var c = this.cursor + 3;
-
                     if (0 > c || c > this.limit) {
                         return false;
                     }
-
                     this.cursor = c;
                 }
                 this.I_x = this.cursor;
                 this.cursor = v_1;
-
                 golab0: while (true) {
                     v_2 = this.cursor;
-
                     lab1: do {
                         if (!this.in_grouping$esjava$3(norwegianStemmer.g_v, 97, 248)) {
                             break lab1;
                         }
-
                         this.cursor = v_2;
                         break golab0;
                     } while (false);
-
                     this.cursor = v_2;
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 golab2: while (true) {
                     lab3: do {
                         if (!this.out_grouping$esjava$3(norwegianStemmer.g_v, 97, 248)) {
                             break lab3;
                         }
-
                         break golab2;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 this.I_p1 = this.cursor;
-
                 lab4: do {
                     if (!(this.I_p1 < this.I_x)) {
                         break lab4;
                     }
-
                     this.I_p1 = this.I_x;
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'r_main_suffix$esjava$0',
             value: function r_main_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(norwegianStemmer.a_0);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_2;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         lab0: do {
                             v_3 = this.limit - this.cursor;
-
                             lab1: do {
                                 if (!this.in_grouping_b$esjava$3(norwegianStemmer.g_s_ending, 98, 122)) {
                                     break lab1;
                                 }
-
                                 break lab0;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             if (!this.eq_s_b$esjava$1("k")) {
                                 return false;
                             }
-
                             if (!this.out_grouping_b$esjava$3(norwegianStemmer.g_v, 97, 248)) {
                                 return false;
                             }
                         } while (false);
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("er");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_consonant_pair$esjava$0',
             value: function r_consonant_pair$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 v_1 = this.limit - this.cursor;
                 v_2 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_3 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_2;
                 this.ket = this.cursor;
-
                 if (this.find_among_b$esjava$1(norwegianStemmer.a_1) === 0) {
                     this.limit_backward = v_3;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_3;
                 this.cursor = this.limit - v_1;
-
                 if (this.cursor <= this.limit_backward) {
                     return false;
                 }
-
                 this.cursor--;
                 this.bra = this.cursor;
                 this.slice_del$esjava$0();
@@ -12672,85 +10383,70 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_other_suffix$esjava$0',
             value: function r_other_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(norwegianStemmer.a_2);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_2;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_2 = this.limit - this.cursor;
-
                 lab1: do {
                     if (!this.r_main_suffix$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_2;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_consonant_pair$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_4 = this.limit - this.cursor;
-
                 lab3: do {
                     if (!this.r_other_suffix$esjava$0()) {
                         break lab3;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_4;
                 this.cursor = this.limit_backward;
                 return true;
@@ -12768,7 +10464,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get41 = _get(Object.getPrototypeOf(norwegianStemmer.prototype), 'stem', this)).call.apply(_get41, [this].concat(args));
             }
         }, {
@@ -12837,15 +10532,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.out_grouping_b$esjava$3(porterStemmer.g_v_WXY, 89, 121)) {
                     return false;
                 }
-
                 if (!this.in_grouping_b$esjava$3(porterStemmer.g_v, 97, 121)) {
                     return false;
                 }
-
                 if (!this.out_grouping_b$esjava$3(porterStemmer.g_v, 97, 121)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -12854,7 +10546,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -12863,103 +10554,80 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Step_1a$esjava$0',
             value: function r_Step_1a$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(porterStemmer.a_0);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("ss");
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("i");
                         break;
-
                     case 3:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Step_1b$esjava$0',
             value: function r_Step_1b$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(porterStemmer.a_2);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("ee");
                         break;
-
                     case 2:
                         v_1 = this.limit - this.cursor;
-
                         golab0: while (true) {
                             lab1: do {
                                 if (!this.in_grouping_b$esjava$3(porterStemmer.g_v, 97, 121)) {
                                     break lab1;
                                 }
-
                                 break golab0;
                             } while (false);
-
                             if (this.cursor <= this.limit_backward) {
                                 return false;
                             }
-
                             this.cursor--;
                         }
-
                         this.cursor = this.limit - v_1;
                         this.slice_del$esjava$0();
                         v_3 = this.limit - this.cursor;
                         among_var = this.find_among_b$esjava$1(porterStemmer.a_1);
-
                         if (among_var === 0) {
                             return false;
                         }
-
                         this.cursor = this.limit - v_3;
-
                         switch (among_var) {
                             case 0:
                                 return false;
-
                             case 1:
                                 {
                                     var c = this.cursor;
@@ -12967,301 +10635,230 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                                     this.cursor = c;
                                 }
                                 break;
-
                             case 2:
                                 this.ket = this.cursor;
-
                                 if (this.cursor <= this.limit_backward) {
                                     return false;
                                 }
-
                                 this.cursor--;
                                 this.bra = this.cursor;
                                 this.slice_del$esjava$0();
                                 break;
-
                             case 3:
                                 if (this.cursor !== this.I_p1) {
                                     return false;
                                 }
-
                                 v_4 = this.limit - this.cursor;
-
                                 if (!this.r_shortv$esjava$0()) {
                                     return false;
                                 }
-
                                 this.cursor = this.limit - v_4;
                                 {
-                                    var c = this.cursor;
+                                    var _c2 = this.cursor;
                                     this.insert$esjava$3(this.cursor, this.cursor, "e");
-                                    this.cursor = c;
+                                    this.cursor = _c2;
                                 }
                                 break;
                         }
-
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Step_1c$esjava$0',
             value: function r_Step_1c$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 this.ket = this.cursor;
-
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         if (!this.eq_s_b$esjava$1("y")) {
                             break lab1;
                         }
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     if (!this.eq_s_b$esjava$1("Y")) {
                         return false;
                     }
                 } while (false);
-
                 this.bra = this.cursor;
-
                 golab2: while (true) {
                     lab3: do {
                         if (!this.in_grouping_b$esjava$3(porterStemmer.g_v, 97, 121)) {
                             break lab3;
                         }
-
                         break golab2;
                     } while (false);
-
                     if (this.cursor <= this.limit_backward) {
                         return false;
                     }
-
                     this.cursor--;
                 }
-
                 this.slice_from$esjava$1("i");
                 return true;
             }
         }, {
             key: 'r_Step_2$esjava$0',
             value: function r_Step_2$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(porterStemmer.a_3);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("tion");
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("ence");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("ance");
                         break;
-
                     case 4:
                         this.slice_from$esjava$1("able");
                         break;
-
                     case 5:
                         this.slice_from$esjava$1("ent");
                         break;
-
                     case 6:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 7:
                         this.slice_from$esjava$1("ize");
                         break;
-
                     case 8:
                         this.slice_from$esjava$1("ate");
                         break;
-
                     case 9:
                         this.slice_from$esjava$1("al");
                         break;
-
                     case 10:
                         this.slice_from$esjava$1("al");
                         break;
-
                     case 11:
                         this.slice_from$esjava$1("ful");
                         break;
-
                     case 12:
                         this.slice_from$esjava$1("ous");
                         break;
-
                     case 13:
                         this.slice_from$esjava$1("ive");
                         break;
-
                     case 14:
                         this.slice_from$esjava$1("ble");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Step_3$esjava$0',
             value: function r_Step_3$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(porterStemmer.a_4);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("al");
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("ic");
                         break;
-
                     case 3:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Step_4$esjava$0',
             value: function r_Step_4$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(porterStemmer.a_5);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R2$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         lab0: do {
                             v_1 = this.limit - this.cursor;
-
                             lab1: do {
                                 if (!this.eq_s_b$esjava$1("s")) {
                                     break lab1;
                                 }
-
                                 break lab0;
                             } while (false);
-
                             this.cursor = this.limit - v_1;
-
                             if (!this.eq_s_b$esjava$1("t")) {
                                 return false;
                             }
                         } while (false);
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_Step_5a$esjava$0',
             value: function r_Step_5a$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 this.ket = this.cursor;
-
                 if (!this.eq_s_b$esjava$1("e")) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         if (!this.r_R2$esjava$0()) {
                             break lab1;
                         }
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     if (!this.r_R1$esjava$0()) {
                         return false;
                     }
-
                     {
                         v_2 = this.limit - this.cursor;
-
                         lab2: do {
                             if (!this.r_shortv$esjava$0()) {
                                 break lab2;
                             }
-
                             return false;
                         } while (false);
-
                         this.cursor = this.limit - v_2;
                     }
                 } while (false);
-
                 this.slice_del$esjava$0();
                 return true;
             }
@@ -13269,299 +10866,231 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             key: 'r_Step_5b$esjava$0',
             value: function r_Step_5b$esjava$0() {
                 this.ket = this.cursor;
-
                 if (!this.eq_s_b$esjava$1("l")) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R2$esjava$0()) {
                     return false;
                 }
-
                 if (!this.eq_s_b$esjava$1("l")) {
                     return false;
                 }
-
                 this.slice_del$esjava$0();
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_10 = undefined;
-                var v_11 = undefined;
-                var v_12 = undefined;
-                var v_13 = undefined;
-                var v_14 = undefined;
-                var v_15 = undefined;
-                var v_16 = undefined;
-                var v_17 = undefined;
-                var v_18 = undefined;
-                var v_19 = undefined;
-                var v_20 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_10 = void 0;
+                var v_11 = void 0;
+                var v_12 = void 0;
+                var v_13 = void 0;
+                var v_14 = void 0;
+                var v_15 = void 0;
+                var v_16 = void 0;
+                var v_17 = void 0;
+                var v_18 = void 0;
+                var v_19 = void 0;
+                var v_20 = void 0;
                 this.B_Y_found = false;
                 v_1 = this.cursor;
-
                 lab0: do {
                     this.bra = this.cursor;
-
                     if (!this.eq_s$esjava$1("y")) {
                         break lab0;
                     }
-
                     this.ket = this.cursor;
                     this.slice_from$esjava$1("Y");
                     this.B_Y_found = true;
                 } while (false);
-
                 this.cursor = v_1;
                 v_2 = this.cursor;
-
                 lab1: do {
                     replab2: while (true) {
                         v_3 = this.cursor;
-
                         lab3: do {
                             golab4: while (true) {
                                 v_4 = this.cursor;
-
                                 lab5: do {
                                     if (!this.in_grouping$esjava$3(porterStemmer.g_v, 97, 121)) {
                                         break lab5;
                                     }
-
                                     this.bra = this.cursor;
-
                                     if (!this.eq_s$esjava$1("y")) {
                                         break lab5;
                                     }
-
                                     this.ket = this.cursor;
                                     this.cursor = v_4;
                                     break golab4;
                                 } while (false);
-
                                 this.cursor = v_4;
-
                                 if (this.cursor >= this.limit) {
                                     break lab3;
                                 }
-
                                 this.cursor++;
                             }
-
                             this.slice_from$esjava$1("Y");
                             this.B_Y_found = true;
                             continue replab2;
                         } while (false);
-
                         this.cursor = v_3;
                         break replab2;
                     }
                 } while (false);
-
                 this.cursor = v_2;
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
                 v_5 = this.cursor;
-
                 lab6: do {
                     golab7: while (true) {
                         lab8: do {
                             if (!this.in_grouping$esjava$3(porterStemmer.g_v, 97, 121)) {
                                 break lab8;
                             }
-
                             break golab7;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab6;
                         }
-
                         this.cursor++;
                     }
-
                     golab9: while (true) {
                         lab10: do {
                             if (!this.out_grouping$esjava$3(porterStemmer.g_v, 97, 121)) {
                                 break lab10;
                             }
-
                             break golab9;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab6;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p1 = this.cursor;
-
                     golab11: while (true) {
                         lab12: do {
                             if (!this.in_grouping$esjava$3(porterStemmer.g_v, 97, 121)) {
                                 break lab12;
                             }
-
                             break golab11;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab6;
                         }
-
                         this.cursor++;
                     }
-
                     golab13: while (true) {
                         lab14: do {
                             if (!this.out_grouping$esjava$3(porterStemmer.g_v, 97, 121)) {
                                 break lab14;
                             }
-
                             break golab13;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab6;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p2 = this.cursor;
                 } while (false);
-
                 this.cursor = v_5;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_10 = this.limit - this.cursor;
-
                 lab15: do {
                     if (!this.r_Step_1a$esjava$0()) {
                         break lab15;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_10;
                 v_11 = this.limit - this.cursor;
-
                 lab16: do {
                     if (!this.r_Step_1b$esjava$0()) {
                         break lab16;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_11;
                 v_12 = this.limit - this.cursor;
-
                 lab17: do {
                     if (!this.r_Step_1c$esjava$0()) {
                         break lab17;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_12;
                 v_13 = this.limit - this.cursor;
-
                 lab18: do {
                     if (!this.r_Step_2$esjava$0()) {
                         break lab18;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_13;
                 v_14 = this.limit - this.cursor;
-
                 lab19: do {
                     if (!this.r_Step_3$esjava$0()) {
                         break lab19;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_14;
                 v_15 = this.limit - this.cursor;
-
                 lab20: do {
                     if (!this.r_Step_4$esjava$0()) {
                         break lab20;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_15;
                 v_16 = this.limit - this.cursor;
-
                 lab21: do {
                     if (!this.r_Step_5a$esjava$0()) {
                         break lab21;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_16;
                 v_17 = this.limit - this.cursor;
-
                 lab22: do {
                     if (!this.r_Step_5b$esjava$0()) {
                         break lab22;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_17;
                 this.cursor = this.limit_backward;
                 v_18 = this.cursor;
-
                 lab23: do {
                     if (!this.B_Y_found) {
                         break lab23;
                     }
-
                     replab24: while (true) {
                         v_19 = this.cursor;
-
                         lab25: do {
                             golab26: while (true) {
                                 v_20 = this.cursor;
-
                                 lab27: do {
                                     this.bra = this.cursor;
-
                                     if (!this.eq_s$esjava$1("Y")) {
                                         break lab27;
                                     }
-
                                     this.ket = this.cursor;
                                     this.cursor = v_20;
                                     break golab26;
                                 } while (false);
-
                                 this.cursor = v_20;
-
                                 if (this.cursor >= this.limit) {
                                     break lab25;
                                 }
-
                                 this.cursor++;
                             }
-
                             this.slice_from$esjava$1("y");
                             continue replab24;
                         } while (false);
-
                         this.cursor = v_19;
                         break replab24;
                     }
                 } while (false);
-
                 this.cursor = v_18;
                 return true;
             }
@@ -13578,7 +11107,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get42 = _get(Object.getPrototypeOf(porterStemmer.prototype), 'stem', this)).call.apply(_get42, [this].concat(args));
             }
         }, {
@@ -13670,300 +11198,226 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(portugueseStemmer, [{
             key: 'r_prelude$esjava$0',
             value: function r_prelude$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-
+                var among_var = void 0;
+                var v_1 = void 0;
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         this.bra = this.cursor;
                         among_var = this.find_among$esjava$1(portugueseStemmer.a_0);
-
                         if (among_var === 0) {
                             break lab1;
                         }
-
                         this.ket = this.cursor;
-
                         switch (among_var) {
                             case 0:
                                 break lab1;
-
                             case 1:
                                 this.slice_from$esjava$1("a~");
                                 break;
-
                             case 2:
                                 this.slice_from$esjava$1("o~");
                                 break;
-
                             case 3:
                                 if (this.cursor >= this.limit) {
                                     break lab1;
                                 }
-
                                 this.cursor++;
                                 break;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_6 = undefined;
-                var v_8 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_6 = void 0;
+                var v_8 = void 0;
                 this.I_pV = this.limit;
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
                 v_1 = this.cursor;
-
                 lab0: do {
                     lab1: do {
                         v_2 = this.cursor;
-
                         lab2: do {
                             if (!this.in_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                                 break lab2;
                             }
-
                             lab3: do {
                                 v_3 = this.cursor;
-
                                 lab4: do {
                                     if (!this.out_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                                         break lab4;
                                     }
-
                                     golab5: while (true) {
                                         lab6: do {
                                             if (!this.in_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                                                 break lab6;
                                             }
-
                                             break golab5;
                                         } while (false);
-
                                         if (this.cursor >= this.limit) {
                                             break lab4;
                                         }
-
                                         this.cursor++;
                                     }
-
                                     break lab3;
                                 } while (false);
-
                                 this.cursor = v_3;
-
                                 if (!this.in_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                                     break lab2;
                                 }
-
                                 golab7: while (true) {
                                     lab8: do {
                                         if (!this.out_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                                             break lab8;
                                         }
-
                                         break golab7;
                                     } while (false);
-
                                     if (this.cursor >= this.limit) {
                                         break lab2;
                                     }
-
                                     this.cursor++;
                                 }
                             } while (false);
-
                             break lab1;
                         } while (false);
-
                         this.cursor = v_2;
-
                         if (!this.out_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                             break lab0;
                         }
-
                         lab9: do {
                             v_6 = this.cursor;
-
                             lab10: do {
                                 if (!this.out_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                                     break lab10;
                                 }
-
                                 golab11: while (true) {
                                     lab12: do {
                                         if (!this.in_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                                             break lab12;
                                         }
-
                                         break golab11;
                                     } while (false);
-
                                     if (this.cursor >= this.limit) {
                                         break lab10;
                                     }
-
                                     this.cursor++;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = v_6;
-
                             if (!this.in_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                                 break lab0;
                             }
-
                             if (this.cursor >= this.limit) {
                                 break lab0;
                             }
-
                             this.cursor++;
                         } while (false);
                     } while (false);
-
                     this.I_pV = this.cursor;
                 } while (false);
-
                 this.cursor = v_1;
                 v_8 = this.cursor;
-
                 lab13: do {
                     golab14: while (true) {
                         lab15: do {
                             if (!this.in_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                                 break lab15;
                             }
-
                             break golab14;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     golab16: while (true) {
                         lab17: do {
                             if (!this.out_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                                 break lab17;
                             }
-
                             break golab16;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p1 = this.cursor;
-
                     golab18: while (true) {
                         lab19: do {
                             if (!this.in_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                                 break lab19;
                             }
-
                             break golab18;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     golab20: while (true) {
                         lab21: do {
                             if (!this.out_grouping$esjava$3(portugueseStemmer.g_v, 97, 250)) {
                                 break lab21;
                             }
-
                             break golab20;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p2 = this.cursor;
                 } while (false);
-
                 this.cursor = v_8;
                 return true;
             }
         }, {
             key: 'r_postlude$esjava$0',
             value: function r_postlude$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-
+                var among_var = void 0;
+                var v_1 = void 0;
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         this.bra = this.cursor;
                         among_var = this.find_among$esjava$1(portugueseStemmer.a_1);
-
                         if (among_var === 0) {
                             break lab1;
                         }
-
                         this.ket = this.cursor;
-
                         switch (among_var) {
                             case 0:
                                 break lab1;
-
                             case 1:
                                 this.slice_from$esjava$1('\u00E3');
                                 break;
-
                             case 2:
                                 this.slice_from$esjava$1('\u00F5');
                                 break;
-
                             case 3:
                                 if (this.cursor >= this.limit) {
                                     break lab1;
                                 }
-
                                 this.cursor++;
                                 break;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
@@ -13972,7 +11426,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_pV <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -13981,7 +11434,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -13990,493 +11442,378 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_standard_suffix$esjava$0',
             value: function r_standard_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(portugueseStemmer.a_5);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("log");
                         break;
-
                     case 3:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("u");
                         break;
-
                     case 4:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("ente");
                         break;
-
                     case 5:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_1 = this.limit - this.cursor;
-
                         lab0: do {
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(portugueseStemmer.a_2);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_1;
                                 break lab0;
                             }
-
                             this.bra = this.cursor;
-
                             if (!this.r_R2$esjava$0()) {
                                 this.cursor = this.limit - v_1;
                                 break lab0;
                             }
-
                             this.slice_del$esjava$0();
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_1;
                                     break lab0;
-
                                 case 1:
                                     this.ket = this.cursor;
-
                                     if (!this.eq_s_b$esjava$1("at")) {
                                         this.cursor = this.limit - v_1;
                                         break lab0;
                                     }
-
                                     this.bra = this.cursor;
-
                                     if (!this.r_R2$esjava$0()) {
                                         this.cursor = this.limit - v_1;
                                         break lab0;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         break;
-
                     case 6:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_2 = this.limit - this.cursor;
-
                         lab1: do {
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(portugueseStemmer.a_3);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_2;
                                 break lab1;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_2;
                                     break lab1;
-
                                 case 1:
                                     if (!this.r_R2$esjava$0()) {
                                         this.cursor = this.limit - v_2;
                                         break lab1;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         break;
-
                     case 7:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_3 = this.limit - this.cursor;
-
                         lab2: do {
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(portugueseStemmer.a_4);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_3;
                                 break lab2;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_3;
                                     break lab2;
-
                                 case 1:
                                     if (!this.r_R2$esjava$0()) {
                                         this.cursor = this.limit - v_3;
                                         break lab2;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         break;
-
                     case 8:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_4 = this.limit - this.cursor;
-
                         lab3: do {
                             this.ket = this.cursor;
-
                             if (!this.eq_s_b$esjava$1("at")) {
                                 this.cursor = this.limit - v_4;
                                 break lab3;
                             }
-
                             this.bra = this.cursor;
-
                             if (!this.r_R2$esjava$0()) {
                                 this.cursor = this.limit - v_4;
                                 break lab3;
                             }
-
                             this.slice_del$esjava$0();
                         } while (false);
-
                         break;
-
                     case 9:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         if (!this.eq_s_b$esjava$1("e")) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("ir");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_verb_suffix$esjava$0',
             value: function r_verb_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_pV) {
                     return false;
                 }
-
                 this.cursor = this.I_pV;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(portugueseStemmer.a_6);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         this.limit_backward = v_2;
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 this.limit_backward = v_2;
                 return true;
             }
         }, {
             key: 'r_residual_suffix$esjava$0',
             value: function r_residual_suffix$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(portugueseStemmer.a_7);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_residual_form$esjava$0',
             value: function r_residual_form$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(portugueseStemmer.a_8);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         this.ket = this.cursor;
-
                         lab0: do {
                             v_1 = this.limit - this.cursor;
-
                             lab1: do {
                                 if (!this.eq_s_b$esjava$1("u")) {
                                     break lab1;
                                 }
-
                                 this.bra = this.cursor;
                                 v_2 = this.limit - this.cursor;
-
                                 if (!this.eq_s_b$esjava$1("g")) {
                                     break lab1;
                                 }
-
                                 this.cursor = this.limit - v_2;
                                 break lab0;
                             } while (false);
-
                             this.cursor = this.limit - v_1;
-
                             if (!this.eq_s_b$esjava$1("i")) {
                                 return false;
                             }
-
                             this.bra = this.cursor;
                             v_3 = this.limit - this.cursor;
-
                             if (!this.eq_s_b$esjava$1("c")) {
                                 return false;
                             }
-
                             this.cursor = this.limit - v_3;
                         } while (false);
-
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("c");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_prelude$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 v_2 = this.cursor;
-
                 lab1: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = v_2;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     lab3: do {
                         v_4 = this.limit - this.cursor;
-
                         lab4: do {
                             v_5 = this.limit - this.cursor;
-
                             lab5: do {
                                 v_6 = this.limit - this.cursor;
-
                                 lab6: do {
                                     if (!this.r_standard_suffix$esjava$0()) {
                                         break lab6;
                                     }
-
                                     break lab5;
                                 } while (false);
-
                                 this.cursor = this.limit - v_6;
-
                                 if (!this.r_verb_suffix$esjava$0()) {
                                     break lab4;
                                 }
                             } while (false);
-
                             this.cursor = this.limit - v_5;
                             v_7 = this.limit - this.cursor;
-
                             lab7: do {
                                 this.ket = this.cursor;
-
                                 if (!this.eq_s_b$esjava$1("i")) {
                                     break lab7;
                                 }
-
                                 this.bra = this.cursor;
                                 v_8 = this.limit - this.cursor;
-
                                 if (!this.eq_s_b$esjava$1("c")) {
                                     break lab7;
                                 }
-
                                 this.cursor = this.limit - v_8;
-
                                 if (!this.r_RV$esjava$0()) {
                                     break lab7;
                                 }
-
                                 this.slice_del$esjava$0();
                             } while (false);
-
                             this.cursor = this.limit - v_7;
                             break lab3;
                         } while (false);
-
                         this.cursor = this.limit - v_4;
-
                         if (!this.r_residual_suffix$esjava$0()) {
                             break lab2;
                         }
                     } while (false);
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_9 = this.limit - this.cursor;
-
                 lab8: do {
                     if (!this.r_residual_form$esjava$0()) {
                         break lab8;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_9;
                 this.cursor = this.limit_backward;
                 v_10 = this.cursor;
-
                 lab9: do {
                     if (!this.r_postlude$esjava$0()) {
                         break lab9;
                     }
                 } while (false);
-
                 this.cursor = v_10;
                 return true;
             }
@@ -14493,7 +11830,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get43 = _get(Object.getPrototypeOf(portugueseStemmer.prototype), 'stem', this)).call.apply(_get43, [this].concat(args));
             }
         }, {
@@ -14597,327 +11933,244 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(romanianStemmer, [{
             key: 'r_prelude$esjava$0',
             value: function r_prelude$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         golab2: while (true) {
                             v_2 = this.cursor;
-
                             lab3: do {
                                 if (!this.in_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                     break lab3;
                                 }
-
                                 this.bra = this.cursor;
-
                                 lab4: do {
                                     v_3 = this.cursor;
-
                                     lab5: do {
                                         if (!this.eq_s$esjava$1("u")) {
                                             break lab5;
                                         }
-
                                         this.ket = this.cursor;
-
                                         if (!this.in_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                             break lab5;
                                         }
-
                                         this.slice_from$esjava$1("U");
                                         break lab4;
                                     } while (false);
-
                                     this.cursor = v_3;
-
                                     if (!this.eq_s$esjava$1("i")) {
                                         break lab3;
                                     }
-
                                     this.ket = this.cursor;
-
                                     if (!this.in_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                         break lab3;
                                     }
-
                                     this.slice_from$esjava$1("I");
                                 } while (false);
-
                                 this.cursor = v_2;
                                 break golab2;
                             } while (false);
-
                             this.cursor = v_2;
-
                             if (this.cursor >= this.limit) {
                                 break lab1;
                             }
-
                             this.cursor++;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_6 = undefined;
-                var v_8 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_6 = void 0;
+                var v_8 = void 0;
                 this.I_pV = this.limit;
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
                 v_1 = this.cursor;
-
                 lab0: do {
                     lab1: do {
                         v_2 = this.cursor;
-
                         lab2: do {
                             if (!this.in_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                 break lab2;
                             }
-
                             lab3: do {
                                 v_3 = this.cursor;
-
                                 lab4: do {
                                     if (!this.out_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                         break lab4;
                                     }
-
                                     golab5: while (true) {
                                         lab6: do {
                                             if (!this.in_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                                 break lab6;
                                             }
-
                                             break golab5;
                                         } while (false);
-
                                         if (this.cursor >= this.limit) {
                                             break lab4;
                                         }
-
                                         this.cursor++;
                                     }
-
                                     break lab3;
                                 } while (false);
-
                                 this.cursor = v_3;
-
                                 if (!this.in_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                     break lab2;
                                 }
-
                                 golab7: while (true) {
                                     lab8: do {
                                         if (!this.out_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                             break lab8;
                                         }
-
                                         break golab7;
                                     } while (false);
-
                                     if (this.cursor >= this.limit) {
                                         break lab2;
                                     }
-
                                     this.cursor++;
                                 }
                             } while (false);
-
                             break lab1;
                         } while (false);
-
                         this.cursor = v_2;
-
                         if (!this.out_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                             break lab0;
                         }
-
                         lab9: do {
                             v_6 = this.cursor;
-
                             lab10: do {
                                 if (!this.out_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                     break lab10;
                                 }
-
                                 golab11: while (true) {
                                     lab12: do {
                                         if (!this.in_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                             break lab12;
                                         }
-
                                         break golab11;
                                     } while (false);
-
                                     if (this.cursor >= this.limit) {
                                         break lab10;
                                     }
-
                                     this.cursor++;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = v_6;
-
                             if (!this.in_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                 break lab0;
                             }
-
                             if (this.cursor >= this.limit) {
                                 break lab0;
                             }
-
                             this.cursor++;
                         } while (false);
                     } while (false);
-
                     this.I_pV = this.cursor;
                 } while (false);
-
                 this.cursor = v_1;
                 v_8 = this.cursor;
-
                 lab13: do {
                     golab14: while (true) {
                         lab15: do {
                             if (!this.in_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                 break lab15;
                             }
-
                             break golab14;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     golab16: while (true) {
                         lab17: do {
                             if (!this.out_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                 break lab17;
                             }
-
                             break golab16;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p1 = this.cursor;
-
                     golab18: while (true) {
                         lab19: do {
                             if (!this.in_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                 break lab19;
                             }
-
                             break golab18;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     golab20: while (true) {
                         lab21: do {
                             if (!this.out_grouping$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                 break lab21;
                             }
-
                             break golab20;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p2 = this.cursor;
                 } while (false);
-
                 this.cursor = v_8;
                 return true;
             }
         }, {
             key: 'r_postlude$esjava$0',
             value: function r_postlude$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-
+                var among_var = void 0;
+                var v_1 = void 0;
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         this.bra = this.cursor;
                         among_var = this.find_among$esjava$1(romanianStemmer.a_0);
-
                         if (among_var === 0) {
                             break lab1;
                         }
-
                         this.ket = this.cursor;
-
                         switch (among_var) {
                             case 0:
                                 break lab1;
-
                             case 1:
                                 this.slice_from$esjava$1("i");
                                 break;
-
                             case 2:
                                 this.slice_from$esjava$1("u");
                                 break;
-
                             case 3:
                                 if (this.cursor >= this.limit) {
                                     break lab1;
                                 }
-
                                 this.cursor++;
                                 break;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
@@ -14926,7 +12179,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_pV <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -14935,7 +12187,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -14944,123 +12195,96 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_step_0$esjava$0',
             value: function r_step_0$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(romanianStemmer.a_1);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("a");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("e");
                         break;
-
                     case 4:
                         this.slice_from$esjava$1("i");
                         break;
-
                     case 5:
                         {
                             v_1 = this.limit - this.cursor;
-
                             lab0: do {
                                 if (!this.eq_s_b$esjava$1("ab")) {
                                     break lab0;
                                 }
-
                                 return false;
                             } while (false);
-
                             this.cursor = this.limit - v_1;
                         }
                         this.slice_from$esjava$1("i");
                         break;
-
                     case 6:
                         this.slice_from$esjava$1("at");
                         break;
-
                     case 7:
                         this.slice_from$esjava$1('a\u0163i');
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_combo_suffix$esjava$0',
             value: function r_combo_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
                 v_1 = this.limit - this.cursor;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(romanianStemmer.a_2);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R1$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("abil");
                         break;
-
                     case 2:
                         this.slice_from$esjava$1("ibil");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("iv");
                         break;
-
                     case 4:
                         this.slice_from$esjava$1("ic");
                         break;
-
                     case 5:
                         this.slice_from$esjava$1("at");
                         break;
-
                     case 6:
                         this.slice_from$esjava$1("it");
                         break;
                 }
-
                 this.B_standard_suffix_removed = true;
                 this.cursor = this.limit - v_1;
                 return true;
@@ -15068,244 +12292,193 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_standard_suffix$esjava$0',
             value: function r_standard_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
                 this.B_standard_suffix_removed = false;
-
                 replab0: while (true) {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         if (!this.r_combo_suffix$esjava$0()) {
                             break lab1;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
                     break replab0;
                 }
-
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(romanianStemmer.a_3);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R2$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.eq_s_b$esjava$1('\u0163')) {
                             return false;
                         }
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1("t");
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("ist");
                         break;
                 }
-
                 this.B_standard_suffix_removed = true;
                 return true;
             }
         }, {
             key: 'r_verb_suffix$esjava$0',
             value: function r_verb_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_pV) {
                     return false;
                 }
-
                 this.cursor = this.I_pV;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(romanianStemmer.a_4);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         this.limit_backward = v_2;
                         return false;
-
                     case 1:
                         lab0: do {
                             v_3 = this.limit - this.cursor;
-
                             lab1: do {
                                 if (!this.out_grouping_b$esjava$3(romanianStemmer.g_v, 97, 259)) {
                                     break lab1;
                                 }
-
                                 break lab0;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             if (!this.eq_s_b$esjava$1("u")) {
                                 this.limit_backward = v_2;
                                 return false;
                             }
                         } while (false);
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 this.limit_backward = v_2;
                 return true;
             }
         }, {
             key: 'r_vowel_suffix$esjava$0',
             value: function r_vowel_suffix$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(romanianStemmer.a_5);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_RV$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_prelude$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 v_2 = this.cursor;
-
                 lab1: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = v_2;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_step_0$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_4 = this.limit - this.cursor;
-
                 lab3: do {
                     if (!this.r_standard_suffix$esjava$0()) {
                         break lab3;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_4;
                 v_5 = this.limit - this.cursor;
-
                 lab4: do {
                     lab5: do {
                         v_6 = this.limit - this.cursor;
-
                         lab6: do {
                             if (!this.B_standard_suffix_removed) {
                                 break lab6;
                             }
-
                             break lab5;
                         } while (false);
-
                         this.cursor = this.limit - v_6;
-
                         if (!this.r_verb_suffix$esjava$0()) {
                             break lab4;
                         }
                     } while (false);
                 } while (false);
-
                 this.cursor = this.limit - v_5;
                 v_7 = this.limit - this.cursor;
-
                 lab7: do {
                     if (!this.r_vowel_suffix$esjava$0()) {
                         break lab7;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_7;
                 this.cursor = this.limit_backward;
                 v_8 = this.cursor;
-
                 lab8: do {
                     if (!this.r_postlude$esjava$0()) {
                         break lab8;
                     }
                 } while (false);
-
                 this.cursor = v_8;
                 return true;
             }
@@ -15322,7 +12495,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get44 = _get(Object.getPrototypeOf(romanianStemmer.prototype), 'stem', this)).call.apply(_get44, [this].concat(args));
             }
         }, {
@@ -15416,81 +12588,62 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(russianStemmer, [{
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 this.I_pV = this.limit;
                 this.I_p2 = this.limit;
                 v_1 = this.cursor;
-
                 lab0: do {
                     golab1: while (true) {
                         lab2: do {
                             if (!this.in_grouping$esjava$3(russianStemmer.g_v, 1072, 1103)) {
                                 break lab2;
                             }
-
                             break golab1;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_pV = this.cursor;
-
                     golab3: while (true) {
                         lab4: do {
                             if (!this.out_grouping$esjava$3(russianStemmer.g_v, 1072, 1103)) {
                                 break lab4;
                             }
-
                             break golab3;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     golab5: while (true) {
                         lab6: do {
                             if (!this.in_grouping$esjava$3(russianStemmer.g_v, 1072, 1103)) {
                                 break lab6;
                             }
-
                             break golab5;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     golab7: while (true) {
                         lab8: do {
                             if (!this.out_grouping$esjava$3(russianStemmer.g_v, 1072, 1103)) {
                                 break lab8;
                             }
-
                             break golab7;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab0;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p2 = this.cursor;
                 } while (false);
-
                 this.cursor = v_1;
                 return true;
             }
@@ -15500,432 +12653,336 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_perfective_gerund$esjava$0',
             value: function r_perfective_gerund$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(russianStemmer.a_0);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         lab0: do {
                             v_1 = this.limit - this.cursor;
-
                             lab1: do {
                                 if (!this.eq_s_b$esjava$1('\u0430')) {
                                     break lab1;
                                 }
-
                                 break lab0;
                             } while (false);
-
                             this.cursor = this.limit - v_1;
-
                             if (!this.eq_s_b$esjava$1('\u044F')) {
                                 return false;
                             }
                         } while (false);
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_adjective$esjava$0',
             value: function r_adjective$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(russianStemmer.a_1);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_adjectival$esjava$0',
             value: function r_adjectival$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 if (!this.r_adjective$esjava$0()) {
                     return false;
                 }
-
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     this.ket = this.cursor;
                     among_var = this.find_among_b$esjava$1(russianStemmer.a_2);
-
                     if (among_var === 0) {
                         this.cursor = this.limit - v_1;
                         break lab0;
                     }
-
                     this.bra = this.cursor;
-
                     switch (among_var) {
                         case 0:
                             this.cursor = this.limit - v_1;
                             break lab0;
-
                         case 1:
                             lab1: do {
                                 v_2 = this.limit - this.cursor;
-
                                 lab2: do {
                                     if (!this.eq_s_b$esjava$1('\u0430')) {
                                         break lab2;
                                     }
-
                                     break lab1;
                                 } while (false);
-
                                 this.cursor = this.limit - v_2;
-
                                 if (!this.eq_s_b$esjava$1('\u044F')) {
                                     this.cursor = this.limit - v_1;
                                     break lab0;
                                 }
                             } while (false);
-
                             this.slice_del$esjava$0();
                             break;
-
                         case 2:
                             this.slice_del$esjava$0();
                             break;
                     }
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'r_reflexive$esjava$0',
             value: function r_reflexive$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(russianStemmer.a_3);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_verb$esjava$0',
             value: function r_verb$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(russianStemmer.a_4);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         lab0: do {
                             v_1 = this.limit - this.cursor;
-
                             lab1: do {
                                 if (!this.eq_s_b$esjava$1('\u0430')) {
                                     break lab1;
                                 }
-
                                 break lab0;
                             } while (false);
-
                             this.cursor = this.limit - v_1;
-
                             if (!this.eq_s_b$esjava$1('\u044F')) {
                                 return false;
                             }
                         } while (false);
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_noun$esjava$0',
             value: function r_noun$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(russianStemmer.a_5);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_derivational$esjava$0',
             value: function r_derivational$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(russianStemmer.a_6);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 if (!this.r_R2$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_tidy_up$esjava$0',
             value: function r_tidy_up$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(russianStemmer.a_7);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u043D')) {
                             return false;
                         }
-
                         this.bra = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u043D')) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.eq_s_b$esjava$1('\u043D')) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 3:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_2 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_pV) {
                     return false;
                 }
-
                 this.cursor = this.I_pV;
                 v_3 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_2;
                 v_4 = this.limit - this.cursor;
-
                 lab1: do {
                     lab2: do {
                         v_5 = this.limit - this.cursor;
-
                         lab3: do {
                             if (!this.r_perfective_gerund$esjava$0()) {
                                 break lab3;
                             }
-
                             break lab2;
                         } while (false);
-
                         this.cursor = this.limit - v_5;
                         v_6 = this.limit - this.cursor;
-
                         lab4: do {
                             if (!this.r_reflexive$esjava$0()) {
                                 this.cursor = this.limit - v_6;
                                 break lab4;
                             }
                         } while (false);
-
                         lab5: do {
                             v_7 = this.limit - this.cursor;
-
                             lab6: do {
                                 if (!this.r_adjectival$esjava$0()) {
                                     break lab6;
                                 }
-
                                 break lab5;
                             } while (false);
-
                             this.cursor = this.limit - v_7;
-
                             lab7: do {
                                 if (!this.r_verb$esjava$0()) {
                                     break lab7;
                                 }
-
                                 break lab5;
                             } while (false);
-
                             this.cursor = this.limit - v_7;
-
                             if (!this.r_noun$esjava$0()) {
                                 break lab1;
                             }
                         } while (false);
                     } while (false);
                 } while (false);
-
                 this.cursor = this.limit - v_4;
                 v_8 = this.limit - this.cursor;
-
                 lab8: do {
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1('\u0438')) {
                         this.cursor = this.limit - v_8;
                         break lab8;
                     }
-
                     this.bra = this.cursor;
                     this.slice_del$esjava$0();
                 } while (false);
-
                 v_9 = this.limit - this.cursor;
-
                 lab9: do {
                     if (!this.r_derivational$esjava$0()) {
                         break lab9;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_9;
                 v_10 = this.limit - this.cursor;
-
                 lab10: do {
                     if (!this.r_tidy_up$esjava$0()) {
                         break lab10;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_10;
                 this.limit_backward = v_3;
                 this.cursor = this.limit_backward;
@@ -15944,7 +13001,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get45 = _get(Object.getPrototypeOf(russianStemmer.prototype), 'stem', this)).call.apply(_get45, [this].concat(args));
             }
         }, {
@@ -16034,224 +13090,175 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(sloveneStemmer, [{
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
                 this.I_p1 = this.current.length();
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     for (v_2 = 4; v_2 > 0; v_2--) {
                         v_3 = this.limit - this.cursor;
-
                         lab1: do {
                             if (!(this.I_p1 > 8)) {
                                 this.cursor = this.limit - v_3;
                                 break lab1;
                             }
-
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(sloveneStemmer.a_0);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_3;
                                 break lab1;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_3;
                                     break lab1;
-
                                 case 1:
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         v_4 = this.limit - this.cursor;
-
                         lab2: do {
                             if (!(this.I_p1 > 7)) {
                                 this.cursor = this.limit - v_4;
                                 break lab2;
                             }
-
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(sloveneStemmer.a_1);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_4;
                                 break lab2;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_4;
                                     break lab2;
-
                                 case 1:
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         this.I_p1 = this.current.length();
                         v_5 = this.limit - this.cursor;
-
                         lab3: do {
                             if (!(this.I_p1 > 6)) {
                                 this.cursor = this.limit - v_5;
                                 break lab3;
                             }
-
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(sloveneStemmer.a_2);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_5;
                                 break lab3;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_5;
                                     break lab3;
-
                                 case 1:
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         this.I_p1 = this.current.length();
                         v_6 = this.limit - this.cursor;
-
                         lab4: do {
                             if (!(this.I_p1 > 6)) {
                                 this.cursor = this.limit - v_6;
                                 break lab4;
                             }
-
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(sloveneStemmer.a_3);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_6;
                                 break lab4;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_6;
                                     break lab4;
-
                                 case 1:
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         this.I_p1 = this.current.length();
                         v_7 = this.limit - this.cursor;
-
                         lab5: do {
                             if (!(this.I_p1 > 5)) {
                                 this.cursor = this.limit - v_7;
                                 break lab5;
                             }
-
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(sloveneStemmer.a_4);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_7;
                                 break lab5;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_7;
                                     break lab5;
-
                                 case 1:
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         this.I_p1 = this.current.length();
                         v_8 = this.limit - this.cursor;
-
                         lab6: do {
                             if (!(this.I_p1 > 6)) {
                                 this.cursor = this.limit - v_8;
                                 break lab6;
                             }
-
                             this.ket = this.cursor;
-
                             if (!this.in_grouping_b$esjava$3(sloveneStemmer.g_soglasniki, 98, 382)) {
                                 this.cursor = this.limit - v_8;
                                 break lab6;
                             }
-
                             this.bra = this.cursor;
                             v_9 = this.limit - this.cursor;
-
                             if (!this.in_grouping_b$esjava$3(sloveneStemmer.g_soglasniki, 98, 382)) {
                                 this.cursor = this.limit - v_8;
                                 break lab6;
                             }
-
                             this.cursor = this.limit - v_9;
                             this.slice_del$esjava$0();
                         } while (false);
-
                         this.I_p1 = this.current.length();
                         v_10 = this.limit - this.cursor;
-
                         lab7: do {
                             if (!(this.I_p1 > 5)) {
                                 this.cursor = this.limit - v_10;
                                 break lab7;
                             }
-
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(sloveneStemmer.a_5);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_10;
                                 break lab7;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_10;
                                     break lab7;
-
                                 case 1:
                                     this.slice_del$esjava$0();
                                     break;
@@ -16259,7 +13266,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         } while (false);
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_1;
                 this.cursor = this.limit_backward;
                 return true;
@@ -16277,7 +13283,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get46 = _get(Object.getPrototypeOf(sloveneStemmer.prototype), 'stem', this)).call.apply(_get46, [this].concat(args));
             }
         }, {
@@ -16347,263 +13352,198 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(spanishStemmer, [{
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_6 = undefined;
-                var v_8 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_6 = void 0;
+                var v_8 = void 0;
                 this.I_pV = this.limit;
                 this.I_p1 = this.limit;
                 this.I_p2 = this.limit;
                 v_1 = this.cursor;
-
                 lab0: do {
                     lab1: do {
                         v_2 = this.cursor;
-
                         lab2: do {
                             if (!this.in_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                                 break lab2;
                             }
-
                             lab3: do {
                                 v_3 = this.cursor;
-
                                 lab4: do {
                                     if (!this.out_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                                         break lab4;
                                     }
-
                                     golab5: while (true) {
                                         lab6: do {
                                             if (!this.in_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                                                 break lab6;
                                             }
-
                                             break golab5;
                                         } while (false);
-
                                         if (this.cursor >= this.limit) {
                                             break lab4;
                                         }
-
                                         this.cursor++;
                                     }
-
                                     break lab3;
                                 } while (false);
-
                                 this.cursor = v_3;
-
                                 if (!this.in_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                                     break lab2;
                                 }
-
                                 golab7: while (true) {
                                     lab8: do {
                                         if (!this.out_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                                             break lab8;
                                         }
-
                                         break golab7;
                                     } while (false);
-
                                     if (this.cursor >= this.limit) {
                                         break lab2;
                                     }
-
                                     this.cursor++;
                                 }
                             } while (false);
-
                             break lab1;
                         } while (false);
-
                         this.cursor = v_2;
-
                         if (!this.out_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                             break lab0;
                         }
-
                         lab9: do {
                             v_6 = this.cursor;
-
                             lab10: do {
                                 if (!this.out_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                                     break lab10;
                                 }
-
                                 golab11: while (true) {
                                     lab12: do {
                                         if (!this.in_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                                             break lab12;
                                         }
-
                                         break golab11;
                                     } while (false);
-
                                     if (this.cursor >= this.limit) {
                                         break lab10;
                                     }
-
                                     this.cursor++;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = v_6;
-
                             if (!this.in_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                                 break lab0;
                             }
-
                             if (this.cursor >= this.limit) {
                                 break lab0;
                             }
-
                             this.cursor++;
                         } while (false);
                     } while (false);
-
                     this.I_pV = this.cursor;
                 } while (false);
-
                 this.cursor = v_1;
                 v_8 = this.cursor;
-
                 lab13: do {
                     golab14: while (true) {
                         lab15: do {
                             if (!this.in_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                                 break lab15;
                             }
-
                             break golab14;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     golab16: while (true) {
                         lab17: do {
                             if (!this.out_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                                 break lab17;
                             }
-
                             break golab16;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p1 = this.cursor;
-
                     golab18: while (true) {
                         lab19: do {
                             if (!this.in_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                                 break lab19;
                             }
-
                             break golab18;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     golab20: while (true) {
                         lab21: do {
                             if (!this.out_grouping$esjava$3(spanishStemmer.g_v, 97, 252)) {
                                 break lab21;
                             }
-
                             break golab20;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             break lab13;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_p2 = this.cursor;
                 } while (false);
-
                 this.cursor = v_8;
                 return true;
             }
         }, {
             key: 'r_postlude$esjava$0',
             value: function r_postlude$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-
+                var among_var = void 0;
+                var v_1 = void 0;
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         this.bra = this.cursor;
                         among_var = this.find_among$esjava$1(spanishStemmer.a_0);
-
                         if (among_var === 0) {
                             break lab1;
                         }
-
                         this.ket = this.cursor;
-
                         switch (among_var) {
                             case 0:
                                 break lab1;
-
                             case 1:
                                 this.slice_from$esjava$1("a");
                                 break;
-
                             case 2:
                                 this.slice_from$esjava$1("e");
                                 break;
-
                             case 3:
                                 this.slice_from$esjava$1("i");
                                 break;
-
                             case 4:
                                 this.slice_from$esjava$1("o");
                                 break;
-
                             case 5:
                                 this.slice_from$esjava$1("u");
                                 break;
-
                             case 6:
                                 if (this.cursor >= this.limit) {
                                     break lab1;
                                 }
-
                                 this.cursor++;
                                 break;
                         }
-
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
@@ -16612,7 +13552,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_pV <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -16621,7 +13560,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p1 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -16630,565 +13568,436 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!(this.I_p2 <= this.cursor)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_attached_pronoun$esjava$0',
             value: function r_attached_pronoun$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
-
                 if (this.find_among_b$esjava$1(spanishStemmer.a_1) === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
                 among_var = this.find_among_b$esjava$1(spanishStemmer.a_2);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 if (!this.r_RV$esjava$0()) {
                     return false;
                 }
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.bra = this.cursor;
                         this.slice_from$esjava$1("iendo");
                         break;
-
                     case 2:
                         this.bra = this.cursor;
                         this.slice_from$esjava$1("ando");
                         break;
-
                     case 3:
                         this.bra = this.cursor;
                         this.slice_from$esjava$1("ar");
                         break;
-
                     case 4:
                         this.bra = this.cursor;
                         this.slice_from$esjava$1("er");
                         break;
-
                     case 5:
                         this.bra = this.cursor;
                         this.slice_from$esjava$1("ir");
                         break;
-
                     case 6:
                         this.slice_del$esjava$0();
                         break;
-
                     case 7:
                         if (!this.eq_s_b$esjava$1("u")) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_standard_suffix$esjava$0',
             value: function r_standard_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(spanishStemmer.a_6);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_1 = this.limit - this.cursor;
-
                         lab0: do {
                             this.ket = this.cursor;
-
                             if (!this.eq_s_b$esjava$1("ic")) {
                                 this.cursor = this.limit - v_1;
                                 break lab0;
                             }
-
                             this.bra = this.cursor;
-
                             if (!this.r_R2$esjava$0()) {
                                 this.cursor = this.limit - v_1;
                                 break lab0;
                             }
-
                             this.slice_del$esjava$0();
                         } while (false);
-
                         break;
-
                     case 3:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("log");
                         break;
-
                     case 4:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("u");
                         break;
-
                     case 5:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_from$esjava$1("ente");
                         break;
-
                     case 6:
                         if (!this.r_R1$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_2 = this.limit - this.cursor;
-
                         lab1: do {
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(spanishStemmer.a_3);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_2;
                                 break lab1;
                             }
-
                             this.bra = this.cursor;
-
                             if (!this.r_R2$esjava$0()) {
                                 this.cursor = this.limit - v_2;
                                 break lab1;
                             }
-
                             this.slice_del$esjava$0();
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_2;
                                     break lab1;
-
                                 case 1:
                                     this.ket = this.cursor;
-
                                     if (!this.eq_s_b$esjava$1("at")) {
                                         this.cursor = this.limit - v_2;
                                         break lab1;
                                     }
-
                                     this.bra = this.cursor;
-
                                     if (!this.r_R2$esjava$0()) {
                                         this.cursor = this.limit - v_2;
                                         break lab1;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         break;
-
                     case 7:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_3 = this.limit - this.cursor;
-
                         lab2: do {
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(spanishStemmer.a_4);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_3;
                                 break lab2;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_3;
                                     break lab2;
-
                                 case 1:
                                     if (!this.r_R2$esjava$0()) {
                                         this.cursor = this.limit - v_3;
                                         break lab2;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         break;
-
                     case 8:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_4 = this.limit - this.cursor;
-
                         lab3: do {
                             this.ket = this.cursor;
                             among_var = this.find_among_b$esjava$1(spanishStemmer.a_5);
-
                             if (among_var === 0) {
                                 this.cursor = this.limit - v_4;
                                 break lab3;
                             }
-
                             this.bra = this.cursor;
-
                             switch (among_var) {
                                 case 0:
                                     this.cursor = this.limit - v_4;
                                     break lab3;
-
                                 case 1:
                                     if (!this.r_R2$esjava$0()) {
                                         this.cursor = this.limit - v_4;
                                         break lab3;
                                     }
-
                                     this.slice_del$esjava$0();
                                     break;
                             }
                         } while (false);
-
                         break;
-
                     case 9:
                         if (!this.r_R2$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_5 = this.limit - this.cursor;
-
                         lab4: do {
                             this.ket = this.cursor;
-
                             if (!this.eq_s_b$esjava$1("at")) {
                                 this.cursor = this.limit - v_5;
                                 break lab4;
                             }
-
                             this.bra = this.cursor;
-
                             if (!this.r_R2$esjava$0()) {
                                 this.cursor = this.limit - v_5;
                                 break lab4;
                             }
-
                             this.slice_del$esjava$0();
                         } while (false);
-
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_y_verb_suffix$esjava$0',
             value: function r_y_verb_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_pV) {
                     return false;
                 }
-
                 this.cursor = this.I_pV;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(spanishStemmer.a_7);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_2;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.eq_s_b$esjava$1("u")) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_verb_suffix$esjava$0',
             value: function r_verb_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_pV) {
                     return false;
                 }
-
                 this.cursor = this.I_pV;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(spanishStemmer.a_8);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_2;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         v_3 = this.limit - this.cursor;
-
                         lab0: do {
                             if (!this.eq_s_b$esjava$1("u")) {
                                 this.cursor = this.limit - v_3;
                                 break lab0;
                             }
-
                             v_4 = this.limit - this.cursor;
-
                             if (!this.eq_s_b$esjava$1("g")) {
                                 this.cursor = this.limit - v_3;
                                 break lab0;
                             }
-
                             this.cursor = this.limit - v_4;
                         } while (false);
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_residual_suffix$esjava$0',
             value: function r_residual_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(spanishStemmer.a_9);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.r_RV$esjava$0()) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         v_1 = this.limit - this.cursor;
-
                         lab0: do {
                             this.ket = this.cursor;
-
                             if (!this.eq_s_b$esjava$1("u")) {
                                 this.cursor = this.limit - v_1;
                                 break lab0;
                             }
-
                             this.bra = this.cursor;
                             v_2 = this.limit - this.cursor;
-
                             if (!this.eq_s_b$esjava$1("g")) {
                                 this.cursor = this.limit - v_1;
                                 break lab0;
                             }
-
                             this.cursor = this.limit - v_2;
-
                             if (!this.r_RV$esjava$0()) {
                                 this.cursor = this.limit - v_1;
                                 break lab0;
                             }
-
                             this.slice_del$esjava$0();
                         } while (false);
-
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_2 = this.limit - this.cursor;
-
                 lab1: do {
                     if (!this.r_attached_pronoun$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_2;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     lab3: do {
                         v_4 = this.limit - this.cursor;
-
                         lab4: do {
                             if (!this.r_standard_suffix$esjava$0()) {
                                 break lab4;
                             }
-
                             break lab3;
                         } while (false);
-
                         this.cursor = this.limit - v_4;
-
                         lab5: do {
                             if (!this.r_y_verb_suffix$esjava$0()) {
                                 break lab5;
                             }
-
                             break lab3;
                         } while (false);
-
                         this.cursor = this.limit - v_4;
-
                         if (!this.r_verb_suffix$esjava$0()) {
                             break lab2;
                         }
                     } while (false);
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_5 = this.limit - this.cursor;
-
                 lab6: do {
                     if (!this.r_residual_suffix$esjava$0()) {
                         break lab6;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_5;
                 this.cursor = this.limit_backward;
                 v_6 = this.cursor;
-
                 lab7: do {
                     if (!this.r_postlude$esjava$0()) {
                         break lab7;
                     }
                 } while (false);
-
                 this.cursor = v_6;
                 return true;
             }
@@ -17205,7 +14014,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get47 = _get(Object.getPrototypeOf(spanishStemmer.prototype), 'stem', this)).call.apply(_get47, [this].concat(args));
             }
         }, {
@@ -17315,148 +14123,117 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(swedishStemmer, [{
             key: 'r_mark_regions$esjava$0',
             value: function r_mark_regions$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 this.I_p1 = this.limit;
                 v_1 = this.cursor;
                 {
                     var c = this.cursor + 3;
-
                     if (0 > c || c > this.limit) {
                         return false;
                     }
-
                     this.cursor = c;
                 }
                 this.I_x = this.cursor;
                 this.cursor = v_1;
-
                 golab0: while (true) {
                     v_2 = this.cursor;
-
                     lab1: do {
                         if (!this.in_grouping$esjava$3(swedishStemmer.g_v, 97, 246)) {
                             break lab1;
                         }
-
                         this.cursor = v_2;
                         break golab0;
                     } while (false);
-
                     this.cursor = v_2;
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 golab2: while (true) {
                     lab3: do {
                         if (!this.out_grouping$esjava$3(swedishStemmer.g_v, 97, 246)) {
                             break lab3;
                         }
-
                         break golab2;
                     } while (false);
-
                     if (this.cursor >= this.limit) {
                         return false;
                     }
-
                     this.cursor++;
                 }
-
                 this.I_p1 = this.cursor;
-
                 lab4: do {
                     if (!(this.I_p1 < this.I_x)) {
                         break lab4;
                     }
-
                     this.I_p1 = this.I_x;
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'r_main_suffix$esjava$0',
             value: function r_main_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(swedishStemmer.a_0);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.limit_backward = v_2;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         if (!this.in_grouping_b$esjava$3(swedishStemmer.g_s_ending, 98, 121)) {
                             return false;
                         }
-
                         this.slice_del$esjava$0();
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_consonant_pair$esjava$0',
             value: function r_consonant_pair$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 v_3 = this.limit - this.cursor;
-
                 if (this.find_among_b$esjava$1(swedishStemmer.a_1) === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.cursor = this.limit - v_3;
                 this.ket = this.cursor;
-
                 if (this.cursor <= this.limit_backward) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.cursor--;
                 this.bra = this.cursor;
                 this.slice_del$esjava$0();
@@ -17466,94 +14243,77 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_other_suffix$esjava$0',
             value: function r_other_suffix$esjava$0() {
-                var among_var = undefined;
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var among_var = void 0;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 if (this.cursor < this.I_p1) {
                     return false;
                 }
-
                 this.cursor = this.I_p1;
                 v_2 = this.limit_backward;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit - v_1;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(swedishStemmer.a_2);
-
                 if (among_var === 0) {
                     this.limit_backward = v_2;
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         this.limit_backward = v_2;
                         return false;
-
                     case 1:
                         this.slice_del$esjava$0();
                         break;
-
                     case 2:
                         this.slice_from$esjava$1('l\u00F6s');
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("full");
                         break;
                 }
-
                 this.limit_backward = v_2;
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_mark_regions$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_2 = this.limit - this.cursor;
-
                 lab1: do {
                     if (!this.r_main_suffix$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_2;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_consonant_pair$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 v_4 = this.limit - this.cursor;
-
                 lab3: do {
                     if (!this.r_other_suffix$esjava$0()) {
                         break lab3;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_4;
                 this.cursor = this.limit_backward;
                 return true;
@@ -17571,7 +14331,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get48 = _get(Object.getPrototypeOf(swedishStemmer.prototype), 'stem', this)).call.apply(_get48, [this].concat(args));
             }
         }, {
@@ -17638,347 +14397,268 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             key: 'r_has_min_length$esjava$0',
             value: function r_has_min_length$esjava$0() {
                 this.I_length = this.current.length();
-
                 if (!(this.I_length > 4)) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_fix_va_start$esjava$0',
             value: function r_fix_va_start$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
                 lab0: do {
                     v_1 = this.cursor;
-
                     lab1: do {
                         v_2 = this.cursor;
                         v_3 = this.cursor;
-
                         lab2: do {
                             if (!this.eq_s$esjava$1('\u0BB5\u0BCB')) {
                                 this.cursor = v_3;
                                 break lab2;
                             }
                         } while (false);
-
                         this.cursor = v_2;
                         this.bra = this.cursor;
-
                         if (!this.eq_s$esjava$1('\u0BB5\u0BCB')) {
                             break lab1;
                         }
-
                         this.ket = this.cursor;
                         this.slice_from$esjava$1('\u0B93');
                         break lab0;
                     } while (false);
-
                     this.cursor = v_1;
-
                     lab3: do {
                         v_4 = this.cursor;
                         v_5 = this.cursor;
-
                         lab4: do {
                             if (!this.eq_s$esjava$1('\u0BB5\u0BCA')) {
                                 this.cursor = v_5;
                                 break lab4;
                             }
                         } while (false);
-
                         this.cursor = v_4;
                         this.bra = this.cursor;
-
                         if (!this.eq_s$esjava$1('\u0BB5\u0BCA')) {
                             break lab3;
                         }
-
                         this.ket = this.cursor;
                         this.slice_from$esjava$1('\u0B92');
                         break lab0;
                     } while (false);
-
                     this.cursor = v_1;
-
                     lab5: do {
                         v_6 = this.cursor;
                         v_7 = this.cursor;
-
                         lab6: do {
                             if (!this.eq_s$esjava$1('\u0BB5\u0BC1')) {
                                 this.cursor = v_7;
                                 break lab6;
                             }
                         } while (false);
-
                         this.cursor = v_6;
                         this.bra = this.cursor;
-
                         if (!this.eq_s$esjava$1('\u0BB5\u0BC1')) {
                             break lab5;
                         }
-
                         this.ket = this.cursor;
                         this.slice_from$esjava$1('\u0B89');
                         break lab0;
                     } while (false);
-
                     this.cursor = v_1;
                     v_8 = this.cursor;
                     v_9 = this.cursor;
-
                     lab7: do {
                         if (!this.eq_s$esjava$1('\u0BB5\u0BC2')) {
                             this.cursor = v_9;
                             break lab7;
                         }
                     } while (false);
-
                     this.cursor = v_8;
                     this.bra = this.cursor;
-
                     if (!this.eq_s$esjava$1('\u0BB5\u0BC2')) {
                         return false;
                     }
-
                     this.ket = this.cursor;
                     this.slice_from$esjava$1('\u0B8A');
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'r_fix_endings$esjava$0',
             value: function r_fix_endings$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 this.B_found_wrong_ending = true;
-
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         if (!this.B_found_wrong_ending) {
                             break lab1;
                         }
-
                         v_2 = this.cursor;
-
                         lab2: do {
                             if (!this.r_fix_ending$esjava$0()) {
                                 break lab2;
                             }
                         } while (false);
-
                         this.cursor = v_2;
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
             key: 'r_remove_question_prefixes$esjava$0',
             value: function r_remove_question_prefixes$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 this.bra = this.cursor;
-
                 if (!this.eq_s$esjava$1('\u0B8E')) {
                     return false;
                 }
-
                 if (this.find_among$esjava$1(tamilStemmer.a_0) === 0) {
                     return false;
                 }
-
                 if (!this.eq_s$esjava$1('\u0BCD')) {
                     return false;
                 }
-
                 this.ket = this.cursor;
                 this.slice_del$esjava$0();
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_fix_va_start$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 return true;
             }
         }, {
             key: 'r_fix_ending$esjava$0',
             value: function r_fix_ending$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
-                var v_11 = undefined;
-                var v_12 = undefined;
-                var v_13 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
+                var v_11 = void 0;
+                var v_12 = void 0;
+                var v_13 = void 0;
                 this.B_found_wrong_ending = false;
                 this.I_length = this.current.length();
-
                 if (!(this.I_length > 3)) {
                     return false;
                 }
-
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
-
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         this.ket = this.cursor;
-
                         if (this.find_among_b$esjava$1(tamilStemmer.a_1) === 0) {
                             break lab1;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab2: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BAF\u0BCD')) {
                             break lab2;
                         }
-
                         v_2 = this.limit - this.cursor;
-
                         if (this.find_among_b$esjava$1(tamilStemmer.a_2) === 0) {
                             break lab2;
                         }
-
                         this.cursor = this.limit - v_2;
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab3: do {
                         this.ket = this.cursor;
-
                         lab4: do {
                             v_3 = this.limit - this.cursor;
-
                             lab5: do {
                                 if (!this.eq_s_b$esjava$1('\u0B9F\u0BCD\u0BAA\u0BCD')) {
                                     break lab5;
                                 }
-
                                 break lab4;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             if (!this.eq_s_b$esjava$1('\u0B9F\u0BCD\u0B95\u0BCD')) {
                                 break lab3;
                             }
                         } while (false);
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1('\u0BB3\u0BCD');
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab6: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BA9\u0BCD\u0BB1\u0BCD')) {
                             break lab6;
                         }
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1('\u0BB2\u0BCD');
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab7: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BB1\u0BCD\u0B95\u0BCD')) {
                             break lab7;
                         }
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1('\u0BB2\u0BCD');
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab8: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0B9F\u0BCD\u0B9F\u0BCD')) {
                             break lab8;
                         }
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1('\u0B9F\u0BC1');
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab9: do {
                         if (!this.B_found_vetrumai_urupu) {
                             break lab9;
                         }
-
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BA4\u0BCD\u0BA4\u0BCD')) {
                             break lab9;
                         }
-
                         v_4 = this.limit - this.cursor;
                         {
                             v_5 = this.limit - this.cursor;
-
                             lab10: do {
                                 if (!this.eq_s_b$esjava$1('\u0BC8')) {
                                     break lab10;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_5;
                         }
                         this.cursor = this.limit - v_4;
@@ -17987,164 +14667,119 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         this.bra = this.cursor;
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab11: do {
                         this.ket = this.cursor;
-
                         lab12: do {
                             v_6 = this.limit - this.cursor;
-
                             lab13: do {
                                 if (!this.eq_s_b$esjava$1('\u0BC1\u0B95\u0BCD')) {
                                     break lab13;
                                 }
-
                                 break lab12;
                             } while (false);
-
                             this.cursor = this.limit - v_6;
-
                             if (!this.eq_s_b$esjava$1('\u0BC1\u0B95\u0BCD\u0B95\u0BCD')) {
                                 break lab11;
                             }
                         } while (false);
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1('\u0BCD');
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab14: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BCD')) {
                             break lab14;
                         }
-
                         if (this.find_among_b$esjava$1(tamilStemmer.a_3) === 0) {
                             break lab14;
                         }
-
                         if (!this.eq_s_b$esjava$1('\u0BCD')) {
                             break lab14;
                         }
-
                         if (this.find_among_b$esjava$1(tamilStemmer.a_4) === 0) {
                             break lab14;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab15: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BC1\u0B95\u0BCD')) {
                             break lab15;
                         }
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1('\u0BCD');
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab16: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BCD')) {
                             break lab16;
                         }
-
                         if (this.find_among_b$esjava$1(tamilStemmer.a_5) === 0) {
                             break lab16;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab17: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BCD')) {
                             break lab17;
                         }
-
                         lab18: do {
                             v_7 = this.limit - this.cursor;
-
                             lab19: do {
                                 if (this.find_among_b$esjava$1(tamilStemmer.a_6) === 0) {
                                     break lab19;
                                 }
-
                                 break lab18;
                             } while (false);
-
                             this.cursor = this.limit - v_7;
-
                             if (this.find_among_b$esjava$1(tamilStemmer.a_7) === 0) {
                                 break lab17;
                             }
                         } while (false);
-
                         if (!this.eq_s_b$esjava$1('\u0BCD')) {
                             break lab17;
                         }
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1('\u0BCD');
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab20: do {
                         this.ket = this.cursor;
-
                         if (this.find_among_b$esjava$1(tamilStemmer.a_8) === 0) {
                             break lab20;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab21: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BA9\u0BC1')) {
                             break lab21;
                         }
-
                         v_8 = this.limit - this.cursor;
                         {
                             v_9 = this.limit - this.cursor;
-
                             lab22: do {
                                 if (this.find_among_b$esjava$1(tamilStemmer.a_9) === 0) {
                                     break lab22;
                                 }
-
                                 break lab21;
                             } while (false);
-
                             this.cursor = this.limit - v_9;
                         }
                         this.cursor = this.limit - v_8;
@@ -18152,28 +14787,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         this.slice_del$esjava$0();
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab23: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0B99\u0BCD')) {
                             break lab23;
                         }
-
                         v_10 = this.limit - this.cursor;
                         {
                             v_11 = this.limit - this.cursor;
-
                             lab24: do {
                                 if (!this.eq_s_b$esjava$1('\u0BC8')) {
                                     break lab24;
                                 }
-
                                 break lab23;
                             } while (false);
-
                             this.cursor = this.limit - v_11;
                         }
                         this.cursor = this.limit - v_10;
@@ -18181,53 +14809,39 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         this.slice_from$esjava$1('\u0BAE\u0BCD');
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab25: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0B99\u0BCD')) {
                             break lab25;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1('\u0BCD')) {
                         return false;
                     }
-
                     v_12 = this.limit - this.cursor;
-
                     lab26: do {
                         v_13 = this.limit - this.cursor;
-
                         lab27: do {
                             if (this.find_among_b$esjava$1(tamilStemmer.a_10) === 0) {
                                 break lab27;
                             }
-
                             break lab26;
                         } while (false);
-
                         this.cursor = this.limit - v_13;
-
                         if (!this.eq_s_b$esjava$1('\u0BCD')) {
                             return false;
                         }
                     } while (false);
-
                     this.cursor = this.limit - v_12;
                     this.bra = this.cursor;
                     this.slice_del$esjava$0();
                 } while (false);
-
                 this.cursor = this.limit_backward;
                 this.B_found_wrong_ending = true;
                 return true;
@@ -18235,68 +14849,55 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_remove_pronoun_prefixes$esjava$0',
             value: function r_remove_pronoun_prefixes$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 this.B_found_a_match = false;
                 this.bra = this.cursor;
-
                 if (this.find_among$esjava$1(tamilStemmer.a_11) === 0) {
                     return false;
                 }
-
                 if (this.find_among$esjava$1(tamilStemmer.a_12) === 0) {
                     return false;
                 }
-
                 if (!this.eq_s$esjava$1('\u0BCD')) {
                     return false;
                 }
-
                 this.ket = this.cursor;
                 this.slice_del$esjava$0();
                 this.B_found_a_match = true;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_fix_va_start$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 return true;
             }
         }, {
             key: 'r_remove_plural_suffix$esjava$0',
             value: function r_remove_plural_suffix$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 this.B_found_a_match = false;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
-
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BC1\u0B99\u0BCD\u0B95\u0BB3\u0BCD')) {
                             break lab1;
                         }
-
                         v_2 = this.limit - this.cursor;
                         {
                             v_3 = this.limit - this.cursor;
-
                             lab2: do {
                                 if (this.find_among_b$esjava$1(tamilStemmer.a_13) === 0) {
                                     break lab2;
                                 }
-
                                 break lab1;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
                         }
                         this.cursor = this.limit - v_2;
@@ -18304,46 +14905,34 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         this.slice_from$esjava$1('\u0BCD');
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab3: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BB1\u0BCD\u0B95\u0BB3\u0BCD')) {
                             break lab3;
                         }
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1('\u0BB2\u0BCD');
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab4: do {
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0B9F\u0BCD\u0B95\u0BB3\u0BCD')) {
                             break lab4;
                         }
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1('\u0BB3\u0BCD');
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1('\u0B95\u0BB3\u0BCD')) {
                         return false;
                     }
-
                     this.bra = this.cursor;
                     this.slice_del$esjava$0();
                 } while (false);
-
                 this.B_found_a_match = true;
                 this.cursor = this.limit_backward;
                 return true;
@@ -18351,40 +14940,32 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_remove_question_suffixes$esjava$0',
             value: function r_remove_question_suffixes$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
                 if (!this.r_has_min_length$esjava$0()) {
                     return false;
                 }
-
                 this.B_found_a_match = false;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     this.ket = this.cursor;
-
                     if (this.find_among_b$esjava$1(tamilStemmer.a_14) === 0) {
                         break lab0;
                     }
-
                     this.bra = this.cursor;
                     this.slice_from$esjava$1('\u0BCD');
                     this.B_found_a_match = true;
                 } while (false);
-
                 this.cursor = this.limit - v_1;
                 this.cursor = this.limit_backward;
                 v_2 = this.cursor;
-
                 lab1: do {
                     if (!this.r_fix_endings$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = v_2;
                 return true;
             }
@@ -18394,16 +14975,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_has_min_length$esjava$0()) {
                     return false;
                 }
-
                 this.B_found_a_match = false;
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 this.ket = this.cursor;
-
                 if (this.find_among_b$esjava$1(tamilStemmer.a_15) === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.slice_del$esjava$0();
                 this.B_found_a_match = true;
@@ -18413,1339 +14991,989 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_remove_um$esjava$0',
             value: function r_remove_um$esjava$0() {
-                var v_1 = undefined;
+                var v_1 = void 0;
                 this.B_found_a_match = false;
-
                 if (!this.r_has_min_length$esjava$0()) {
                     return false;
                 }
-
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 this.ket = this.cursor;
-
                 if (!this.eq_s_b$esjava$1('\u0BC1\u0BAE\u0BCD')) {
                     return false;
                 }
-
                 this.bra = this.cursor;
                 this.slice_from$esjava$1('\u0BCD');
                 this.B_found_a_match = true;
                 this.cursor = this.limit_backward;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_fix_ending$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
                 return true;
             }
         }, {
             key: 'r_remove_common_word_endings$esjava$0',
             value: function r_remove_common_word_endings$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
                 this.B_found_a_match = false;
-
                 if (!this.r_has_min_length$esjava$0()) {
                     return false;
                 }
-
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
-
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         v_2 = this.limit - this.cursor;
                         this.ket = this.cursor;
-
                         lab2: do {
                             v_3 = this.limit - this.cursor;
-
                             lab3: do {
                                 if (!this.eq_s_b$esjava$1('\u0BC1\u0B9F\u0BA9\u0BCD')) {
                                     break lab3;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab4: do {
                                 if (!this.eq_s_b$esjava$1('\u0BBF\u0BB2\u0BCD\u0BB2\u0BC8')) {
                                     break lab4;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab5: do {
                                 if (!this.eq_s_b$esjava$1('\u0BBF\u0B9F\u0BAE\u0BCD')) {
                                     break lab5;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab6: do {
                                 if (!this.eq_s_b$esjava$1('\u0BBF\u0BA9\u0BCD\u0BB1\u0BBF')) {
                                     break lab6;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab7: do {
                                 if (!this.eq_s_b$esjava$1('\u0BBE\u0B95\u0BBF')) {
                                     break lab7;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab8: do {
                                 if (!this.eq_s_b$esjava$1('\u0BBE\u0B95\u0BBF\u0BAF')) {
                                     break lab8;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab9: do {
                                 if (!this.eq_s_b$esjava$1('\u0BC6\u0BA9\u0BCD\u0BB1\u0BC1')) {
                                     break lab9;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab10: do {
                                 if (!this.eq_s_b$esjava$1('\u0BC1\u0BB3\u0BCD\u0BB3')) {
                                     break lab10;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab11: do {
                                 if (!this.eq_s_b$esjava$1('\u0BC1\u0B9F\u0BC8\u0BAF')) {
                                     break lab11;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab12: do {
                                 if (!this.eq_s_b$esjava$1('\u0BC1\u0B9F\u0BC8')) {
                                     break lab12;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab13: do {
                                 if (!this.eq_s_b$esjava$1('\u0BC6\u0BA9\u0BC1\u0BAE\u0BCD')) {
                                     break lab13;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab14: do {
                                 if (!this.eq_s_b$esjava$1('\u0BB2\u0BCD\u0BB2')) {
                                     break lab14;
                                 }
-
                                 v_4 = this.limit - this.cursor;
                                 {
                                     v_5 = this.limit - this.cursor;
-
                                     lab15: do {
                                         if (this.find_among_b$esjava$1(tamilStemmer.a_16) === 0) {
                                             break lab15;
                                         }
-
                                         break lab14;
                                     } while (false);
-
                                     this.cursor = this.limit - v_5;
                                 }
                                 this.cursor = this.limit - v_4;
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab16: do {
                                 if (!this.eq_s_b$esjava$1('\u0BC6\u0BA9')) {
                                     break lab16;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             if (!this.eq_s_b$esjava$1('\u0BBE\u0B95\u0BBF')) {
                                 break lab1;
                             }
                         } while (false);
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1('\u0BCD');
                         this.B_found_a_match = true;
                         this.cursor = this.limit - v_2;
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
                     v_6 = this.limit - this.cursor;
                     this.ket = this.cursor;
-
                     if (this.find_among_b$esjava$1(tamilStemmer.a_17) === 0) {
                         return false;
                     }
-
                     this.bra = this.cursor;
                     this.slice_del$esjava$0();
                     this.B_found_a_match = true;
                     this.cursor = this.limit - v_6;
                 } while (false);
-
                 this.cursor = this.limit_backward;
                 v_7 = this.cursor;
-
                 lab17: do {
                     if (!this.r_fix_endings$esjava$0()) {
                         break lab17;
                     }
                 } while (false);
-
                 this.cursor = v_7;
                 return true;
             }
         }, {
             key: 'r_remove_vetrumai_urupukal$esjava$0',
             value: function r_remove_vetrumai_urupukal$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
-                var v_11 = undefined;
-                var v_12 = undefined;
-                var v_13 = undefined;
-                var v_14 = undefined;
-                var v_15 = undefined;
-                var v_16 = undefined;
-                var v_17 = undefined;
-                var v_18 = undefined;
-                var v_19 = undefined;
-                var v_20 = undefined;
-                var v_21 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
+                var v_11 = void 0;
+                var v_12 = void 0;
+                var v_13 = void 0;
+                var v_14 = void 0;
+                var v_15 = void 0;
+                var v_16 = void 0;
+                var v_17 = void 0;
+                var v_18 = void 0;
+                var v_19 = void 0;
+                var v_20 = void 0;
+                var v_21 = void 0;
                 this.B_found_a_match = false;
                 this.B_found_vetrumai_urupu = false;
-
                 if (!this.r_has_min_length$esjava$0()) {
                     return false;
                 }
-
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
-
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         v_2 = this.limit - this.cursor;
                         this.ket = this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BA9\u0BC8')) {
                             break lab1;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         this.cursor = this.limit - v_2;
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab2: do {
                         v_3 = this.limit - this.cursor;
                         this.ket = this.cursor;
-
                         lab3: do {
                             v_4 = this.limit - this.cursor;
-
                             lab4: do {
                                 lab5: do {
                                     v_5 = this.limit - this.cursor;
-
                                     lab6: do {
                                         if (!this.eq_s_b$esjava$1('\u0BBF\u0BA9\u0BC8')) {
                                             break lab6;
                                         }
-
                                         break lab5;
                                     } while (false);
-
                                     this.cursor = this.limit - v_5;
-
                                     if (!this.eq_s_b$esjava$1('\u0BC8')) {
                                         break lab4;
                                     }
                                 } while (false);
-
                                 v_6 = this.limit - this.cursor;
                                 {
                                     v_7 = this.limit - this.cursor;
-
                                     lab7: do {
                                         if (this.find_among_b$esjava$1(tamilStemmer.a_18) === 0) {
                                             break lab7;
                                         }
-
                                         break lab4;
                                     } while (false);
-
                                     this.cursor = this.limit - v_7;
                                 }
                                 this.cursor = this.limit - v_6;
                                 break lab3;
                             } while (false);
-
                             this.cursor = this.limit - v_4;
-
                             if (!this.eq_s_b$esjava$1('\u0BC8')) {
                                 break lab2;
                             }
-
                             v_8 = this.limit - this.cursor;
-
                             if (this.find_among_b$esjava$1(tamilStemmer.a_19) === 0) {
                                 break lab2;
                             }
-
                             if (!this.eq_s_b$esjava$1('\u0BCD')) {
                                 break lab2;
                             }
-
                             this.cursor = this.limit - v_8;
                         } while (false);
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1('\u0BCD');
                         this.cursor = this.limit - v_3;
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab8: do {
                         v_9 = this.limit - this.cursor;
                         this.ket = this.cursor;
-
                         lab9: do {
                             v_10 = this.limit - this.cursor;
-
                             lab10: do {
                                 if (!this.eq_s_b$esjava$1('\u0BCA\u0B9F\u0BC1')) {
                                     break lab10;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab11: do {
                                 if (!this.eq_s_b$esjava$1('\u0BCB\u0B9F\u0BC1')) {
                                     break lab11;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab12: do {
                                 if (!this.eq_s_b$esjava$1('\u0BBF\u0BB2\u0BCD')) {
                                     break lab12;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab13: do {
                                 if (!this.eq_s_b$esjava$1('\u0BBF\u0BB1\u0BCD')) {
                                     break lab13;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab14: do {
                                 if (!this.eq_s_b$esjava$1('\u0BBF\u0BA9\u0BCD')) {
                                     break lab14;
                                 }
-
                                 v_11 = this.limit - this.cursor;
                                 {
                                     v_12 = this.limit - this.cursor;
-
                                     lab15: do {
                                         if (!this.eq_s_b$esjava$1('\u0BAE')) {
                                             break lab15;
                                         }
-
                                         break lab14;
                                     } while (false);
-
                                     this.cursor = this.limit - v_12;
                                 }
                                 this.cursor = this.limit - v_11;
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab16: do {
                                 if (!this.eq_s_b$esjava$1('\u0BBF\u0BA9\u0BCD\u0BB1\u0BC1')) {
                                     break lab16;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab17: do {
                                 if (!this.eq_s_b$esjava$1('\u0BBF\u0BB0\u0BC1\u0BA8\u0BCD\u0BA4\u0BC1')) {
                                     break lab17;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab18: do {
                                 if (!this.eq_s_b$esjava$1('\u0BB5\u0BBF\u0B9F')) {
                                     break lab18;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab19: do {
                                 if (!(this.I_length >= 7)) {
                                     break lab19;
                                 }
-
                                 if (!this.eq_s_b$esjava$1('\u0BBF\u0B9F\u0BAE\u0BCD')) {
                                     break lab19;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab20: do {
                                 if (!this.eq_s_b$esjava$1('\u0BBE\u0BB2\u0BCD')) {
                                     break lab20;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab21: do {
                                 if (!this.eq_s_b$esjava$1('\u0BC1\u0B9F\u0BC8')) {
                                     break lab21;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab22: do {
                                 if (!this.eq_s_b$esjava$1('\u0BBE\u0BAE\u0BB2\u0BCD')) {
                                     break lab22;
                                 }
-
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab23: do {
                                 if (!this.eq_s_b$esjava$1('\u0BB2\u0BCD')) {
                                     break lab23;
                                 }
-
                                 v_13 = this.limit - this.cursor;
                                 {
                                     v_14 = this.limit - this.cursor;
-
                                     lab24: do {
                                         if (this.find_among_b$esjava$1(tamilStemmer.a_20) === 0) {
                                             break lab24;
                                         }
-
                                         break lab23;
                                     } while (false);
-
                                     this.cursor = this.limit - v_14;
                                 }
                                 this.cursor = this.limit - v_13;
                                 break lab9;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             if (!this.eq_s_b$esjava$1('\u0BC1\u0BB3\u0BCD')) {
                                 break lab8;
                             }
                         } while (false);
-
                         this.bra = this.cursor;
                         this.slice_from$esjava$1('\u0BCD');
                         this.cursor = this.limit - v_9;
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab25: do {
                         v_15 = this.limit - this.cursor;
                         this.ket = this.cursor;
-
                         lab26: do {
                             v_16 = this.limit - this.cursor;
-
                             lab27: do {
                                 if (!this.eq_s_b$esjava$1('\u0B95\u0BA3\u0BCD')) {
                                     break lab27;
                                 }
-
                                 break lab26;
                             } while (false);
-
                             this.cursor = this.limit - v_16;
-
                             lab28: do {
                                 if (!this.eq_s_b$esjava$1('\u0BAE\u0BC1\u0BA9\u0BCD')) {
                                     break lab28;
                                 }
-
                                 break lab26;
                             } while (false);
-
                             this.cursor = this.limit - v_16;
-
                             lab29: do {
                                 if (!this.eq_s_b$esjava$1('\u0BAE\u0BC7\u0BB2\u0BCD')) {
                                     break lab29;
                                 }
-
                                 break lab26;
                             } while (false);
-
                             this.cursor = this.limit - v_16;
-
                             lab30: do {
                                 if (!this.eq_s_b$esjava$1('\u0BAE\u0BC7\u0BB1\u0BCD')) {
                                     break lab30;
                                 }
-
                                 break lab26;
                             } while (false);
-
                             this.cursor = this.limit - v_16;
-
                             lab31: do {
                                 if (!this.eq_s_b$esjava$1('\u0B95\u0BC0\u0BB4\u0BCD')) {
                                     break lab31;
                                 }
-
                                 break lab26;
                             } while (false);
-
                             this.cursor = this.limit - v_16;
-
                             lab32: do {
                                 if (!this.eq_s_b$esjava$1('\u0BAA\u0BBF\u0BA9\u0BCD')) {
                                     break lab32;
                                 }
-
                                 break lab26;
                             } while (false);
-
                             this.cursor = this.limit - v_16;
-
                             if (!this.eq_s_b$esjava$1('\u0BA4\u0BC1')) {
                                 break lab25;
                             }
-
                             v_17 = this.limit - this.cursor;
                             {
                                 v_18 = this.limit - this.cursor;
-
                                 lab33: do {
                                     if (this.find_among_b$esjava$1(tamilStemmer.a_21) === 0) {
                                         break lab33;
                                     }
-
                                     break lab25;
                                 } while (false);
-
                                 this.cursor = this.limit - v_18;
                             }
                             this.cursor = this.limit - v_17;
                         } while (false);
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         this.cursor = this.limit - v_15;
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
                     v_19 = this.limit - this.cursor;
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1('\u0BC0')) {
                         return false;
                     }
-
                     this.bra = this.cursor;
                     this.slice_from$esjava$1('\u0BBF');
                     this.cursor = this.limit - v_19;
                 } while (false);
-
                 this.B_found_a_match = true;
                 this.B_found_vetrumai_urupu = true;
                 v_20 = this.limit - this.cursor;
-
                 lab34: do {
                     this.ket = this.cursor;
-
                     if (!this.eq_s_b$esjava$1('\u0BBF\u0BA9\u0BCD')) {
                         break lab34;
                     }
-
                     this.bra = this.cursor;
                     this.slice_from$esjava$1('\u0BCD');
                 } while (false);
-
                 this.cursor = this.limit - v_20;
                 this.cursor = this.limit_backward;
                 v_21 = this.cursor;
-
                 lab35: do {
                     if (!this.r_fix_endings$esjava$0()) {
                         break lab35;
                     }
                 } while (false);
-
                 this.cursor = v_21;
                 return true;
             }
         }, {
             key: 'r_remove_tense_suffixes$esjava$0',
             value: function r_remove_tense_suffixes$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
                 this.B_found_a_match = true;
-
                 replab0: while (true) {
                     v_1 = this.cursor;
-
                     lab1: do {
                         if (!this.B_found_a_match) {
                             break lab1;
                         }
-
                         v_2 = this.cursor;
-
                         lab2: do {
                             if (!this.r_remove_tense_suffix$esjava$0()) {
                                 break lab2;
                             }
                         } while (false);
-
                         this.cursor = v_2;
                         continue replab0;
                     } while (false);
-
                     this.cursor = v_1;
                     break replab0;
                 }
-
                 return true;
             }
         }, {
             key: 'r_remove_tense_suffix$esjava$0',
             value: function r_remove_tense_suffix$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
-                var v_11 = undefined;
-                var v_12 = undefined;
-                var v_13 = undefined;
-                var v_14 = undefined;
-                var v_15 = undefined;
-                var v_16 = undefined;
-                var v_17 = undefined;
-                var v_18 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
+                var v_11 = void 0;
+                var v_12 = void 0;
+                var v_13 = void 0;
+                var v_14 = void 0;
+                var v_15 = void 0;
+                var v_16 = void 0;
+                var v_17 = void 0;
+                var v_18 = void 0;
                 this.B_found_a_match = false;
-
                 if (!this.r_has_min_length$esjava$0()) {
                     return false;
                 }
-
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     lab1: do {
                         v_2 = this.limit - this.cursor;
-
                         lab2: do {
                             v_3 = this.limit - this.cursor;
                             this.ket = this.cursor;
-
                             if (this.find_among_b$esjava$1(tamilStemmer.a_22) === 0) {
                                 break lab2;
                             }
-
                             this.bra = this.cursor;
                             this.slice_del$esjava$0();
                             this.B_found_a_match = true;
                             this.cursor = this.limit - v_3;
                             break lab1;
                         } while (false);
-
                         this.cursor = this.limit - v_2;
-
                         lab3: do {
                             v_4 = this.limit - this.cursor;
                             this.ket = this.cursor;
-
                             lab4: do {
                                 v_5 = this.limit - this.cursor;
-
                                 lab5: do {
                                     if (!this.eq_s_b$esjava$1('\u0BAE\u0BBE\u0BB0\u0BCD')) {
                                         break lab5;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab6: do {
                                     if (!this.eq_s_b$esjava$1('\u0BAE\u0BBF\u0BA9\u0BCD')) {
                                         break lab6;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab7: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA9\u0BA9\u0BCD')) {
                                         break lab7;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab8: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA9\u0BBE\u0BA9\u0BCD')) {
                                         break lab8;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab9: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA9\u0BBE\u0BB3\u0BCD')) {
                                         break lab9;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab10: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA9\u0BBE\u0BB0\u0BCD')) {
                                         break lab10;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab11: do {
                                     if (!this.eq_s_b$esjava$1('\u0BB5\u0BA9\u0BCD')) {
                                         break lab11;
                                     }
-
                                     v_6 = this.limit - this.cursor;
                                     {
                                         v_7 = this.limit - this.cursor;
-
                                         lab12: do {
                                             if (this.find_among_b$esjava$1(tamilStemmer.a_23) === 0) {
                                                 break lab12;
                                             }
-
                                             break lab11;
                                         } while (false);
-
                                         this.cursor = this.limit - v_7;
                                     }
                                     this.cursor = this.limit - v_6;
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab13: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA9\u0BB3\u0BCD')) {
                                         break lab13;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab14: do {
                                     if (!this.eq_s_b$esjava$1('\u0BB5\u0BB3\u0BCD')) {
                                         break lab14;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab15: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA9\u0BB0\u0BCD')) {
                                         break lab15;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab16: do {
                                     if (!this.eq_s_b$esjava$1('\u0BB5\u0BB0\u0BCD')) {
                                         break lab16;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab17: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA9')) {
                                         break lab17;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab18: do {
                                     if (!this.eq_s_b$esjava$1('\u0BAA')) {
                                         break lab18;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab19: do {
                                     if (!this.eq_s_b$esjava$1('\u0B95')) {
                                         break lab19;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab20: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA4')) {
                                         break lab20;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab21: do {
                                     if (!this.eq_s_b$esjava$1('\u0BAF')) {
                                         break lab21;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab22: do {
                                     if (!this.eq_s_b$esjava$1('\u0BAA\u0BA9\u0BCD')) {
                                         break lab22;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab23: do {
                                     if (!this.eq_s_b$esjava$1('\u0BAA\u0BB3\u0BCD')) {
                                         break lab23;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab24: do {
                                     if (!this.eq_s_b$esjava$1('\u0BAA\u0BB0\u0BCD')) {
                                         break lab24;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab25: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA4\u0BC1')) {
                                         break lab25;
                                     }
-
                                     v_8 = this.limit - this.cursor;
                                     {
                                         v_9 = this.limit - this.cursor;
-
                                         lab26: do {
                                             if (this.find_among_b$esjava$1(tamilStemmer.a_24) === 0) {
                                                 break lab26;
                                             }
-
                                             break lab25;
                                         } while (false);
-
                                         this.cursor = this.limit - v_9;
                                     }
                                     this.cursor = this.limit - v_8;
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab27: do {
                                     if (!this.eq_s_b$esjava$1('\u0BBF\u0BB1\u0BCD\u0BB1\u0BC1')) {
                                         break lab27;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab28: do {
                                     if (!this.eq_s_b$esjava$1('\u0BAA\u0BAE\u0BCD')) {
                                         break lab28;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab29: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA9\u0BAE\u0BCD')) {
                                         break lab29;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab30: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA4\u0BC1\u0BAE\u0BCD')) {
                                         break lab30;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab31: do {
                                     if (!this.eq_s_b$esjava$1('\u0BB1\u0BC1\u0BAE\u0BCD')) {
                                         break lab31;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab32: do {
                                     if (!this.eq_s_b$esjava$1('\u0B95\u0BC1\u0BAE\u0BCD')) {
                                         break lab32;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab33: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA9\u0BC6\u0BA9\u0BCD')) {
                                         break lab33;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab34: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA9\u0BC8')) {
                                         break lab34;
                                     }
-
                                     break lab4;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 if (!this.eq_s_b$esjava$1('\u0BB5\u0BC8')) {
                                     break lab3;
                                 }
                             } while (false);
-
                             this.bra = this.cursor;
                             this.slice_del$esjava$0();
                             this.B_found_a_match = true;
                             this.cursor = this.limit - v_4;
                             break lab1;
                         } while (false);
-
                         this.cursor = this.limit - v_2;
-
                         lab35: do {
                             v_10 = this.limit - this.cursor;
                             this.ket = this.cursor;
-
                             lab36: do {
                                 v_11 = this.limit - this.cursor;
-
                                 lab37: do {
                                     if (!this.eq_s_b$esjava$1('\u0BBE\u0BA9\u0BCD')) {
                                         break lab37;
                                     }
-
                                     v_12 = this.limit - this.cursor;
                                     {
                                         v_13 = this.limit - this.cursor;
-
                                         lab38: do {
                                             if (!this.eq_s_b$esjava$1('\u0B9A')) {
                                                 break lab38;
                                             }
-
                                             break lab37;
                                         } while (false);
-
                                         this.cursor = this.limit - v_13;
                                     }
                                     this.cursor = this.limit - v_12;
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab39: do {
                                     if (!this.eq_s_b$esjava$1('\u0BBE\u0BB3\u0BCD')) {
                                         break lab39;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab40: do {
                                     if (!this.eq_s_b$esjava$1('\u0BBE\u0BB0\u0BCD')) {
                                         break lab40;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab41: do {
                                     if (!this.eq_s_b$esjava$1('\u0BC7\u0BA9\u0BCD')) {
                                         break lab41;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab42: do {
                                     if (!this.eq_s_b$esjava$1('\u0BBE')) {
                                         break lab42;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab43: do {
                                     if (!this.eq_s_b$esjava$1('\u0BBE\u0BAE\u0BCD')) {
                                         break lab43;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab44: do {
                                     if (!this.eq_s_b$esjava$1('\u0BC6\u0BAE\u0BCD')) {
                                         break lab44;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab45: do {
                                     if (!this.eq_s_b$esjava$1('\u0BC7\u0BAE\u0BCD')) {
                                         break lab45;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab46: do {
                                     if (!this.eq_s_b$esjava$1('\u0BCB\u0BAE\u0BCD')) {
                                         break lab46;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab47: do {
                                     if (!this.eq_s_b$esjava$1('\u0B95\u0BC1\u0BAE\u0BCD')) {
                                         break lab47;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab48: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA4\u0BC1\u0BAE\u0BCD')) {
                                         break lab48;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab49: do {
                                     if (!this.eq_s_b$esjava$1('\u0B9F\u0BC1\u0BAE\u0BCD')) {
                                         break lab49;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab50: do {
                                     if (!this.eq_s_b$esjava$1('\u0BB1\u0BC1\u0BAE\u0BCD')) {
                                         break lab50;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab51: do {
                                     if (!this.eq_s_b$esjava$1('\u0BBE\u0BAF\u0BCD')) {
                                         break lab51;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab52: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA9\u0BC6\u0BA9\u0BCD')) {
                                         break lab52;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab53: do {
                                     if (!this.eq_s_b$esjava$1('\u0BA9\u0BBF\u0BB0\u0BCD')) {
                                         break lab53;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 lab54: do {
                                     if (!this.eq_s_b$esjava$1('\u0BC0\u0BB0\u0BCD')) {
                                         break lab54;
                                     }
-
                                     break lab36;
                                 } while (false);
-
                                 this.cursor = this.limit - v_11;
-
                                 if (!this.eq_s_b$esjava$1('\u0BC0\u0BAF\u0BB0\u0BCD')) {
                                     break lab35;
                                 }
                             } while (false);
-
                             this.bra = this.cursor;
                             this.slice_from$esjava$1('\u0BCD');
                             this.B_found_a_match = true;
                             this.cursor = this.limit - v_10;
                             break lab1;
                         } while (false);
-
                         this.cursor = this.limit - v_2;
                         v_14 = this.limit - this.cursor;
                         this.ket = this.cursor;
-
                         lab55: do {
                             v_15 = this.limit - this.cursor;
-
                             lab56: do {
                                 if (!this.eq_s_b$esjava$1('\u0B95\u0BC1')) {
                                     break lab56;
                                 }
-
                                 break lab55;
                             } while (false);
-
                             this.cursor = this.limit - v_15;
-
                             if (!this.eq_s_b$esjava$1('\u0BA4\u0BC1')) {
                                 break lab0;
                             }
                         } while (false);
-
                         v_16 = this.limit - this.cursor;
-
                         if (!this.eq_s_b$esjava$1('\u0BCD')) {
                             break lab0;
                         }
-
                         this.cursor = this.limit - v_16;
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
@@ -19753,143 +15981,114 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         this.cursor = this.limit - v_14;
                     } while (false);
                 } while (false);
-
                 this.cursor = this.limit - v_1;
                 v_17 = this.limit - this.cursor;
-
                 lab57: do {
                     this.ket = this.cursor;
-
                     if (this.find_among_b$esjava$1(tamilStemmer.a_25) === 0) {
                         break lab57;
                     }
-
                     this.bra = this.cursor;
                     this.slice_del$esjava$0();
                     this.B_found_a_match = true;
                 } while (false);
-
                 this.cursor = this.limit - v_17;
                 this.cursor = this.limit_backward;
                 v_18 = this.cursor;
-
                 lab58: do {
                     if (!this.r_fix_endings$esjava$0()) {
                         break lab58;
                     }
                 } while (false);
-
                 this.cursor = v_18;
                 return true;
             }
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
                 this.B_found_vetrumai_urupu = false;
                 v_1 = this.cursor;
-
                 lab0: do {
                     if (!this.r_fix_ending$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = v_1;
-
                 if (!this.r_has_min_length$esjava$0()) {
                     return false;
                 }
-
                 v_2 = this.cursor;
-
                 lab1: do {
                     if (!this.r_remove_question_prefixes$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = v_2;
                 v_3 = this.cursor;
-
                 lab2: do {
                     if (!this.r_remove_pronoun_prefixes$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = v_3;
                 v_4 = this.cursor;
-
                 lab3: do {
                     if (!this.r_remove_question_suffixes$esjava$0()) {
                         break lab3;
                     }
                 } while (false);
-
                 this.cursor = v_4;
                 v_5 = this.cursor;
-
                 lab4: do {
                     if (!this.r_remove_um$esjava$0()) {
                         break lab4;
                     }
                 } while (false);
-
                 this.cursor = v_5;
                 v_6 = this.cursor;
-
                 lab5: do {
                     if (!this.r_remove_common_word_endings$esjava$0()) {
                         break lab5;
                     }
                 } while (false);
-
                 this.cursor = v_6;
                 v_7 = this.cursor;
-
                 lab6: do {
                     if (!this.r_remove_vetrumai_urupukal$esjava$0()) {
                         break lab6;
                     }
                 } while (false);
-
                 this.cursor = v_7;
                 v_8 = this.cursor;
-
                 lab7: do {
                     if (!this.r_remove_plural_suffix$esjava$0()) {
                         break lab7;
                     }
                 } while (false);
-
                 this.cursor = v_8;
                 v_9 = this.cursor;
-
                 lab8: do {
                     if (!this.r_remove_command_suffixes$esjava$0()) {
                         break lab8;
                     }
                 } while (false);
-
                 this.cursor = v_9;
                 v_10 = this.cursor;
-
                 lab9: do {
                     if (!this.r_remove_tense_suffixes$esjava$0()) {
                         break lab9;
                     }
                 } while (false);
-
                 this.cursor = v_10;
                 return true;
             }
@@ -19906,7 +16105,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get49 = _get(Object.getPrototypeOf(tamilStemmer.prototype), 'stem', this)).call.apply(_get49, [this].concat(args));
             }
         }, {
@@ -20114,531 +16312,393 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(turkishStemmer, [{
             key: 'r_check_vowel_harmony$esjava$0',
             value: function r_check_vowel_harmony$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
-                var v_11 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
+                var v_11 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 golab0: while (true) {
                     v_2 = this.limit - this.cursor;
-
                     lab1: do {
                         if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                             break lab1;
                         }
-
                         this.cursor = this.limit - v_2;
                         break golab0;
                     } while (false);
-
                     this.cursor = this.limit - v_2;
-
                     if (this.cursor <= this.limit_backward) {
                         return false;
                     }
-
                     this.cursor--;
                 }
-
                 lab2: do {
                     v_3 = this.limit - this.cursor;
-
                     lab3: do {
                         if (!this.eq_s_b$esjava$1("a")) {
                             break lab3;
                         }
-
                         golab4: while (true) {
                             v_4 = this.limit - this.cursor;
-
                             lab5: do {
                                 if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel1, 97, 305)) {
                                     break lab5;
                                 }
-
                                 this.cursor = this.limit - v_4;
                                 break golab4;
                             } while (false);
-
                             this.cursor = this.limit - v_4;
-
                             if (this.cursor <= this.limit_backward) {
                                 break lab3;
                             }
-
                             this.cursor--;
                         }
-
                         break lab2;
                     } while (false);
-
                     this.cursor = this.limit - v_3;
-
                     lab6: do {
                         if (!this.eq_s_b$esjava$1("e")) {
                             break lab6;
                         }
-
                         golab7: while (true) {
                             v_5 = this.limit - this.cursor;
-
                             lab8: do {
                                 if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel2, 101, 252)) {
                                     break lab8;
                                 }
-
                                 this.cursor = this.limit - v_5;
                                 break golab7;
                             } while (false);
-
                             this.cursor = this.limit - v_5;
-
                             if (this.cursor <= this.limit_backward) {
                                 break lab6;
                             }
-
                             this.cursor--;
                         }
-
                         break lab2;
                     } while (false);
-
                     this.cursor = this.limit - v_3;
-
                     lab9: do {
                         if (!this.eq_s_b$esjava$1('\u0131')) {
                             break lab9;
                         }
-
                         golab10: while (true) {
                             v_6 = this.limit - this.cursor;
-
                             lab11: do {
                                 if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel3, 97, 305)) {
                                     break lab11;
                                 }
-
                                 this.cursor = this.limit - v_6;
                                 break golab10;
                             } while (false);
-
                             this.cursor = this.limit - v_6;
-
                             if (this.cursor <= this.limit_backward) {
                                 break lab9;
                             }
-
                             this.cursor--;
                         }
-
                         break lab2;
                     } while (false);
-
                     this.cursor = this.limit - v_3;
-
                     lab12: do {
                         if (!this.eq_s_b$esjava$1("i")) {
                             break lab12;
                         }
-
                         golab13: while (true) {
                             v_7 = this.limit - this.cursor;
-
                             lab14: do {
                                 if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel4, 101, 105)) {
                                     break lab14;
                                 }
-
                                 this.cursor = this.limit - v_7;
                                 break golab13;
                             } while (false);
-
                             this.cursor = this.limit - v_7;
-
                             if (this.cursor <= this.limit_backward) {
                                 break lab12;
                             }
-
                             this.cursor--;
                         }
-
                         break lab2;
                     } while (false);
-
                     this.cursor = this.limit - v_3;
-
                     lab15: do {
                         if (!this.eq_s_b$esjava$1("o")) {
                             break lab15;
                         }
-
                         golab16: while (true) {
                             v_8 = this.limit - this.cursor;
-
                             lab17: do {
                                 if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel5, 111, 117)) {
                                     break lab17;
                                 }
-
                                 this.cursor = this.limit - v_8;
                                 break golab16;
                             } while (false);
-
                             this.cursor = this.limit - v_8;
-
                             if (this.cursor <= this.limit_backward) {
                                 break lab15;
                             }
-
                             this.cursor--;
                         }
-
                         break lab2;
                     } while (false);
-
                     this.cursor = this.limit - v_3;
-
                     lab18: do {
                         if (!this.eq_s_b$esjava$1('\u00F6')) {
                             break lab18;
                         }
-
                         golab19: while (true) {
                             v_9 = this.limit - this.cursor;
-
                             lab20: do {
                                 if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel6, 246, 252)) {
                                     break lab20;
                                 }
-
                                 this.cursor = this.limit - v_9;
                                 break golab19;
                             } while (false);
-
                             this.cursor = this.limit - v_9;
-
                             if (this.cursor <= this.limit_backward) {
                                 break lab18;
                             }
-
                             this.cursor--;
                         }
-
                         break lab2;
                     } while (false);
-
                     this.cursor = this.limit - v_3;
-
                     lab21: do {
                         if (!this.eq_s_b$esjava$1("u")) {
                             break lab21;
                         }
-
                         golab22: while (true) {
                             v_10 = this.limit - this.cursor;
-
                             lab23: do {
                                 if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel5, 111, 117)) {
                                     break lab23;
                                 }
-
                                 this.cursor = this.limit - v_10;
                                 break golab22;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             if (this.cursor <= this.limit_backward) {
                                 break lab21;
                             }
-
                             this.cursor--;
                         }
-
                         break lab2;
                     } while (false);
-
                     this.cursor = this.limit - v_3;
-
                     if (!this.eq_s_b$esjava$1('\u00FC')) {
                         return false;
                     }
-
                     golab24: while (true) {
                         v_11 = this.limit - this.cursor;
-
                         lab25: do {
                             if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel6, 246, 252)) {
                                 break lab25;
                             }
-
                             this.cursor = this.limit - v_11;
                             break golab24;
                         } while (false);
-
                         this.cursor = this.limit - v_11;
-
                         if (this.cursor <= this.limit_backward) {
                             return false;
                         }
-
                         this.cursor--;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_1;
                 return true;
             }
         }, {
             key: 'r_mark_suffix_with_optional_n_consonant$esjava$0',
             value: function r_mark_suffix_with_optional_n_consonant$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         if (!this.eq_s_b$esjava$1("n")) {
                             break lab1;
                         }
-
                         v_2 = this.limit - this.cursor;
-
                         if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                             break lab1;
                         }
-
                         this.cursor = this.limit - v_2;
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
                     {
                         v_3 = this.limit - this.cursor;
-
                         lab2: do {
                             v_4 = this.limit - this.cursor;
-
                             if (!this.eq_s_b$esjava$1("n")) {
                                 break lab2;
                             }
-
                             this.cursor = this.limit - v_4;
                             return false;
                         } while (false);
-
                         this.cursor = this.limit - v_3;
                     }
                     v_5 = this.limit - this.cursor;
-
                     if (this.cursor <= this.limit_backward) {
                         return false;
                     }
-
                     this.cursor--;
-
                     if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                         return false;
                     }
-
                     this.cursor = this.limit - v_5;
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'r_mark_suffix_with_optional_s_consonant$esjava$0',
             value: function r_mark_suffix_with_optional_s_consonant$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         if (!this.eq_s_b$esjava$1("s")) {
                             break lab1;
                         }
-
                         v_2 = this.limit - this.cursor;
-
                         if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                             break lab1;
                         }
-
                         this.cursor = this.limit - v_2;
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
                     {
                         v_3 = this.limit - this.cursor;
-
                         lab2: do {
                             v_4 = this.limit - this.cursor;
-
                             if (!this.eq_s_b$esjava$1("s")) {
                                 break lab2;
                             }
-
                             this.cursor = this.limit - v_4;
                             return false;
                         } while (false);
-
                         this.cursor = this.limit - v_3;
                     }
                     v_5 = this.limit - this.cursor;
-
                     if (this.cursor <= this.limit_backward) {
                         return false;
                     }
-
                     this.cursor--;
-
                     if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                         return false;
                     }
-
                     this.cursor = this.limit - v_5;
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'r_mark_suffix_with_optional_y_consonant$esjava$0',
             value: function r_mark_suffix_with_optional_y_consonant$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         if (!this.eq_s_b$esjava$1("y")) {
                             break lab1;
                         }
-
                         v_2 = this.limit - this.cursor;
-
                         if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                             break lab1;
                         }
-
                         this.cursor = this.limit - v_2;
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
                     {
                         v_3 = this.limit - this.cursor;
-
                         lab2: do {
                             v_4 = this.limit - this.cursor;
-
                             if (!this.eq_s_b$esjava$1("y")) {
                                 break lab2;
                             }
-
                             this.cursor = this.limit - v_4;
                             return false;
                         } while (false);
-
                         this.cursor = this.limit - v_3;
                     }
                     v_5 = this.limit - this.cursor;
-
                     if (this.cursor <= this.limit_backward) {
                         return false;
                     }
-
                     this.cursor--;
-
                     if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                         return false;
                     }
-
                     this.cursor = this.limit - v_5;
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'r_mark_suffix_with_optional_U_vowel$esjava$0',
             value: function r_mark_suffix_with_optional_U_vowel$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         if (!this.in_grouping_b$esjava$3(turkishStemmer.g_U, 105, 305)) {
                             break lab1;
                         }
-
                         v_2 = this.limit - this.cursor;
-
                         if (!this.out_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                             break lab1;
                         }
-
                         this.cursor = this.limit - v_2;
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
                     {
                         v_3 = this.limit - this.cursor;
-
                         lab2: do {
                             v_4 = this.limit - this.cursor;
-
                             if (!this.in_grouping_b$esjava$3(turkishStemmer.g_U, 105, 305)) {
                                 break lab2;
                             }
-
                             this.cursor = this.limit - v_4;
                             return false;
                         } while (false);
-
                         this.cursor = this.limit - v_3;
                     }
                     v_5 = this.limit - this.cursor;
-
                     if (this.cursor <= this.limit_backward) {
                         return false;
                     }
-
                     this.cursor--;
-
                     if (!this.out_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                         return false;
                     }
-
                     this.cursor = this.limit - v_5;
                 } while (false);
-
                 return true;
             }
         }, {
@@ -20647,11 +16707,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (this.find_among_b$esjava$1(turkishStemmer.a_0) === 0) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_U_vowel$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20660,15 +16718,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (!this.in_grouping_b$esjava$3(turkishStemmer.g_U, 105, 305)) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_s_consonant$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20677,7 +16732,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (this.find_among_b$esjava$1(turkishStemmer.a_1) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20686,15 +16740,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (!this.in_grouping_b$esjava$3(turkishStemmer.g_U, 105, 305)) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_y_consonant$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20703,11 +16754,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_2) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20716,15 +16765,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_3) === 0) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_n_consonant$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20733,15 +16779,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_4) === 0) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_y_consonant$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20750,11 +16793,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_5) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20763,11 +16804,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_6) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20776,11 +16815,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_7) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20789,11 +16826,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_8) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20802,11 +16837,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_9) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20815,15 +16848,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_10) === 0) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_y_consonant$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20832,7 +16862,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.eq_s_b$esjava$1("ki")) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20841,15 +16870,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_11) === 0) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_n_consonant$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20858,15 +16884,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_12) === 0) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_y_consonant$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20875,11 +16898,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_13) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20888,15 +16909,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_14) === 0) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_y_consonant$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20905,7 +16923,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (this.find_among_b$esjava$1(turkishStemmer.a_15) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20914,11 +16931,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_16) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20927,11 +16942,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_17) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20940,11 +16953,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_18) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20953,7 +16964,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (this.find_among_b$esjava$1(turkishStemmer.a_19) === 0) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20962,15 +16972,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_20) === 0) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_y_consonant$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20979,11 +16986,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (this.find_among_b$esjava$1(turkishStemmer.a_21) === 0) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_y_consonant$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -20992,15 +16997,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.r_check_vowel_harmony$esjava$0()) {
                     return false;
                 }
-
                 if (this.find_among_b$esjava$1(turkishStemmer.a_22) === 0) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_y_consonant$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -21009,359 +17011,262 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (!this.eq_s_b$esjava$1("ken")) {
                     return false;
                 }
-
                 if (!this.r_mark_suffix_with_optional_y_consonant$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
             key: 'r_stem_nominal_verb_suffixes$esjava$0',
             value: function r_stem_nominal_verb_suffixes$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
                 this.ket = this.cursor;
                 this.B_continue_stemming_noun_suffixes = true;
-
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         lab2: do {
                             v_2 = this.limit - this.cursor;
-
                             lab3: do {
                                 if (!this.r_mark_ymUs_$esjava$0()) {
                                     break lab3;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_2;
-
                             lab4: do {
                                 if (!this.r_mark_yDU$esjava$0()) {
                                     break lab4;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_2;
-
                             lab5: do {
                                 if (!this.r_mark_ysA$esjava$0()) {
                                     break lab5;
                                 }
-
                                 break lab2;
                             } while (false);
-
                             this.cursor = this.limit - v_2;
-
                             if (!this.r_mark_yken$esjava$0()) {
                                 break lab1;
                             }
                         } while (false);
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab6: do {
                         if (!this.r_mark_cAsInA$esjava$0()) {
                             break lab6;
                         }
-
                         lab7: do {
                             v_3 = this.limit - this.cursor;
-
                             lab8: do {
                                 if (!this.r_mark_sUnUz$esjava$0()) {
                                     break lab8;
                                 }
-
                                 break lab7;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab9: do {
                                 if (!this.r_mark_lAr$esjava$0()) {
                                     break lab9;
                                 }
-
                                 break lab7;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab10: do {
                                 if (!this.r_mark_yUm$esjava$0()) {
                                     break lab10;
                                 }
-
                                 break lab7;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab11: do {
                                 if (!this.r_mark_sUn$esjava$0()) {
                                     break lab11;
                                 }
-
                                 break lab7;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
-
                             lab12: do {
                                 if (!this.r_mark_yUz$esjava$0()) {
                                     break lab12;
                                 }
-
                                 break lab7;
                             } while (false);
-
                             this.cursor = this.limit - v_3;
                         } while (false);
-
                         if (!this.r_mark_ymUs_$esjava$0()) {
                             break lab6;
                         }
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab13: do {
                         if (!this.r_mark_lAr$esjava$0()) {
                             break lab13;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         v_4 = this.limit - this.cursor;
-
                         lab14: do {
                             this.ket = this.cursor;
-
                             lab15: do {
                                 v_5 = this.limit - this.cursor;
-
                                 lab16: do {
                                     if (!this.r_mark_DUr$esjava$0()) {
                                         break lab16;
                                     }
-
                                     break lab15;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab17: do {
                                     if (!this.r_mark_yDU$esjava$0()) {
                                         break lab17;
                                     }
-
                                     break lab15;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 lab18: do {
                                     if (!this.r_mark_ysA$esjava$0()) {
                                         break lab18;
                                     }
-
                                     break lab15;
                                 } while (false);
-
                                 this.cursor = this.limit - v_5;
-
                                 if (!this.r_mark_ymUs_$esjava$0()) {
                                     this.cursor = this.limit - v_4;
                                     break lab14;
                                 }
                             } while (false);
                         } while (false);
-
                         this.B_continue_stemming_noun_suffixes = false;
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab19: do {
                         if (!this.r_mark_nUz$esjava$0()) {
                             break lab19;
                         }
-
                         lab20: do {
                             v_6 = this.limit - this.cursor;
-
                             lab21: do {
                                 if (!this.r_mark_yDU$esjava$0()) {
                                     break lab21;
                                 }
-
                                 break lab20;
                             } while (false);
-
                             this.cursor = this.limit - v_6;
-
                             if (!this.r_mark_ysA$esjava$0()) {
                                 break lab19;
                             }
                         } while (false);
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab22: do {
                         lab23: do {
                             v_7 = this.limit - this.cursor;
-
                             lab24: do {
                                 if (!this.r_mark_sUnUz$esjava$0()) {
                                     break lab24;
                                 }
-
                                 break lab23;
                             } while (false);
-
                             this.cursor = this.limit - v_7;
-
                             lab25: do {
                                 if (!this.r_mark_yUz$esjava$0()) {
                                     break lab25;
                                 }
-
                                 break lab23;
                             } while (false);
-
                             this.cursor = this.limit - v_7;
-
                             lab26: do {
                                 if (!this.r_mark_sUn$esjava$0()) {
                                     break lab26;
                                 }
-
                                 break lab23;
                             } while (false);
-
                             this.cursor = this.limit - v_7;
-
                             if (!this.r_mark_yUm$esjava$0()) {
                                 break lab22;
                             }
                         } while (false);
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         v_8 = this.limit - this.cursor;
-
                         lab27: do {
                             this.ket = this.cursor;
-
                             if (!this.r_mark_ymUs_$esjava$0()) {
                                 this.cursor = this.limit - v_8;
                                 break lab27;
                             }
                         } while (false);
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     if (!this.r_mark_DUr$esjava$0()) {
                         return false;
                     }
-
                     this.bra = this.cursor;
                     this.slice_del$esjava$0();
                     v_9 = this.limit - this.cursor;
-
                     lab28: do {
                         this.ket = this.cursor;
-
                         lab29: do {
                             v_10 = this.limit - this.cursor;
-
                             lab30: do {
                                 if (!this.r_mark_sUnUz$esjava$0()) {
                                     break lab30;
                                 }
-
                                 break lab29;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab31: do {
                                 if (!this.r_mark_lAr$esjava$0()) {
                                     break lab31;
                                 }
-
                                 break lab29;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab32: do {
                                 if (!this.r_mark_yUm$esjava$0()) {
                                     break lab32;
                                 }
-
                                 break lab29;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab33: do {
                                 if (!this.r_mark_sUn$esjava$0()) {
                                     break lab33;
                                 }
-
                                 break lab29;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             lab34: do {
                                 if (!this.r_mark_yUz$esjava$0()) {
                                     break lab34;
                                 }
-
                                 break lab29;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
                         } while (false);
-
                         if (!this.r_mark_ymUs_$esjava$0()) {
                             this.cursor = this.limit - v_9;
                             break lab28;
                         }
                     } while (false);
                 } while (false);
-
                 this.bra = this.cursor;
                 this.slice_del$esjava$0();
                 return true;
@@ -21369,82 +17274,65 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_stem_suffix_chain_before_ki$esjava$0',
             value: function r_stem_suffix_chain_before_ki$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
-                var v_11 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
+                var v_11 = void 0;
                 this.ket = this.cursor;
-
                 if (!this.r_mark_ki$esjava$0()) {
                     return false;
                 }
-
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         if (!this.r_mark_DA$esjava$0()) {
                             break lab1;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         v_2 = this.limit - this.cursor;
-
                         lab2: do {
                             this.ket = this.cursor;
-
                             lab3: do {
                                 v_3 = this.limit - this.cursor;
-
                                 lab4: do {
                                     if (!this.r_mark_lAr$esjava$0()) {
                                         break lab4;
                                     }
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
                                     v_4 = this.limit - this.cursor;
-
                                     lab5: do {
                                         if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                             this.cursor = this.limit - v_4;
                                             break lab5;
                                         }
                                     } while (false);
-
                                     break lab3;
                                 } while (false);
-
                                 this.cursor = this.limit - v_3;
-
                                 if (!this.r_mark_possessives$esjava$0()) {
                                     this.cursor = this.limit - v_2;
                                     break lab2;
                                 }
-
                                 this.bra = this.cursor;
                                 this.slice_del$esjava$0();
                                 v_5 = this.limit - this.cursor;
-
                                 lab6: do {
                                     this.ket = this.cursor;
-
                                     if (!this.r_mark_lAr$esjava$0()) {
                                         this.cursor = this.limit - v_5;
                                         break lab6;
                                     }
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
-
                                     if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                         this.cursor = this.limit - v_5;
                                         break lab6;
@@ -21452,913 +17340,681 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                                 } while (false);
                             } while (false);
                         } while (false);
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab7: do {
                         if (!this.r_mark_nUn$esjava$0()) {
                             break lab7;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         v_6 = this.limit - this.cursor;
-
                         lab8: do {
                             this.ket = this.cursor;
-
                             lab9: do {
                                 v_7 = this.limit - this.cursor;
-
                                 lab10: do {
                                     if (!this.r_mark_lArI$esjava$0()) {
                                         break lab10;
                                     }
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
                                     break lab9;
                                 } while (false);
-
                                 this.cursor = this.limit - v_7;
-
                                 lab11: do {
                                     this.ket = this.cursor;
-
                                     lab12: do {
                                         v_8 = this.limit - this.cursor;
-
                                         lab13: do {
                                             if (!this.r_mark_possessives$esjava$0()) {
                                                 break lab13;
                                             }
-
                                             break lab12;
                                         } while (false);
-
                                         this.cursor = this.limit - v_8;
-
                                         if (!this.r_mark_sU$esjava$0()) {
                                             break lab11;
                                         }
                                     } while (false);
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
                                     v_9 = this.limit - this.cursor;
-
                                     lab14: do {
                                         this.ket = this.cursor;
-
                                         if (!this.r_mark_lAr$esjava$0()) {
                                             this.cursor = this.limit - v_9;
                                             break lab14;
                                         }
-
                                         this.bra = this.cursor;
                                         this.slice_del$esjava$0();
-
                                         if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                             this.cursor = this.limit - v_9;
                                             break lab14;
                                         }
                                     } while (false);
-
                                     break lab9;
                                 } while (false);
-
                                 this.cursor = this.limit - v_7;
-
                                 if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                     this.cursor = this.limit - v_6;
                                     break lab8;
                                 }
                             } while (false);
                         } while (false);
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     if (!this.r_mark_ndA$esjava$0()) {
                         return false;
                     }
-
                     lab15: do {
                         v_10 = this.limit - this.cursor;
-
                         lab16: do {
                             if (!this.r_mark_lArI$esjava$0()) {
                                 break lab16;
                             }
-
                             this.bra = this.cursor;
                             this.slice_del$esjava$0();
                             break lab15;
                         } while (false);
-
                         this.cursor = this.limit - v_10;
-
                         lab17: do {
                             if (!this.r_mark_sU$esjava$0()) {
                                 break lab17;
                             }
-
                             this.bra = this.cursor;
                             this.slice_del$esjava$0();
                             v_11 = this.limit - this.cursor;
-
                             lab18: do {
                                 this.ket = this.cursor;
-
                                 if (!this.r_mark_lAr$esjava$0()) {
                                     this.cursor = this.limit - v_11;
                                     break lab18;
                                 }
-
                                 this.bra = this.cursor;
                                 this.slice_del$esjava$0();
-
                                 if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                     this.cursor = this.limit - v_11;
                                     break lab18;
                                 }
                             } while (false);
-
                             break lab15;
                         } while (false);
-
                         this.cursor = this.limit - v_10;
-
                         if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                             return false;
                         }
                     } while (false);
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'r_stem_noun_suffixes$esjava$0',
             value: function r_stem_noun_suffixes$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
-                var v_11 = undefined;
-                var v_12 = undefined;
-                var v_13 = undefined;
-                var v_14 = undefined;
-                var v_15 = undefined;
-                var v_16 = undefined;
-                var v_17 = undefined;
-                var v_18 = undefined;
-                var v_19 = undefined;
-                var v_20 = undefined;
-                var v_21 = undefined;
-                var v_22 = undefined;
-                var v_23 = undefined;
-                var v_24 = undefined;
-                var v_25 = undefined;
-                var v_26 = undefined;
-                var v_27 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
+                var v_11 = void 0;
+                var v_12 = void 0;
+                var v_13 = void 0;
+                var v_14 = void 0;
+                var v_15 = void 0;
+                var v_16 = void 0;
+                var v_17 = void 0;
+                var v_18 = void 0;
+                var v_19 = void 0;
+                var v_20 = void 0;
+                var v_21 = void 0;
+                var v_22 = void 0;
+                var v_23 = void 0;
+                var v_24 = void 0;
+                var v_25 = void 0;
+                var v_26 = void 0;
+                var v_27 = void 0;
                 lab0: do {
                     v_1 = this.limit - this.cursor;
-
                     lab1: do {
                         this.ket = this.cursor;
-
                         if (!this.r_mark_lAr$esjava$0()) {
                             break lab1;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         v_2 = this.limit - this.cursor;
-
                         lab2: do {
                             if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                 this.cursor = this.limit - v_2;
                                 break lab2;
                             }
                         } while (false);
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab3: do {
                         this.ket = this.cursor;
-
                         if (!this.r_mark_ncA$esjava$0()) {
                             break lab3;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         v_3 = this.limit - this.cursor;
-
                         lab4: do {
                             lab5: do {
                                 v_4 = this.limit - this.cursor;
-
                                 lab6: do {
                                     this.ket = this.cursor;
-
                                     if (!this.r_mark_lArI$esjava$0()) {
                                         break lab6;
                                     }
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
                                     break lab5;
                                 } while (false);
-
                                 this.cursor = this.limit - v_4;
-
                                 lab7: do {
                                     this.ket = this.cursor;
-
                                     lab8: do {
                                         v_5 = this.limit - this.cursor;
-
                                         lab9: do {
                                             if (!this.r_mark_possessives$esjava$0()) {
                                                 break lab9;
                                             }
-
                                             break lab8;
                                         } while (false);
-
                                         this.cursor = this.limit - v_5;
-
                                         if (!this.r_mark_sU$esjava$0()) {
                                             break lab7;
                                         }
                                     } while (false);
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
                                     v_6 = this.limit - this.cursor;
-
                                     lab10: do {
                                         this.ket = this.cursor;
-
                                         if (!this.r_mark_lAr$esjava$0()) {
                                             this.cursor = this.limit - v_6;
                                             break lab10;
                                         }
-
                                         this.bra = this.cursor;
                                         this.slice_del$esjava$0();
-
                                         if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                             this.cursor = this.limit - v_6;
                                             break lab10;
                                         }
                                     } while (false);
-
                                     break lab5;
                                 } while (false);
-
                                 this.cursor = this.limit - v_4;
                                 this.ket = this.cursor;
-
                                 if (!this.r_mark_lAr$esjava$0()) {
                                     this.cursor = this.limit - v_3;
                                     break lab4;
                                 }
-
                                 this.bra = this.cursor;
                                 this.slice_del$esjava$0();
-
                                 if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                     this.cursor = this.limit - v_3;
                                     break lab4;
                                 }
                             } while (false);
                         } while (false);
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab11: do {
                         this.ket = this.cursor;
-
                         lab12: do {
                             v_7 = this.limit - this.cursor;
-
                             lab13: do {
                                 if (!this.r_mark_ndA$esjava$0()) {
                                     break lab13;
                                 }
-
                                 break lab12;
                             } while (false);
-
                             this.cursor = this.limit - v_7;
-
                             if (!this.r_mark_nA$esjava$0()) {
                                 break lab11;
                             }
                         } while (false);
-
                         lab14: do {
                             v_8 = this.limit - this.cursor;
-
                             lab15: do {
                                 if (!this.r_mark_lArI$esjava$0()) {
                                     break lab15;
                                 }
-
                                 this.bra = this.cursor;
                                 this.slice_del$esjava$0();
                                 break lab14;
                             } while (false);
-
                             this.cursor = this.limit - v_8;
-
                             lab16: do {
                                 if (!this.r_mark_sU$esjava$0()) {
                                     break lab16;
                                 }
-
                                 this.bra = this.cursor;
                                 this.slice_del$esjava$0();
                                 v_9 = this.limit - this.cursor;
-
                                 lab17: do {
                                     this.ket = this.cursor;
-
                                     if (!this.r_mark_lAr$esjava$0()) {
                                         this.cursor = this.limit - v_9;
                                         break lab17;
                                     }
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
-
                                     if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                         this.cursor = this.limit - v_9;
                                         break lab17;
                                     }
                                 } while (false);
-
                                 break lab14;
                             } while (false);
-
                             this.cursor = this.limit - v_8;
-
                             if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                 break lab11;
                             }
                         } while (false);
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab18: do {
                         this.ket = this.cursor;
-
                         lab19: do {
                             v_10 = this.limit - this.cursor;
-
                             lab20: do {
                                 if (!this.r_mark_ndAn$esjava$0()) {
                                     break lab20;
                                 }
-
                                 break lab19;
                             } while (false);
-
                             this.cursor = this.limit - v_10;
-
                             if (!this.r_mark_nU$esjava$0()) {
                                 break lab18;
                             }
                         } while (false);
-
                         lab21: do {
                             v_11 = this.limit - this.cursor;
-
                             lab22: do {
                                 if (!this.r_mark_sU$esjava$0()) {
                                     break lab22;
                                 }
-
                                 this.bra = this.cursor;
                                 this.slice_del$esjava$0();
                                 v_12 = this.limit - this.cursor;
-
                                 lab23: do {
                                     this.ket = this.cursor;
-
                                     if (!this.r_mark_lAr$esjava$0()) {
                                         this.cursor = this.limit - v_12;
                                         break lab23;
                                     }
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
-
                                     if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                         this.cursor = this.limit - v_12;
                                         break lab23;
                                     }
                                 } while (false);
-
                                 break lab21;
                             } while (false);
-
                             this.cursor = this.limit - v_11;
-
                             if (!this.r_mark_lArI$esjava$0()) {
                                 break lab18;
                             }
                         } while (false);
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab24: do {
                         this.ket = this.cursor;
-
                         if (!this.r_mark_DAn$esjava$0()) {
                             break lab24;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         v_13 = this.limit - this.cursor;
-
                         lab25: do {
                             this.ket = this.cursor;
-
                             lab26: do {
                                 v_14 = this.limit - this.cursor;
-
                                 lab27: do {
                                     if (!this.r_mark_possessives$esjava$0()) {
                                         break lab27;
                                     }
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
                                     v_15 = this.limit - this.cursor;
-
                                     lab28: do {
                                         this.ket = this.cursor;
-
                                         if (!this.r_mark_lAr$esjava$0()) {
                                             this.cursor = this.limit - v_15;
                                             break lab28;
                                         }
-
                                         this.bra = this.cursor;
                                         this.slice_del$esjava$0();
-
                                         if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                             this.cursor = this.limit - v_15;
                                             break lab28;
                                         }
                                     } while (false);
-
                                     break lab26;
                                 } while (false);
-
                                 this.cursor = this.limit - v_14;
-
                                 lab29: do {
                                     if (!this.r_mark_lAr$esjava$0()) {
                                         break lab29;
                                     }
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
                                     v_16 = this.limit - this.cursor;
-
                                     lab30: do {
                                         if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                             this.cursor = this.limit - v_16;
                                             break lab30;
                                         }
                                     } while (false);
-
                                     break lab26;
                                 } while (false);
-
                                 this.cursor = this.limit - v_14;
-
                                 if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                     this.cursor = this.limit - v_13;
                                     break lab25;
                                 }
                             } while (false);
                         } while (false);
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab31: do {
                         this.ket = this.cursor;
-
                         lab32: do {
                             v_17 = this.limit - this.cursor;
-
                             lab33: do {
                                 if (!this.r_mark_nUn$esjava$0()) {
                                     break lab33;
                                 }
-
                                 break lab32;
                             } while (false);
-
                             this.cursor = this.limit - v_17;
-
                             if (!this.r_mark_ylA$esjava$0()) {
                                 break lab31;
                             }
                         } while (false);
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         v_18 = this.limit - this.cursor;
-
                         lab34: do {
                             lab35: do {
                                 v_19 = this.limit - this.cursor;
-
                                 lab36: do {
                                     this.ket = this.cursor;
-
                                     if (!this.r_mark_lAr$esjava$0()) {
                                         break lab36;
                                     }
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
-
                                     if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                         break lab36;
                                     }
-
                                     break lab35;
                                 } while (false);
-
                                 this.cursor = this.limit - v_19;
-
                                 lab37: do {
                                     this.ket = this.cursor;
-
                                     lab38: do {
                                         v_20 = this.limit - this.cursor;
-
                                         lab39: do {
                                             if (!this.r_mark_possessives$esjava$0()) {
                                                 break lab39;
                                             }
-
                                             break lab38;
                                         } while (false);
-
                                         this.cursor = this.limit - v_20;
-
                                         if (!this.r_mark_sU$esjava$0()) {
                                             break lab37;
                                         }
                                     } while (false);
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
                                     v_21 = this.limit - this.cursor;
-
                                     lab40: do {
                                         this.ket = this.cursor;
-
                                         if (!this.r_mark_lAr$esjava$0()) {
                                             this.cursor = this.limit - v_21;
                                             break lab40;
                                         }
-
                                         this.bra = this.cursor;
                                         this.slice_del$esjava$0();
-
                                         if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                             this.cursor = this.limit - v_21;
                                             break lab40;
                                         }
                                     } while (false);
-
                                     break lab35;
                                 } while (false);
-
                                 this.cursor = this.limit - v_19;
-
                                 if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                     this.cursor = this.limit - v_18;
                                     break lab34;
                                 }
                             } while (false);
                         } while (false);
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab41: do {
                         this.ket = this.cursor;
-
                         if (!this.r_mark_lArI$esjava$0()) {
                             break lab41;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab42: do {
                         if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                             break lab42;
                         }
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
-
                     lab43: do {
                         this.ket = this.cursor;
-
                         lab44: do {
                             v_22 = this.limit - this.cursor;
-
                             lab45: do {
                                 if (!this.r_mark_DA$esjava$0()) {
                                     break lab45;
                                 }
-
                                 break lab44;
                             } while (false);
-
                             this.cursor = this.limit - v_22;
-
                             lab46: do {
                                 if (!this.r_mark_yU$esjava$0()) {
                                     break lab46;
                                 }
-
                                 break lab44;
                             } while (false);
-
                             this.cursor = this.limit - v_22;
-
                             if (!this.r_mark_yA$esjava$0()) {
                                 break lab43;
                             }
                         } while (false);
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
                         v_23 = this.limit - this.cursor;
-
                         lab47: do {
                             this.ket = this.cursor;
-
                             lab48: do {
                                 v_24 = this.limit - this.cursor;
-
                                 lab49: do {
                                     if (!this.r_mark_possessives$esjava$0()) {
                                         break lab49;
                                     }
-
                                     this.bra = this.cursor;
                                     this.slice_del$esjava$0();
                                     v_25 = this.limit - this.cursor;
-
                                     lab50: do {
                                         this.ket = this.cursor;
-
                                         if (!this.r_mark_lAr$esjava$0()) {
                                             this.cursor = this.limit - v_25;
                                             break lab50;
                                         }
                                     } while (false);
-
                                     break lab48;
                                 } while (false);
-
                                 this.cursor = this.limit - v_24;
-
                                 if (!this.r_mark_lAr$esjava$0()) {
                                     this.cursor = this.limit - v_23;
                                     break lab47;
                                 }
                             } while (false);
-
                             this.bra = this.cursor;
                             this.slice_del$esjava$0();
                             this.ket = this.cursor;
-
                             if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                                 this.cursor = this.limit - v_23;
                                 break lab47;
                             }
                         } while (false);
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_1;
                     this.ket = this.cursor;
-
                     lab51: do {
                         v_26 = this.limit - this.cursor;
-
                         lab52: do {
                             if (!this.r_mark_possessives$esjava$0()) {
                                 break lab52;
                             }
-
                             break lab51;
                         } while (false);
-
                         this.cursor = this.limit - v_26;
-
                         if (!this.r_mark_sU$esjava$0()) {
                             return false;
                         }
                     } while (false);
-
                     this.bra = this.cursor;
                     this.slice_del$esjava$0();
                     v_27 = this.limit - this.cursor;
-
                     lab53: do {
                         this.ket = this.cursor;
-
                         if (!this.r_mark_lAr$esjava$0()) {
                             this.cursor = this.limit - v_27;
                             break lab53;
                         }
-
                         this.bra = this.cursor;
                         this.slice_del$esjava$0();
-
                         if (!this.r_stem_suffix_chain_before_ki$esjava$0()) {
                             this.cursor = this.limit - v_27;
                             break lab53;
                         }
                     } while (false);
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'r_post_process_last_consonants$esjava$0',
             value: function r_post_process_last_consonants$esjava$0() {
-                var among_var = undefined;
+                var among_var = void 0;
                 this.ket = this.cursor;
                 among_var = this.find_among_b$esjava$1(turkishStemmer.a_23);
-
                 if (among_var === 0) {
                     return false;
                 }
-
                 this.bra = this.cursor;
-
                 switch (among_var) {
                     case 0:
                         return false;
-
                     case 1:
                         this.slice_from$esjava$1("p");
                         break;
-
                     case 2:
                         this.slice_from$esjava$1('\u00E7');
                         break;
-
                     case 3:
                         this.slice_from$esjava$1("t");
                         break;
-
                     case 4:
                         this.slice_from$esjava$1("k");
                         break;
                 }
-
                 return true;
             }
         }, {
             key: 'r_append_U_to_stems_ending_with_d_or_g$esjava$0',
             value: function r_append_U_to_stems_ending_with_d_or_g$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
-                var v_4 = undefined;
-                var v_5 = undefined;
-                var v_6 = undefined;
-                var v_7 = undefined;
-                var v_8 = undefined;
-                var v_9 = undefined;
-                var v_10 = undefined;
-                var v_11 = undefined;
-                var v_12 = undefined;
-                var v_13 = undefined;
-                var v_14 = undefined;
-                var v_15 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
+                var v_4 = void 0;
+                var v_5 = void 0;
+                var v_6 = void 0;
+                var v_7 = void 0;
+                var v_8 = void 0;
+                var v_9 = void 0;
+                var v_10 = void 0;
+                var v_11 = void 0;
+                var v_12 = void 0;
+                var v_13 = void 0;
+                var v_14 = void 0;
+                var v_15 = void 0;
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     v_2 = this.limit - this.cursor;
-
                     lab1: do {
                         if (!this.eq_s_b$esjava$1("d")) {
                             break lab1;
                         }
-
                         break lab0;
                     } while (false);
-
                     this.cursor = this.limit - v_2;
-
                     if (!this.eq_s_b$esjava$1("g")) {
                         return false;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_1;
-
                 lab2: do {
                     v_3 = this.limit - this.cursor;
-
                     lab3: do {
                         v_4 = this.limit - this.cursor;
-
                         golab4: while (true) {
                             v_5 = this.limit - this.cursor;
-
                             lab5: do {
                                 if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                                     break lab5;
                                 }
-
                                 this.cursor = this.limit - v_5;
                                 break golab4;
                             } while (false);
-
                             this.cursor = this.limit - v_5;
-
                             if (this.cursor <= this.limit_backward) {
                                 break lab3;
                             }
-
                             this.cursor--;
                         }
-
                         lab6: do {
                             v_6 = this.limit - this.cursor;
-
                             lab7: do {
                                 if (!this.eq_s_b$esjava$1("a")) {
                                     break lab7;
                                 }
-
                                 break lab6;
                             } while (false);
-
                             this.cursor = this.limit - v_6;
-
                             if (!this.eq_s_b$esjava$1('\u0131')) {
                                 break lab3;
                             }
                         } while (false);
-
                         this.cursor = this.limit - v_4;
                         {
                             var c = this.cursor;
@@ -22367,202 +18023,152 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         }
                         break lab2;
                     } while (false);
-
                     this.cursor = this.limit - v_3;
-
                     lab8: do {
                         v_7 = this.limit - this.cursor;
-
                         golab9: while (true) {
                             v_8 = this.limit - this.cursor;
-
                             lab10: do {
                                 if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                                     break lab10;
                                 }
-
                                 this.cursor = this.limit - v_8;
                                 break golab9;
                             } while (false);
-
                             this.cursor = this.limit - v_8;
-
                             if (this.cursor <= this.limit_backward) {
                                 break lab8;
                             }
-
                             this.cursor--;
                         }
-
                         lab11: do {
                             v_9 = this.limit - this.cursor;
-
                             lab12: do {
                                 if (!this.eq_s_b$esjava$1("e")) {
                                     break lab12;
                                 }
-
                                 break lab11;
                             } while (false);
-
                             this.cursor = this.limit - v_9;
-
                             if (!this.eq_s_b$esjava$1("i")) {
                                 break lab8;
                             }
                         } while (false);
-
                         this.cursor = this.limit - v_7;
                         {
-                            var c = this.cursor;
+                            var _c3 = this.cursor;
                             this.insert$esjava$3(this.cursor, this.cursor, "i");
-                            this.cursor = c;
+                            this.cursor = _c3;
                         }
                         break lab2;
                     } while (false);
-
                     this.cursor = this.limit - v_3;
-
                     lab13: do {
                         v_10 = this.limit - this.cursor;
-
                         golab14: while (true) {
                             v_11 = this.limit - this.cursor;
-
                             lab15: do {
                                 if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                                     break lab15;
                                 }
-
                                 this.cursor = this.limit - v_11;
                                 break golab14;
                             } while (false);
-
                             this.cursor = this.limit - v_11;
-
                             if (this.cursor <= this.limit_backward) {
                                 break lab13;
                             }
-
                             this.cursor--;
                         }
-
                         lab16: do {
                             v_12 = this.limit - this.cursor;
-
                             lab17: do {
                                 if (!this.eq_s_b$esjava$1("o")) {
                                     break lab17;
                                 }
-
                                 break lab16;
                             } while (false);
-
                             this.cursor = this.limit - v_12;
-
                             if (!this.eq_s_b$esjava$1("u")) {
                                 break lab13;
                             }
                         } while (false);
-
                         this.cursor = this.limit - v_10;
                         {
-                            var c = this.cursor;
+                            var _c4 = this.cursor;
                             this.insert$esjava$3(this.cursor, this.cursor, "u");
-                            this.cursor = c;
+                            this.cursor = _c4;
                         }
                         break lab2;
                     } while (false);
-
                     this.cursor = this.limit - v_3;
                     v_13 = this.limit - this.cursor;
-
                     golab18: while (true) {
                         v_14 = this.limit - this.cursor;
-
                         lab19: do {
                             if (!this.in_grouping_b$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                                 break lab19;
                             }
-
                             this.cursor = this.limit - v_14;
                             break golab18;
                         } while (false);
-
                         this.cursor = this.limit - v_14;
-
                         if (this.cursor <= this.limit_backward) {
                             return false;
                         }
-
                         this.cursor--;
                     }
-
                     lab20: do {
                         v_15 = this.limit - this.cursor;
-
                         lab21: do {
                             if (!this.eq_s_b$esjava$1('\u00F6')) {
                                 break lab21;
                             }
-
                             break lab20;
                         } while (false);
-
                         this.cursor = this.limit - v_15;
-
                         if (!this.eq_s_b$esjava$1('\u00FC')) {
                             return false;
                         }
                     } while (false);
-
                     this.cursor = this.limit - v_13;
                     {
-                        var c = this.cursor;
+                        var _c5 = this.cursor;
                         this.insert$esjava$3(this.cursor, this.cursor, '\u00FC');
-                        this.cursor = c;
+                        this.cursor = _c5;
                     }
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'r_more_than_one_syllable_word$esjava$0',
             value: function r_more_than_one_syllable_word$esjava$0() {
-                var v_1 = undefined;
-                var v_3 = undefined;
+                var v_1 = void 0;
+                var v_3 = void 0;
                 v_1 = this.cursor;
                 {
                     var v_2 = 2;
-
                     replab0: while (true) {
                         v_3 = this.cursor;
-
                         lab1: do {
                             golab2: while (true) {
                                 lab3: do {
                                     if (!this.in_grouping$esjava$3(turkishStemmer.g_vowel, 97, 305)) {
                                         break lab3;
                                     }
-
                                     break golab2;
                                 } while (false);
-
                                 if (this.cursor >= this.limit) {
                                     break lab1;
                                 }
-
                                 this.cursor++;
                             }
-
                             v_2--;
                             continue replab0;
                         } while (false);
-
                         this.cursor = v_3;
                         break replab0;
                     }
-
                     if (v_2 > 0) {
                         return false;
                     }
@@ -22573,110 +18179,85 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'r_is_reserved_word$esjava$0',
             value: function r_is_reserved_word$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_4 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_4 = void 0;
                 lab0: do {
                     v_1 = this.cursor;
-
                     lab1: do {
                         v_2 = this.cursor;
-
                         golab2: while (true) {
                             lab3: do {
                                 if (!this.eq_s$esjava$1("ad")) {
                                     break lab3;
                                 }
-
                                 break golab2;
                             } while (false);
-
                             if (this.cursor >= this.limit) {
                                 break lab1;
                             }
-
                             this.cursor++;
                         }
-
                         this.I_strlen = 2;
-
                         if (!(this.I_strlen === this.limit)) {
                             break lab1;
                         }
-
                         this.cursor = v_2;
                         break lab0;
                     } while (false);
-
                     this.cursor = v_1;
                     v_4 = this.cursor;
-
                     golab4: while (true) {
                         lab5: do {
                             if (!this.eq_s$esjava$1("soyad")) {
                                 break lab5;
                             }
-
                             break golab4;
                         } while (false);
-
                         if (this.cursor >= this.limit) {
                             return false;
                         }
-
                         this.cursor++;
                     }
-
                     this.I_strlen = 5;
-
                     if (!(this.I_strlen === this.limit)) {
                         return false;
                     }
-
                     this.cursor = v_4;
                 } while (false);
-
                 return true;
             }
         }, {
             key: 'r_postlude$esjava$0',
             value: function r_postlude$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-                var v_3 = undefined;
+                var v_1 = void 0;
+                var v_2 = void 0;
+                var v_3 = void 0;
                 {
                     v_1 = this.cursor;
-
                     lab0: do {
                         if (!this.r_is_reserved_word$esjava$0()) {
                             break lab0;
                         }
-
                         return false;
                     } while (false);
-
                     this.cursor = v_1;
                 }
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_2 = this.limit - this.cursor;
-
                 lab1: do {
                     if (!this.r_append_U_to_stems_ending_with_d_or_g$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_2;
                 v_3 = this.limit - this.cursor;
-
                 lab2: do {
                     if (!this.r_post_process_last_consonants$esjava$0()) {
                         break lab2;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_3;
                 this.cursor = this.limit_backward;
                 return true;
@@ -22684,44 +18265,34 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
             key: 'stem$esjava$0',
             value: function stem$esjava$0() {
-                var v_1 = undefined;
-                var v_2 = undefined;
-
+                var v_1 = void 0;
+                var v_2 = void 0;
                 if (!this.r_more_than_one_syllable_word$esjava$0()) {
                     return false;
                 }
-
                 this.limit_backward = this.cursor;
                 this.cursor = this.limit;
                 v_1 = this.limit - this.cursor;
-
                 lab0: do {
                     if (!this.r_stem_nominal_verb_suffixes$esjava$0()) {
                         break lab0;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_1;
-
                 if (!this.B_continue_stemming_noun_suffixes) {
                     return false;
                 }
-
                 v_2 = this.limit - this.cursor;
-
                 lab1: do {
                     if (!this.r_stem_noun_suffixes$esjava$0()) {
                         break lab1;
                     }
                 } while (false);
-
                 this.cursor = this.limit - v_2;
                 this.cursor = this.limit_backward;
-
                 if (!this.r_postlude$esjava$0()) {
                     return false;
                 }
-
                 return true;
             }
         }, {
@@ -22737,7 +18308,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     case 0:
                         return this.stem$esjava$0.apply(this, args);
                 }
-
                 return (_get50 = _get(Object.getPrototypeOf(turkishStemmer.prototype), 'stem', this)).call.apply(_get50, [this].concat(args));
             }
         }, {
@@ -22955,30 +18525,55 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
     function newStemmer(lng) {
         var stemMap = {
+
             arabic: arabicStemmer,
+
             armenian: armenianStemmer,
+
             basque: basqueStemmer,
+
             catalan: catalanStemmer,
+
             czech: czechStemmer,
+
             danish: danishStemmer,
+
             dutch: dutchStemmer,
+
             english: englishStemmer,
+
             finnish: finnishStemmer,
+
             french: frenchStemmer,
+
             german: germanStemmer,
+
             hungarian: hungarianStemmer,
+
             italian: italianStemmer,
+
             irish: irishStemmer,
+
             norwegian: norwegianStemmer,
+
             porter: porterStemmer,
+
             portuguese: portugueseStemmer,
+
             romanian: romanianStemmer,
+
             russian: russianStemmer,
+
             spanish: spanishStemmer,
+
             slovene: sloveneStemmer,
+
             swedish: swedishStemmer,
+
             tamil: tamilStemmer,
+
             turkish: turkishStemmer
+
         };
         var stemmer = new stemMap[lng.toLowerCase()]();
         return {
@@ -22989,7 +18584,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             }
         };
     }
-
     function algorithms() {
         return ['arabic', 'armenian', 'basque', 'catalan', 'czech', 'danish', 'dutch', 'english', 'finnish', 'french', 'german', 'hungarian', 'italian', 'irish', 'norwegian', 'porter', 'portuguese', 'romanian', 'russian', 'spanish', 'slovene', 'swedish', 'tamil', 'turkish'];
     }
