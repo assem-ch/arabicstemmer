@@ -12,7 +12,7 @@ This is the algorithm written on Snowball framework language:
 
 ## Compile 
 
-Download Snowball to the folder `snowball` and run:
+Download Snowball to the root folder `{Root}/snowball` and run:
 
 ```sh
     $ make
