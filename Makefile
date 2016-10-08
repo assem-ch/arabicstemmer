@@ -1,4 +1,4 @@
-SNOWBALL="../snowball/"
+SNOWBALL="./snowball/"
 ARABIC_STEMMER="algorithm/stemmer.sbl"
 
 default: 
