@@ -1,11 +1,11 @@
 SNOWBALL="../snowball/"
-ARABIC_STEMMER="src/stemmer.sbl"
+ARABIC_STEMMER="algorithm/stemmer.sbl"
 
 default: 
 	cp $(ARABIC_STEMMER) $(SNOWBALL)"algorithms/arabic/stem_Unicode.sbl"
 	cd $(SNOWBALL); make; make dist
-	mkdir -p  "website/python/"; cp $(SNOWBALL)dist/snowballstemmer-*.tar.gz "website/python/"
-	mkdir -p  "website/java/";cp $(SNOWBALL)"dist/libstemmer_java.tgz" "website/java/"
-	mkdir -p  "website/c/";cp $(SNOWBALL)"dist/libstemmer_c.tgz" "website/c/"
-	mkdir -p  "website/jsx/";cp $(SNOWBALL)"dist/jsxstemmer.tgz" "website/jsx/"
+	mkdir -p  "dist/python/"; cp $(SNOWBALL)dist/snowballstemmer-*.tar.gz "dist/python/"
+	mkdir -p  "dist/java/";cp $(SNOWBALL)"dist/libstemmer_java.tgz" "dist/java/"
+	mkdir -p  "dist/c/";cp $(SNOWBALL)"dist/libstemmer_c.tgz" "dist/c/"
+	mkdir -p  "dist/jsx/";cp $(SNOWBALL)"dist/jsxstemmer.tgz" "dist/jsx/"
         
