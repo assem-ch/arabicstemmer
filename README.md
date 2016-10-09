@@ -22,6 +22,7 @@ Download Snowball to the root folder `{Root}/snowball` and run:
 ## Test grouping effect
 - Download test data `voc.txt.gz` from [here](https://github.com/snowballstem/snowball-data/tree/master/arabic). 
 - Update paths inside the script `algorithm/test/test_grouping.py`
+  
   ```python
       os.system("make -C ../../../snowball/")
       os.system("time ../../../snowball/stemwords -l ar -i voc.txt -o output.txt")
