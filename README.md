@@ -38,15 +38,18 @@ or manually by:
 We configured tests to run against snowball-data arabic sample. 
 
 - time:
-	```sh
+
+    ```sh
 	    $ make time
 	```
 
 - grouping effect:
+    
     ```sh
     $ make grouping
 	```
 - all:
+	
 	```sh
     $ make test
 	```
