@@ -6,8 +6,8 @@ script for comparing arabic stemmer output
 import os
 import sys
 
-
 OUTPUT, VOC, GROUPING = sys.argv[1:] or ("output.txt", "voc.txt", "grouping.txt") 
+
 
 f = open(OUTPUT)
 g = open(VOC)

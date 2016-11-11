@@ -4,10 +4,27 @@ VOCFILE="test_data/voc.txt"
 OUTPUTFILE="test_data/output.txt"
 GROUPINGFILE="test_data/grouping.txt"
 
+
 default: build
 
-download:
-	@echo "TO BE DONE!"
+download: download_snowball download_data 
+
+download_snowball:
+	@echo "Wait for download snowball ......"
+	@curl -LOk https://github.com/snowballstem/snowball/archive/master.zip
+	@echo "Unziping the snowball file ......"
+	@unzip master.zip 
+	@echo "Rename snowball-master to snowball"
+	@mv snowball-master snowball        
+	@echo " Delete master.zip ......"
+	@rm master.zip
+
+download_data:
+	@echo "waiting for download test data ..... "
+	@curl -LOk https://github.com/snowballstem/snowball-data/raw/master/arabic/voc.txt.gz
+	@echo "Unziping voc.txt.gz"
+	@gzip -d voc.txt.gz
+
 
 build: 
 	@echo "Copying the algorithm to snowball..."
@@ -37,3 +54,4 @@ grouping: time
 
 
 test: time grouping
+

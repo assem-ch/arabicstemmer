@@ -1,19 +1,22 @@
 # Assem's Arabic Stemmer
 
-This is an algorithm for Arabic stemming written on Snowball framework language. If offers light stemming and text normalization. 
+This is an algorithm for Arabic stemming written on Snowball framework language. If offers light stemming and text normalization. voc
 
 
 
 ## Requirements
 
 - [Snowball framework](https://github.com/snowballstem/snowball)
+- [Snowball-data](https://github.com/snowballstem/snowball-data)
 
 You can download it automatically using:
 
 ```sh
     $ make download
 ```
-or manually to the root folder `{Root}/snowball`
+or manually by:
+- extracting snowball into the root folder `{Root}/snowball`
+- extracting snowball-data/arabic/voc.txt.gz into `{Root}/test_snowball/voc.txt`
 
 
 ## Build
