@@ -4,14 +4,14 @@
 script for comparing arabic stemmer output
 """
 import os
+import sys
 
 
-os.system("make -C ../../../snowball/")
-os.system("time ../../../snowball/stemwords -l ar -i voc.txt -o output.txt")
+OUTPUT, VOC, GROUPING = sys.argv[1:] or ("output.txt", "voc.txt", "grouping.txt") 
 
-f = open("output.txt")
-g = open("voc.txt")
-h = open("grouping.txt", "w")
+f = open(OUTPUT)
+g = open(VOC)
+h = open(GROUPING, "w")
 
 line1 = f.readline()
 line2 = g.readline()
