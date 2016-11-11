@@ -6,8 +6,8 @@ script for comparing arabic stemmer output
 import os
 
 
-os.system("make -C ../../../snowball/")
-os.system("time ../../../snowball/stemwords -l ar -i voc.txt -o output.txt")
+os.system("make -C ../../snowball/")
+os.system("time ../../snowball/stemwords -l ar -i voc.txt -o output.txt")
 
 f = open("output.txt")
 g = open("voc.txt")
