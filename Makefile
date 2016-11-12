@@ -34,7 +34,7 @@ build:
 
 run: build
 	@echo "Put your words here:"
-	@cd snowball; @./stemwords -l ar 
+	@cd snowball; ./stemwords -l ar 
 
 dist: build
 	@echo "Compiling the algorithm to available programming languages"
