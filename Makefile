@@ -50,7 +50,7 @@ time:
 
 grouping: time
 	@echo "Stemming sample grouping effect..."
-	@python algorithm/test/test_grouping.py $(VOCFILE) $(OUTPUTFILE) $(GROUPINGFILE)
+	@python algorithm/test/test_grouping.py  $(OUTPUTFILE) $(VOCFILE) $(GROUPINGFILE)
 
 
 test: time grouping
