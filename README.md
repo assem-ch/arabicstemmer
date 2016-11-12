@@ -16,7 +16,7 @@ You can download it automatically using:
 ```
 or manually by:
 - extracting snowball into the root folder `{Root}/snowball`
-- extracting snowball-data/arabic/voc.txt.gz into `{Root}/test_snowball/voc.txt`
+- extracting snowball-data/arabic/voc.txt.gz into `{Root}/test_data/voc.txt`
 
 
 ## Build
