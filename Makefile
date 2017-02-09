@@ -7,15 +7,15 @@ GROUPINGFILE="test_data/grouping.txt"
 
 default: build
 
-download: download_snowball download_data 
+download: download_snowball download_data
 
 download_snowball:
 	@echo "Wait for download snowball ......"
 	@curl -LOk https://github.com/snowballstem/snowball/archive/master.zip
 	@echo "Unziping the snowball file ......"
-	@unzip master.zip 
+	@unzip master.zip
 	@echo "Rename snowball-master to snowball"
-	@mv snowball-master snowball        
+	@mv snowball-master snowball
 	@echo " Delete master.zip ......"
 	@rm master.zip
 
@@ -24,9 +24,13 @@ download_data:
 	@curl -LOk https://github.com/snowballstem/snowball-data/raw/master/arabic/voc.txt.gz
 	@echo "Unziping voc.txt.gz"
 	@gzip -d voc.txt.gz
+	@echo "Creating test_data folder ....."
+	@mkdir test_data
+	@echo "Move voc.txt to test_data ....."
+	@mv voc.txt test_data
 
 
-build: 
+build:
 	@echo "Copying the algorithm to snowball..."
 	@cp $(ARABIC_STEMMER) $(SNOWBALL)"algorithms/arabic/stem_Unicode.sbl"
 	@echo "Building..."
@@ -34,7 +38,7 @@ build:
 
 run: build
 	@echo "Put your words here:"
-	@cd snowball; ./stemwords -l ar 
+	@cd snowball; ./stemwords -l ar
 
 dist: build
 	@echo "Compiling the algorithm to available programming languages"
@@ -54,4 +58,3 @@ grouping: time
 
 
 test: time grouping
-
