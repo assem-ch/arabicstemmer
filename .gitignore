@@ -63,5 +63,6 @@ target/
 
 
 snowball/
+test_data/
 .idea/
 *~
