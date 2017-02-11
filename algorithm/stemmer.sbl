@@ -372,6 +372,7 @@ backwardmode (
 		    $word_len = len
 		    [substring] among (
 		        '{t_}' ($word_len > 2  set is_noun  unset is_verb)
+            '{a}{t}' ($word_len > 3 set is_noun unset is_verb) // female plural
 		    )
 		)
 )
