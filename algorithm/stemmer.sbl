@@ -2,7 +2,7 @@
  * Author:
  * - Assem Chelli, < assem [dot] ch [at] gmail > *
 */
-
+groupings ( all_letters  all_letters_m  all_letters_a  all_letters_a_w_y awy )
 stringescapes { }
 
 /* the Arabic letters in Unicode */
@@ -209,15 +209,34 @@ stringdef la~     hex  'fef5' // LAM_ALEF_MADDA_ABOVE
 stringdef la~2    hex  'fef6' // LAM_ALEF_MADDA_ABOVE
 
 
+define all_letters '{a}{b}{t}{th}{j}{h}{x}{d}{dz}{r}{z}{s}{sh}{c}{dh}{tt}{zh}{i}{gh}{f}{q}{k}{l}{m}{n}{e}{t_}{y}{w}'
+define all_letters_m  all_letters - '{m}'
+define all_letters_a all_letters - '{a}'
+define awy '{a}{w}{y}'
+define all_letters_a_w_y all_letters - '{a}{w}{y}'
 
 integers (
             word_len
+            cpt
+            cpt1
          )
-
+strings  (
+            fa
+            ain
+            lam1
+            lam2
+            root
+            pattern
+            root_test
+            ch
+         )
 booleans (
             is_noun
             is_verb
             is_defined
+            m_found
+            a_found
+            awy_found
          )
 
 routines (
@@ -247,11 +266,15 @@ routines (
 
     Checks1
     Checks2
+
+    Pattern43
 )
 
 externals ( stem )
 
-groupings (  )
+
+
+
 
 
 // Normalizations
@@ -337,8 +360,8 @@ define Normalize_post as (
         backwards (
         [substring] among (
             '{ao}''{ao_}' '{a~}' ( <- '{o}')
-        '{wo}' ( <- '{o}')
-        '{yo}' ( <- '{o}')
+            '{wo}' ( <- '{o}')
+            '{yo}' ( <- '{o}')
         )
         )
     )
@@ -376,7 +399,116 @@ backwardmode (
 		    )
 		)
 )
+// patterns handler
+define Pattern43 as (
+       $word_len = len
+       $fa = ''
+       $ain = ''
+       $lam1 = ''
+       => root_test
+       // helper = ''
+       unset m_found
+       unset a_found
+       unset awy_found
+       // some guessing about first م and secand ا
+       $root_test
+       (
+        do (['{m}'] set m_found)
+        do ([next] ['{a}'] set a_found )
+        do ( hop 2 [awy] set awy_found)
+       )
+       $word_len == 4
+       do
+       (
+            ( // mfil and fail when fa = m
+                m_found
+                (
+                ( // fail when fa = m
+                      a_found
+                      $fa = '{m}'
+                      hop 2
+                      [all_letters]
+                      -> ain
+                      // hop 1
+                      [all_letters]
+                      -> lam1
+                )
+                or
+                ( // mfil
+                      not a_found
+                      (
+                            (
+                                  awy_found
+                                  [all_letters]
+                                  -> fa
+                                  [all_letters]
+                                  -> ain
+                                  hop 1
+                                  [all_letters]
+                                  -> lam1
+                            )
+                            or
+                            (
 
+                                  not awy_found
+                                  hop 1
+                                  [all_letters]
+                                  -> fa
+                                  // hop 1
+                                  [all_letters]
+                                  -> ain
+                                  [all_letters]
+                                  -> lam1
+                            )
+                      )
+                )
+              )
+            )
+            or
+            ( // fail fiwl fiyl fial
+              not m_found
+              (
+                 a_found
+                 [all_letters]
+                 -> fa
+                 hop 1
+                 [all_letters]
+                 -> ain
+                 // hop 1
+                 [all_letters]
+                 -> lam1
+              )
+              or
+              (
+               not a_found
+               [all_letters]
+               -> fa
+                // hop 1
+               [all_letters]
+               -> ain
+               hop 1
+               [all_letters]
+               -> lam1
+              )
+            )
+       )
+
+       $root = lam1
+       $root insert ain
+       $root insert fa
+       $root backwards (
+         loop len (
+                 ( // منان => منن =>من
+                 [all_letters] -> ch
+                 ch
+                 delete
+                 )
+                 or
+                 next
+         )
+       )
+
+)
 //prefixes
 define Prefix_Step1 as (
         $word_len = len
@@ -610,8 +742,11 @@ define stem as (
          or (is_verb try Prefix_Step3_Verb Prefix_Step4_Verb)
          )
     )
-
     // normalization post-stemming
-    do Normalize_post
-
+    do Normalize_post // for stem
+    => root
+    $root do Pattern43
+    $root do Normalize_post  // for root
+    insert root
+    insert '-'
 )
