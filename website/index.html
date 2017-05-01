@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Arabic Stemmr - A snowball-based algorithm for Arabic aimed mainly to improve search. http://arabicstemmer.com">
+	<link rel="icon" href="assets/img/favicon.ico">
+	<link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/ionicons.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	<title>Online Arabic stemmers</title>
+	<script src="lib/snowball.babel.js"></script>
+	<script>
+		var printstem = (function() {
+			var Stem = (function() {
+				 var lang, testStemmer; return function(lng, word) {
+					  if (lng !== lang) {
+							lang = lng;
+							testStemmer = snowballFactory.newStemmer(lang);
+						}
+						return testStemmer.stem(word);
+					}
+				}
+			)();
+			return function(lng, word){
+				 list = word.split(" ");
+				 var result="";
+				 list.forEach(function(entry) {
+					 	result += "<li><b>" + Stem(lng, entry) + "</b></li>";
+				});
+				document.getElementById("result").innerHTML = result;
+			 };
+		}
+	)();
+	/*------ fff ------*/
+
+	</script>
+</head>
+<body>
+	<div class="container" id="wrap">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 centered">
+            <h1>Type words seperated with a space and press "<b>Stem!</b>" button or browrse for a file text.</h1>
+            <div class="mtb">
+							<input id="query" type="text" value="مكتبة لمعالجة الكلمات العربية  وتجذيعها">
+							<button type="button" class='btn btn-conf btn-green' onclick=" printstem('arabic',  document.getElementById('query').value);"><noscript> <span style="color:red;">Enable JavaScript ! </span></noscript>Stem!</button>
+							<button type="button" class='btn btn-conf btn-green' onclick="document.getElementById('txtfile').click(); return false;" />Browse</Button>
+							<input class='btn btn-conf btn-green' id="txtfile" type="file" name="file" style="visibility: hidden;">
+							<div id="drop-box"></div>
+							<h2>Result: </h2>
+							<div class="boxeds">
+								<h1><ul id="result"></ul></h1>
+						</div>
+						</div><!--/mt-->
+			 </div>
+		 </div><!--/row-->
+	 </div><!--/container-->
+
+	<p></p>
+	<footer id="f">
+      <div class="container">
+        <div class="row centered">
+					<a href="https://github.com/assem-ch/arabicstemmer" target="_blank">Contribute</a> |
+					<a href="http://snowballstem.org/" target="_blank">Snowball</a> |
+					<a href="/python" target="_blank">Python</a> |
+					<a href="/cpp" target="_blank">C++</a> |
+					<a href="/java" target="_blank">Java</a> |
+					<a href="/c" target="_blank">C</a>
+        </div><!--/row-->
+      </div><!--/container-->
+    </footer><!--/F-->
+
+		<script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/retina-1.1.0.js"></script>
+		<script src="assets/js/script.js"></script>
+		<script type="text/javascript">
+
+		</script>
+</body>
+</html>
