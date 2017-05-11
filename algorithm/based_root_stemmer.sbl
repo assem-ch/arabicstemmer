@@ -2,7 +2,7 @@
  * Author:
  * - Assem Chelli, < assem [dot] ch [at] gmail > *
 */
-groupings ()
+groupings ( all_letters  v  g1 g2 g3 g4 g5)
 stringescapes { }
 
 /* the Arabic letters in Unicode */
@@ -208,15 +208,46 @@ stringdef lao_2   hex  'fefa' // LAM_ALEF_HAMZA_BELOW
 stringdef la~     hex  'fef5' // LAM_ALEF_MADDA_ABOVE
 stringdef la~2    hex  'fef6' // LAM_ALEF_MADDA_ABOVE
 
+
+define all_letters '{a}{b}{t}{th}{j}{h}{x}{d}{dz}{r}{z}{s}{sh}{c}{dh}{tt}{zh}{i}{gh}{f}{q}{k}{l}{m}{n}{e}{t_}{y}{w}'
+define v '{a}{w}{y}'
+define g1 '{a}{t}{m}{y}'
+define g2 '{a}{t}'
+define g3 '{m}{a}{t}'
+define g4 '{a}{y}'
+
 integers (
             word_len
          )
-
-strings  ()
+strings  (
+            fa
+            ain
+            lam1
+            lam2
+            r
+            pattern
+            root
+            root_test
+            root_test1
+            ch
+            ch1
+         )
 booleans (
             is_noun
             is_verb
             is_defined
+            meem_found
+            alef_found
+            v_found
+            root_found
+            case1
+            case2
+            case3
+            case4
+            case5
+            case6
+            case7
+            case8
          )
 
 routines (
@@ -225,7 +256,6 @@ routines (
     Prefix_Step2b
     Prefix_Step3a_Noun
     Prefix_Step3b_Noun
-    Prefix_Step3c_Noun
     Prefix_Step3_Verb
     Prefix_Step4_Verb
 
@@ -247,10 +277,13 @@ routines (
 
     Checks1
     Checks2
+
+    Pattern_Step1
+    Pattern_Step2
+    Pattern_Step3
 )
 
 externals ( stem )
-
 
 
 // Normalizations
@@ -362,6 +395,7 @@ define Checks1 as (
     [substring] among (
         '{b}{a}{l}' '{k}{a}{l}' ($word_len > 4  set is_noun  unset is_verb set is_defined)
         '{l}{l}' '{a}{l}' ($word_len > 3  set is_noun unset is_verb set is_defined)
+
     )
 )
 
@@ -374,6 +408,258 @@ backwardmode (
             '{t}{a}{n}' '{t}{y}{n}' ($word_len >= 5 set is_noun unset is_verb)
 		    )
 		)
+)
+// patterns handler
+define Pattern_Step1 as (
+       $word_len = len
+       $fa = ''
+       $ain = ''
+       $lam1 = ''
+       => root_test
+       unset meem_found
+       unset alef_found
+       unset v_found
+       unset root_found
+       // some guessing about first م and secand ا
+       $root_test
+       (
+        do (['{m}'] set meem_found)
+        do ([next] ['{a}'] set alef_found )
+        do ( hop 2 [v] set v_found)
+       )
+       $word_len == 4
+       do
+       (
+            ( // mfil and fail when fa = meem
+                meem_found
+                (
+                    ( // fail when fa = meem
+                         alef_found
+                         $fa = '{m}'
+                         hop 2
+                         [all_letters]
+                         -> ain
+                         // hop 1
+                         [all_letters]
+                         -> lam1
+                         set root_found
+
+                    )
+                    or
+                    ( // mfil
+                         not alef_found
+                         (
+                              (
+                                  v_found
+                                  [all_letters]
+                                  -> fa
+                                  [all_letters]
+                                  -> ain
+                                  hop 1
+                                  [all_letters]
+                                  -> lam1
+                                  set root_found
+                              )
+                              or
+                              (
+
+                                  not v_found
+                                  hop 1
+                                  [all_letters]
+                                  -> fa
+                                  // hop 1
+                                  [all_letters]
+                                  -> ain
+                                  [all_letters]
+                                  -> lam1
+                                  set root_found
+                              )
+                       )
+                  )
+               )
+            )
+            or
+            ( // fail fiwl fiyl fial
+                not meem_found
+                ( // fail
+                    alef_found
+                    [all_letters]
+                    -> fa
+                    hop 1
+                    [all_letters]
+                    -> ain
+                    [all_letters]
+                    -> lam1
+                    set root_found
+                    )
+                    or
+                    ( // fiwl fiyl fial
+                        v_found
+                        [all_letters]
+                        -> fa
+                        [all_letters]
+                        -> ain
+                        hop 1
+                        [non-v]
+                        -> lam1
+                        set root_found
+                    )
+             )
+       )
+
+       (
+       root_found
+       $root = lam1
+       $root insert ain
+       $root insert fa
+       )
+)
+define Pattern_Step2 as (
+            $word_len = len
+            $fa = ''
+            $ain = ''
+            $lam1 = ''
+            unset case1
+            unset case2
+            => root_test
+            => root_test1
+            $root_test (
+                  do ([g1] set case1)
+                  do (hop 2 [g2] set case2)
+            )
+            $root_test1 (
+                    do ([g3] set case3)
+                    do (hop 3 [v] set case4)
+            )
+            $word_len == 5
+            do
+            (
+                  (
+                          case1
+                          (
+                              case2
+                              hop 1
+                              [all_letters]
+                              -> fa
+                              hop 1
+                              [all_letters]
+                              -> ain
+                              [all_letters]
+                              -> lam1
+                              set root_found
+                          )
+                  )
+                  or
+                  (
+                          case3
+                          (
+                              case4
+                              hop 1
+                              [all_letters]
+                              -> fa
+                              [all_letters]
+                              -> ain
+                              hop 1
+                              [all_letters]
+                              -> lam1
+                              set root_found
+                          )
+                  )
+            )
+            (
+                root_found
+                $root = lam1
+                $root insert ain
+                $root insert fa
+            )
+)
+
+define Pattern_Step3 as (
+          $word_len = len
+          $word_len == 6
+          unset case5
+          unset case6
+          unset case7
+          $ch = ''
+          $ch1 = ''
+          unset root_found
+          => root_test
+          => root_test1
+          $root_test (
+                        do
+                        (
+                                [substring] among (
+                                        '{m}{s}{t}' '{a}{s}{t}' (set case5 )
+                                )
+                        )
+                        do ([g2] hop 1 [g2] hop 1 [g4] set case6)
+          )
+          $root_test1 (
+              do(  // todo: fix this test about  افعوعل
+                   ['{a}']
+                   hop 1
+                   [all_letters]
+                   -> ch
+                   ['{w}']
+                   [all_letters]
+                   -> ch1
+                   // do (ch == ch1 ch != ''  set case7)
+
+                )
+          )
+          do
+          (
+                (
+                      case5
+                      (
+                          hop 3
+                          [all_letters]
+                          -> fa
+                          [all_letters]
+                          -> ain
+                          [all_letters]
+                          -> lam1
+                          set root_found
+                      )
+                )
+                or
+                (
+                      case6
+                      (
+                          hop 1
+                          [all_letters]
+                          -> fa
+                          hop 1
+                          [all_letters]
+                          -> ain
+                          hop 1
+                          [all_letters]
+                          -> lam1
+                          set root_found
+                      )
+                )
+                or
+                (
+                      case7
+                      (
+                          hop 1
+                          [all_letters]
+                          -> fa
+                          hop 2
+                          [all_letters]
+                          -> ain
+                          [all_letters]
+                          -> lam1
+                          unset root_found
+                      )
+                )
+          )
+          (
+                    root_found
+                    $root = lam1
+                    $root insert ain
+                    $root insert fa
+          )
 )
 //prefixes
 define Prefix_Step1 as (
@@ -424,12 +710,7 @@ define Prefix_Step3b_Noun as ( // probably  noun and defined
             '{b}{b}' ($word_len > 3 <-  '{b}'  )
             '{k}{k}'  ($word_len > 3 <-  '{k}'  )
            )
-)
-define Prefix_Step3c_Noun as ( // probably  noun and undefined
-        $word_len = len
-        [substring] among (
-            '{b}' ($word_len > 4 delete)
-        )
+
 )
 
 define Prefix_Step3_Verb as (
@@ -513,7 +794,7 @@ backwardmode (
         define Suffix_Verb_Step2a as (
                 $word_len = len
                 [substring] among (
-                        '{t}' ($word_len >= 4  delete)
+                       '{t}' ($word_len >= 4  delete)
                         '{a}' '{n}' '{y}' ($word_len >= 4 delete)
                         '{n}{a}' '{t}{a}'  '{t}{n}'  ($word_len >= 5 delete)// past
                         '{a}{n}' '{w}{n}' '{y}{n}' ($word_len > 5 delete) // present
@@ -568,43 +849,36 @@ define stem as (
             (
            is_verb
            (
-               try
                (
-                  (
-                    (atleast 1 Suffix_Verb_Step1)
-                    ( Suffix_Verb_Step2a or Suffix_Verb_Step2c
-                      or next
-                      )
-                  )
-                  or Suffix_Verb_Step2b
-                  or Suffix_Verb_Step2a
+                  (atleast 1 Suffix_Verb_Step1)
+                  ( Suffix_Verb_Step2a or Suffix_Verb_Step2c  or next)
                 )
+                or Suffix_Verb_Step2b
                 or Suffix_Verb_Step2a
             )
            )
-           // Suffixes for nouns
+            //Suffixes for nouns
           or (
                is_noun
                 (
 
-                   try (
-                       Suffix_Noun_Step2c2
-                       or (not is_defined Suffix_Noun_Step1a (
-                              Suffix_Noun_Step2a
-                              or Suffix_Noun_Step2b
-                              or Suffix_Noun_Step2c1
-                              or next
-                              )
-                          )
-                       or (Suffix_Noun_Step1b (
-                              Suffix_Noun_Step2a
-                              or Suffix_Noun_Step2b
-                              or Suffix_Noun_Step2c1))
-                       or (not is_defined Suffix_Noun_Step2a)
-                       or (Suffix_Noun_Step2b)
-                   )
-                   (Suffix_Noun_Step3)
+                 try (
+                     Suffix_Noun_Step2c2
+                     or (not is_defined Suffix_Noun_Step1a (
+                            Suffix_Noun_Step2a
+                            or Suffix_Noun_Step2b
+                            or Suffix_Noun_Step2c1
+                            or next))
+                     or (Suffix_Noun_Step1b (
+                            Suffix_Noun_Step2a
+                            or Suffix_Noun_Step2b
+                            or Suffix_Noun_Step2c1))
+                     or (not is_defined Suffix_Noun_Step2a)
+                     or (Suffix_Noun_Step2b)
                  )
+                 Suffix_Noun_Step3
+                 )
+
             )
 
             // Suffixes for alef maqsura
@@ -617,10 +891,16 @@ define stem as (
        try Prefix_Step1
        try ( Prefix_Step2a or Prefix_Step2b )
        ( Prefix_Step3a_Noun
-         or (is_noun try Prefix_Step3b_Noun Prefix_Step3c_Noun)
+         or (is_noun Prefix_Step3b_Noun)
          or (is_verb try Prefix_Step3_Verb Prefix_Step4_Verb)
          )
     )
     // normalization post-stemming
-    do Normalize_post
+    do Normalize_post // for stem
+    => root
+    $root do (
+                Pattern_Step1 or Pattern_Step2 or Pattern_Step3
+             )
+    $root do Normalize_post  // for root
+    = root
 )
