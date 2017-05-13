@@ -5,13 +5,13 @@ VOCFILE="test_data/voc.txt"
 OUTPUTFILE="test_data/output.txt"
 GROUPINGFILE="test_data/grouping.txt"
 CORPUS_WORDS="golden_corpus/core/words.txt"
-CORPUS_STEMS="test_data/test_golden_corpus/stems_output.txt"
-CORPUS_ROOTS="test_data/test_golden_corpus/roots_output.txt"
+CORPUS_STEMS="test_golden_corpus/stems_output.txt"
+CORPUS_ROOTS="test_golden_corpus/roots_output.txt"
 GOLDEN_CORPUS="./golden_corpus/"
 
 default: build
 
-download: download_snowball download_data
+download: download_snowball download_data download_golden_corpus
 
 download_snowball:
 	@echo "Wait for download snowball ......"
@@ -43,6 +43,7 @@ download_golden_corpus:
 	@echo " Delete master.zip ......"
 	@rm master.zip
 	@echo "building golden-corpus-arabic.json ..."
+	@mkdir test_golden_corpus
 	@cd $(GOLDEN_CORPUS); make
 
 build:
@@ -56,7 +57,6 @@ build_root_based_stemmer:
 	@cp $(ARABIC_ROOT_BASED_STEMMER) $(SNOWBALL)"algorithms/arabic/stem_Unicode.sbl"
 	@echo "Building based root stemmer ..."
 	@cd $(SNOWBALL); make
-
 
 run: build
 	@echo "Put your words here:"
@@ -95,6 +95,10 @@ get_stems: build
 
 get_all : get_stems get_roots
 
-test_arabicstemmer: get_all
+test_arabicstemmer:
 	@echo "test arabic stemmer using golden_corpus_arabic......"
 	@python algorithm/test/test_stemmer.py
+
+clean:
+	@rm  -rf  golden_corpus
+	@rm  -rf  test_golden_corpus

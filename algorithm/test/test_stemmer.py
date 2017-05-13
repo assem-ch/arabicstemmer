@@ -11,8 +11,8 @@ try:
 except NameError:
     to_unicode = str
 
-StemsFilePath = "test_data/test_golden_corpus/stems_output.txt"
-RootsFilePath = "test_data/test_golden_corpus/roots_output.txt"
+StemsFilePath = "test_golden_corpus/stems_output.txt"
+RootsFilePath = "test_golden_corpus/roots_output.txt"
 WordsFilePath = "golden_corpus/core/words.txt"
 
 STEMS, ROOTS, WORDS = sys.argv[1:] or (StemsFilePath, RootsFilePath, WordsFilePath)
