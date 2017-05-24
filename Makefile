@@ -67,12 +67,20 @@ run_root: build_root_based_stemmer
 		@cd snowball; ./stemwords -l ar
 
 dist: build
-	@echo "Compiling the algorithm to available programming languages"
+	@echo "Compiling the light stemming algorithm to available programming languages"
 	@cd $(SNOWBALL); make dist
 	@mkdir -p  "dist/python/"; cp $(SNOWBALL)dist/snowballstemmer-*.tar.gz "dist/python/"
 	@mkdir -p  "dist/java/";cp $(SNOWBALL)"dist/libstemmer_java.tgz" "dist/java/"
 	@mkdir -p  "dist/c/";cp $(SNOWBALL)"dist/libstemmer_c.tgz" "dist/c/"
 	@mkdir -p  "dist/jsx/";cp $(SNOWBALL)"dist/jsxstemmer.tgz" "dist/jsx/"
+
+dist_rooter: build_root_based_stemmer
+	@echo "Compiling the root-based stemming algorithm to available programming languages"
+	@cd $(SNOWBALL); make dist
+	@mkdir -p  "dist_rooter/python/"; cp $(SNOWBALL)dist/snowballstemmer-*.tar.gz "dist/python/"
+	@mkdir -p  "dist_rooter/java/";cp $(SNOWBALL)"dist/libstemmer_java.tgz" "dist/java/"
+	@mkdir -p  "dist_rooter/c/";cp $(SNOWBALL)"dist/libstemmer_c.tgz" "dist/c/"
+	@mkdir -p  "dist_rooter/jsx/";cp $(SNOWBALL)"dist/jsxstemmer.tgz" "dist/jsx/"
 
 time:
 	@echo "Stemming sample timing..."
@@ -95,13 +103,16 @@ get_stems: build
 
 get_all : get_stems get_roots
 
-test_arabicstemmer:
+test_arabicstemmer: get_all
 	@echo "test arabicstemmer using golden_corpus_arabic......"
 	@python algorithm/test/test_stemmer.py
 
 test_isri:
 	@echo "Testing ISRI Arabic Stemmer using golden_corpus_arabic ..."
 	@python algorithm/test/test_isri.py
+
 clean:
 	@rm  -rf  golden_corpus
 	@rm  -rf  test_golden_corpus
+
+update: clean download_golden_corpus

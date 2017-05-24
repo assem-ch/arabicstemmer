@@ -1,0 +1,23 @@
+site_name: Snowball Arabic Stemmer doc
+pages:
+    - Home: index.md
+    - Overview: overview.md
+    - Demo: demo.md
+    - Contribute: contribute.md
+    - Code Snowball usage: sas_usage.md
+    - Usage with languages: languages.md
+    - Usage from known Libs: libs.md
+    - Algorithms: algorithms.md
+    - Credits: credits.md
+    - Projects: projects.md
+    - Source code on GitHub: source.md
+    - Versions : version.md
+    - Tests: test.md
+    - Corpuses : corpuses.md
+    - SAS Web app : website.md
+    - SAS API : api.md
+    - Channels : channels.md
+    - License: license.md
+
+
+theme: readthedocs
