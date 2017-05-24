@@ -96,9 +96,12 @@ get_stems: build
 get_all : get_stems get_roots
 
 test_arabicstemmer:
-	@echo "test arabic stemmer using golden_corpus_arabic......"
+	@echo "test arabicstemmer using golden_corpus_arabic......"
 	@python algorithm/test/test_stemmer.py
 
+test_isri:
+	@echo "Testing ISRI Arabic Stemmer using golden_corpus_arabic ..."
+	@python algorithm/test/test_isri.py
 clean:
 	@rm  -rf  golden_corpus
 	@rm  -rf  test_golden_corpus
