@@ -1,22 +1,4 @@
 #SAS Usage :
-## Results:
-Snowball Arabic (Stemmer & rooter) Results
-
-Word | Stem | root
------------- | ------------- | ------------
-طفل | طفل  | طفل
-اطفال | اطفال  | طفل
-الاطفال | اطفال  | طفل
-اطفالكم | اطفال  | طفل
-فأطفالكم | اطفال  | طفل
-اطفالهم | اطفال  | طفل
-والاطفال | اطفال| طفل
-فاطفالهم | اطفال  | طفل
-وطفل | طفل  | طفل
-الطفولة | طفول  | طفل
-  والطفلتين | طفل |طفل
-طفلتان | طفل | طفل
-
 
 ## Requirements:
 
@@ -90,7 +72,7 @@ We configured tests to run against snowball-data arabic sample.
 ```sh
      $ make test_isri
 ```
-# Distributions:
+## Distributions:
 
 - dist light stemmer to available languages:
 ```sh
@@ -100,3 +82,21 @@ We configured tests to run against snowball-data arabic sample.
 ```sh
     $ make dist_rooter
 ```
+
+## Results:
+Snowball Arabic (Stemmer & rooter) Results
+
+Word | Stem | root
+------------ | ------------- | ------------
+طفل | طفل  | طفل
+اطفال | اطفال  | طفل
+الاطفال | اطفال  | طفل
+اطفالكم | اطفال  | طفل
+فأطفالكم | اطفال  | طفل
+اطفالهم | اطفال  | طفل
+والاطفال | اطفال| طفل
+فاطفالهم | اطفال  | طفل
+وطفل | طفل  | طفل
+الطفولة | طفول  | طفل
+  والطفلتين | طفل |طفل
+طفلتان | طفل | طفل

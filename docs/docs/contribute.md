@@ -8,7 +8,7 @@ If you have a bug or suggestion, please consider to submit a report [here](https
 ```sh
       $ git clone https://github.com/<your-username>/arabicstemmer.git
 ```
-- Enter to arabicstemmer directory
+- Enter to arabicstemmer directory, See ([Code Snowball Usage](sas_usage/))
 ```sh
       $ cd arabicstemmer
 ```
