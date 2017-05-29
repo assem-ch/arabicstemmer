@@ -151,5 +151,4 @@ If you have a bug or suggestion, please consider to submit a report [here](https
 * Assem Chelli `assem.ch[at]gmail[dot]com` Founder .
 
 ## Contributers
-* Assem Chelli `assem.ch[at]gmail[dot]com` Algorithm/website/Documentation .
 * Lakhdar Benzahia `lakhdar.benzahia[at]gmail[dot]com` Algorithm/website/Documentation .

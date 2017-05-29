@@ -12,7 +12,6 @@ GOLDEN_CORPUS="./golden_corpus/"
 default: build
 
 download: download_snowball download_data download_golden_corpus
-
 download_snowball:
 	@echo "Wait for download snowball ......"
 	@curl -LOk https://github.com/snowballstem/snowball/archive/master.zip
@@ -89,7 +88,6 @@ time:
 grouping: time
 	@echo "Stemming sample grouping effect..."
 	@python algorithm/test/test_grouping.py  $(OUTPUTFILE) $(VOCFILE) $(GROUPINGFILE)
-
 
 test: time grouping
 
