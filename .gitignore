@@ -61,8 +61,10 @@ target/
 #Ipython Notebook
 .ipynb_checkpoints
 
-
 snowball/
 test_data/
 .idea/
 *~
+golden_corpus/
+docs/site
+test_golden_corpus/

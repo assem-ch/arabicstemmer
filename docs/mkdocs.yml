@@ -1,0 +1,6 @@
+site_name: Snowball Arabic Stemmer doc
+pages:
+    - Quickstart : index.md
+    - Algorithms: algorithms.md
+    - Credits: credits.md
+    - Corpuses : corpuses.md
