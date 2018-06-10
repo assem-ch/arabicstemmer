@@ -354,7 +354,6 @@ define Normalize_post as (
 
 // Checks
 define Checks1 as (
-    $word_len = len
     [substring] among (
         '{b}{a}{l}' '{k}{a}{l}' ($(len > 4)  set is_noun  unset is_verb set is_defined)
         '{l}{l}' '{a}{l}' ($(len > 3)  set is_noun unset is_verb set is_defined)
