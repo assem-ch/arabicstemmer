@@ -47,13 +47,13 @@ download_golden_corpus:
 
 build:
 	@echo "Copying the algorithm to snowball..."
-	@cp $(ARABIC_STEMMER) $(SNOWBALL)"algorithms/arabic/stem_Unicode.sbl"
+	@cp $(ARABIC_STEMMER) $(SNOWBALL)"algorithms/arabic.sbl"
 	@echo "Building light stemmer ..."
 	@cd $(SNOWBALL); make
 
 build_root_based_stemmer:
 	@echo "Copying the algorithm of based-root stemmer to snowball..."
-	@cp $(ARABIC_ROOT_BASED_STEMMER) $(SNOWBALL)"algorithms/arabic/stem_Unicode.sbl"
+	@cp $(ARABIC_ROOT_BASED_STEMMER) $(SNOWBALL)"algorithms/arabic.sbl"
 	@echo "Building based root stemmer ..."
 	@cd $(SNOWBALL); make
 
