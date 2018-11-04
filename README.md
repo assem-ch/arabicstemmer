@@ -3,7 +3,18 @@
 
 
 
-This is an algorithm for Arabic stemming written on Snowball framework language. If offers light stemming and text normalization. voc
+This is an algorithm for Arabic stemming written on Snowball framework language. If offers light stemming and text normalization. 
+
+```bibtex
+@article{Chelli2018,
+author = "Assem Chelli",
+title = "{Assem's Arabic Stemmer}",
+year = "2018",
+month = "11",
+url = "https://figshare.com/articles/Assem_s_Arabic_Stemmer/7295690",
+doi = "10.6084/m9.figshare.7295690.v1"
+}
+```
 
 
 ## Requirements:
