@@ -1,4 +1,7 @@
-# Assem's Arabic Stemmer [![Gitter](https://badges.gitter.im/arabicstemmer/Lobby.svg)](https://gitter.im/arabicstemmer/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# Assem's Arabic Stemmer [![DOI](https://zenodo.org/badge/49428595.svg)](https://zenodo.org/badge/latestdoi/49428595)
+
+
+
 
 This is an algorithm for Arabic stemming written on Snowball framework language. If offers light stemming and text normalization. voc
 
