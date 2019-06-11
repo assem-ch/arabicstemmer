@@ -71,7 +71,7 @@ dist: build
 	@mkdir -p  "dist/python/"; cp $(SNOWBALL)dist/snowballstemmer-*.tar.gz "dist/python/"
 	@mkdir -p  "dist/java/";cp $(SNOWBALL)"dist/libstemmer_java.tgz" "dist/java/"
 	@mkdir -p  "dist/c/";cp $(SNOWBALL)"dist/libstemmer_c.tgz" "dist/c/"
-	@mkdir -p  "dist/jsx/";cp $(SNOWBALL)"dist/jsxstemmer.tgz" "dist/jsx/"
+	@mkdir -p  "dist/jsx/";cp $(SNOWBALL)"dist/jsstemmer.tgz" "dist/jsx/"
 
 dist_rooter: build_root_based_stemmer
 	@echo "Compiling the root-based stemming algorithm to available programming languages"
@@ -79,7 +79,7 @@ dist_rooter: build_root_based_stemmer
 	@mkdir -p  "dist_rooter/python/"; cp $(SNOWBALL)dist/snowballstemmer-*.tar.gz "dist/python/"
 	@mkdir -p  "dist_rooter/java/";cp $(SNOWBALL)"dist/libstemmer_java.tgz" "dist/java/"
 	@mkdir -p  "dist_rooter/c/";cp $(SNOWBALL)"dist/libstemmer_c.tgz" "dist/c/"
-	@mkdir -p  "dist_rooter/jsx/";cp $(SNOWBALL)"dist/jsxstemmer.tgz" "dist/jsx/"
+	@mkdir -p  "dist_rooter/jsx/";cp $(SNOWBALL)"dist/jsstemmer.tgz" "dist/jsx/"
 
 time:
 	@echo "Stemming sample timing..."
