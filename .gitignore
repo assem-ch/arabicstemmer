@@ -61,10 +61,13 @@ target/
 #Ipython Notebook
 .ipynb_checkpoints
 
-snowball/
-test_data/
+support/snowball/
+support/test_data/
 .idea/
 *~
-golden_corpus/
+support/golden_corpus/
 docs/site
 test_golden_corpus/
+tests/output_data/
+
+.DS_Store
