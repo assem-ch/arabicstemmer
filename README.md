@@ -14,7 +14,7 @@ doi = "10.6084/m9.figshare.7295690.v1"
 
 This is a sample of results:
 
-Word | Stem | root
+Word | Light Stemmer | Root-Based Stemmer
 ------------ | ------------- | ------------
 طفل | طفل  | طفل
 اطفال | اطفال  | طفل
@@ -38,36 +38,37 @@ Word | Stem | root
 - [Golden-Arabic-Corpus](https://github.com/LBenzahia/golden-corpus-arabic/archive/master.zip)
 
 They are already attached as git submodules so just run:
- - git submodule update --init --recursive
-
+```sh
+$ git submodule update --init --recursive
+```
 ## Build:
 ```sh
-      $ make build
+$ make build
 ```
 
 ## Run:
 - Light Stemmer
 ```sh
-  	 $ make run
-  	  الطالب
-  	  طالب
+$ make run
+الطالب
+طالب
 ```
 - Root-Based Stemmer
 ```sh    
-      $ make run_root
-      الطالب
-      طلب
+$ make run_root
+الطالب
+طلب
 ```
 
 ## Test:
 We configured tests to run against snowball-data arabic sample to test speed, grouping factor and precision.
 ```sh
-      $ make test
+$ make test
 ```
 ## Distributions:
 - dist light stemmer to available languages:
 ```sh
-    $ make dist
+$ make dist
 ```
 
 
