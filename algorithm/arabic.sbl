@@ -476,9 +476,12 @@ backwardmode (
             )
         define Suffix_Noun_Step1b as (
             [substring] among (
-                // جمع مذكر السالم (masculine sound plural)
-                // rarely has roots less than 4, so use stricter length check
+                // جمع مذكر السالم (masculine sound plural) -ون/-ين
+                // Rarely has roots less than 4, so use stricter length check
+                // Single {n} requires len > 5 to leave at least 5 chars after removal
                 '{n}' ($(len > 5) delete set is_noun unset is_verb)
+                // Combined {w}{n}/{y}{n} are 2 chars, so require len > 6
+                // Note: Also appears in verb suffixes but processed based on is_noun flag
                 '{w}{n}' '{y}{n}' ($(len > 6) delete set is_noun unset is_verb)
             )
         )
@@ -527,6 +530,8 @@ backwardmode (
                         '{n}{a}' '{t}{a}'  '{t}{n}'  ($(len >= 5) delete)// past
                         // present tense verb suffixes - maintain minimum length 4
                         // because present has 1-letter prefix
+                        // Note: {w}{n}/{y}{n} also in noun suffixes but this processes
+                        // when is_verb flag is set (verb suffixes processed first in 'or' chain)
                         '{a}{n}' '{w}{n}' '{y}{n}' ($(len > 5) delete set is_verb unset is_noun) // present
                         '{t}{m}{a}' ($(len >= 6) delete)
                 )
