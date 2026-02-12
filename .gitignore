@@ -71,3 +71,8 @@ test_golden_corpus/
 tests/output_data/
 
 .DS_Store
+
+# Build artifacts
+modules/
+bin/stemwords
+bin/rootwords

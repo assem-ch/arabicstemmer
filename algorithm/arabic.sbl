@@ -448,7 +448,7 @@ backwardmode (
             )
         define Suffix_Noun_Step1b as (
             [substring] among (
-                '{n}' ($(len > 5) delete)
+                '{n}' ($(len > 7) delete)
             )
         )
 
@@ -491,7 +491,7 @@ backwardmode (
         define Suffix_Verb_Step2a as (
                 [substring] among (
                         '{t}' ($(len >= 4)  delete)
-                        '{a}' '{n}' '{y}' ($(len >= 4) delete)
+                        '{a}' '{n}' '{y}' ($(len > 5) delete)
                         '{n}{a}' '{t}{a}'  '{t}{n}'  ($(len >= 5) delete)// past
                         '{a}{n}' '{w}{n}' '{y}{n}' ($(len > 5) delete) // present
                         '{t}{m}{a}' ($(len >= 6) delete)
