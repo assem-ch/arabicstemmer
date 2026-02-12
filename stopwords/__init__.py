@@ -8,7 +8,6 @@ It supports:
 - Loading categorized stopwords with translations
 - Filtering based on frequency ranks
 - Regular expression patterns with prefix/suffix support
-- Categorization of stopwords
 """
 
 import os

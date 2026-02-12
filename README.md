@@ -1,5 +1,5 @@
 # Assem's Arabic Stemmer [![DOI](https://zenodo.org/badge/49428595.svg)](https://zenodo.org/badge/latestdoi/49428595)
-This is an algorithm for Arabic stemming written on Snowball framework language. It offers light stemming, text normalization, and comprehensive stopword filtering. 
+This is an algorithm for Arabic stemming written in Snowball framework language. It offers light stemming, text normalization, and comprehensive stopword filtering. 
 
 ```bibtex
 @article{Chelli2018,
