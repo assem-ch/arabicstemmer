@@ -69,5 +69,8 @@ support/golden_corpus/
 docs/site
 test_golden_corpus/
 tests/output_data/
+bin/stemwords
+bin/rootwords
+modules/
 
 .DS_Store

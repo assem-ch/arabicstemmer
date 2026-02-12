@@ -458,9 +458,9 @@ define Prefix_Step3_Verb as (
 define Prefix_Step4_Verb as (
         [substring] among (
             // است patterns - indicates verb (often Form X)
-            // Increase size threshold by 3 for است words as they tend to be longer
-            '{y}{s}{t}' '{n}{s}{t}' '{t}{s}{t}' ($(len > 7) set is_verb unset is_noun <-  '{a}{s}{t}' )
-            '{a}{s}{t}' ($(len > 7) set is_verb unset is_noun)
+            // است words tend to have longer roots, so adjust threshold
+            '{y}{s}{t}' '{n}{s}{t}' '{t}{s}{t}' ($(len > 5) set is_verb unset is_noun <-  '{a}{s}{t}' )
+            '{a}{s}{t}' ($(len > 5) set is_verb unset is_noun)
         )
 )
 
