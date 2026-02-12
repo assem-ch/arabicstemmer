@@ -18,7 +18,7 @@ word_family={}
 cpt=1
 while (line1 and line2):
     if cpt%1000000==0:
-        print "milestone", cpt
+        print("milestone", cpt)
     if  line1[:-1] in word_family:
         word_family[line1[:-1]].append(line2[:-1])
     else:
@@ -30,6 +30,6 @@ while (line1 and line2):
 for k in sorted(word_family):
     h.write(k+" ==> \t"+ " ".join(word_family[k])+"\n")
 
-print "Number of words =", cpt
-print "Number of groups =", len(word_family)
-print "Grouping percentage =", (len(word_family))/float(cpt)
+print("Number of words =", cpt)
+print("Number of groups =", len(word_family))
+print("Grouping percentage =", (len(word_family))/float(cpt))

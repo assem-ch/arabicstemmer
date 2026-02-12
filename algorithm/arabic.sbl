@@ -213,6 +213,7 @@ booleans (
             is_noun
             is_verb
             is_defined
+            should_stem
          )
 
 routines (
@@ -243,6 +244,7 @@ routines (
 
     Checks1
     Checks2
+    Validate
 )
 
 externals ( stem )
@@ -353,10 +355,32 @@ define Normalize_post as (
 )
 
 // Checks
+define Validate as (
+    set should_stem
+    // Check for English letters or numbers
+    do repeat (
+        [substring] among (
+            // English letters (both cases)
+            'a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 
+            'n' 'o' 'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z'
+            'A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M' 
+            'N' 'O' 'P' 'Q' 'R' 'S' 'T' 'U' 'V' 'W' 'X' 'Y' 'Z'
+            // Numbers (both ASCII and normalized from Hindu-Arabic)
+            '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
+            (unset should_stem)
+        )
+        or next
+    )
+)
+
 define Checks1 as (
     [substring] among (
         '{b}{a}{l}' '{k}{a}{l}' ($(len > 4)  set is_noun  unset is_verb set is_defined)
+        '{f}{a}{l}' ($(len > 4)  set is_noun  unset is_verb set is_defined)
         '{l}{l}' '{a}{l}' ($(len > 3)  set is_noun unset is_verb set is_defined)
+        '{w}{a}{l}' ($(len > 4)  set is_noun unset is_verb set is_defined)
+        '{b}{b}' ($(len > 3)  set is_noun  unset is_verb)
+        '{w}{w}' '{f}{f}' ($(len > 3)  set is_noun  unset is_verb)
     )
 )
 
@@ -421,18 +445,22 @@ define Prefix_Step3c_Noun as ( // probably  noun and undefined
 )
 
 define Prefix_Step3_Verb as (
+        // س (sa-) prefix only attaches to present tense verbs
+        // Present tense verbs start with: ي (y), ت (t), ن (n), أ (ao)
         [substring] among (
-            //'{s}' ($(len > 4) delete)// BUG: cause confusion
-            '{s}{y}' ($(len > 4) <- '{y}' )
-            '{s}{t}' ($(len > 4) <- '{t}')
-            '{s}{n}' ($(len > 4) <- '{n}')
-            '{s}{ao}' ($(len > 4) <- '{ao}')
+            '{s}{y}' ($(len > 4) is_verb <- '{y}' )
+            '{s}{t}' ($(len > 4) is_verb <- '{t}')
+            '{s}{n}' ($(len > 4) is_verb <- '{n}')
+            '{s}{ao}' ($(len > 4) is_verb <- '{ao}')
         )
 )
 
 define Prefix_Step4_Verb as (
         [substring] among (
-            '{y}{s}{t}' '{n}{s}{t}' '{t}{s}{t}' ($(len > 4) set is_verb unset is_noun <-  '{a}{s}{t}' )
+            // است patterns - indicates verb (often Form X)
+            // Increase size threshold by 3 for است words as they tend to be longer
+            '{y}{s}{t}' '{n}{s}{t}' '{t}{s}{t}' ($(len > 7) set is_verb unset is_noun <-  '{a}{s}{t}' )
+            '{a}{s}{t}' ($(len > 7) set is_verb unset is_noun)
         )
 )
 
@@ -448,7 +476,10 @@ backwardmode (
             )
         define Suffix_Noun_Step1b as (
             [substring] among (
-                '{n}' ($(len > 5) delete)
+                // جمع مذكر السالم (masculine sound plural)
+                // rarely has roots less than 4, so use stricter length check
+                '{n}' ($(len > 5) delete set is_noun unset is_verb)
+                '{w}{n}' '{y}{n}' ($(len > 6) delete set is_noun unset is_verb)
             )
         )
 
@@ -460,7 +491,8 @@ backwardmode (
 
         define Suffix_Noun_Step2b as (
             [substring] among (
-                '{a}{t}' ($(len >= 5) delete)
+                // feminine plural ات is definitely a noun
+                '{a}{t}' ($(len >= 5) delete set is_noun unset is_verb)
             )
         )
 
@@ -493,7 +525,9 @@ backwardmode (
                         '{t}' ($(len >= 4)  delete)
                         '{a}' '{n}' '{y}' ($(len >= 4) delete)
                         '{n}{a}' '{t}{a}'  '{t}{n}'  ($(len >= 5) delete)// past
-                        '{a}{n}' '{w}{n}' '{y}{n}' ($(len > 5) delete) // present
+                        // present tense verb suffixes - maintain minimum length 4
+                        // because present has 1-letter prefix
+                        '{a}{n}' '{w}{n}' '{y}{n}' ($(len > 5) delete set is_verb unset is_noun) // present
                         '{t}{m}{a}' ($(len >= 6) delete)
                 )
             )
@@ -526,75 +560,82 @@ define stem as (
     set is_noun
     set is_verb
     unset is_defined
+    
+    // validate word can be stemmed
+    do Validate
+    
+    // only stem if validation passed
+    should_stem (
 
-    // guess type and properties
-    do Checks1
-    backwards ( do Checks2 )
+        // guess type and properties
+        do Checks1
+        backwards ( do Checks2 )
 
-    // normalization pre-stemming
-    do Normalize_pre
+        // normalization pre-stemming
+        do Normalize_pre
 
 
-    backwards (
+        backwards (
 
-       do (
-              //Suffixes for verbs
-            (
-           is_verb
-           (
-               try
-               (
-                  (
-                    (atleast 1 Suffix_Verb_Step1)
-                    ( Suffix_Verb_Step2a or Suffix_Verb_Step2c
-                      or next
-                      )
-                  )
-                  or Suffix_Verb_Step2b
-                  or Suffix_Verb_Step2a
-                )
-                or Suffix_Verb_Step2a
-            )
-           )
-           // Suffixes for nouns
-          or (
-               is_noun
+           do (
+                  //Suffixes for verbs
                 (
-
-                   try (
-                       Suffix_Noun_Step2c2
-                       or (not is_defined Suffix_Noun_Step1a (
-                              Suffix_Noun_Step2a
-                              or Suffix_Noun_Step2b
-                              or Suffix_Noun_Step2c1
-                              or next
-                              )
+               is_verb
+               (
+                   try
+                   (
+                      (
+                        (atleast 1 Suffix_Verb_Step1)
+                        ( Suffix_Verb_Step2a or Suffix_Verb_Step2c
+                          or next
                           )
-                       or (Suffix_Noun_Step1b (
-                              Suffix_Noun_Step2a
-                              or Suffix_Noun_Step2b
-                              or Suffix_Noun_Step2c1))
-                       or (not is_defined Suffix_Noun_Step2a)
-                       or (Suffix_Noun_Step2b)
-                   )
-                   (Suffix_Noun_Step3)
-                 )
+                      )
+                      or Suffix_Verb_Step2b
+                      or Suffix_Verb_Step2a
+                    )
+                    or Suffix_Verb_Step2a
+                )
+               )
+               // Suffixes for nouns
+              or (
+                   is_noun
+                    (
+
+                       try (
+                           Suffix_Noun_Step2c2
+                           or (not is_defined Suffix_Noun_Step1a (
+                                  Suffix_Noun_Step2a
+                                  or Suffix_Noun_Step2b
+                                  or Suffix_Noun_Step2c1
+                                  or next
+                                  )
+                              )
+                           or (Suffix_Noun_Step1b (
+                                  Suffix_Noun_Step2a
+                                  or Suffix_Noun_Step2b
+                                  or Suffix_Noun_Step2c1))
+                           or (not is_defined Suffix_Noun_Step2a)
+                           or (Suffix_Noun_Step2b)
+                       )
+                       (Suffix_Noun_Step3)
+                     )
+                )
+
+                // Suffixes for alef maqsura
+                or  Suffix_All_alef_maqsura
             )
-
-            // Suffixes for alef maqsura
-            or  Suffix_All_alef_maqsura
         )
-    )
 
-    //Prefixes
-    do (
-       try Prefix_Step1
-       try ( Prefix_Step2a or Prefix_Step2b )
-       ( Prefix_Step3a_Noun
-         or (is_noun try Prefix_Step3b_Noun Prefix_Step3c_Noun)
-         or (is_verb try Prefix_Step3_Verb Prefix_Step4_Verb)
-         )
+        //Prefixes
+        do (
+           try Prefix_Step1
+           try ( Prefix_Step2a or Prefix_Step2b )
+           ( Prefix_Step3a_Noun
+             or (is_noun try Prefix_Step3b_Noun Prefix_Step3c_Noun)
+             or (is_verb try Prefix_Step3_Verb Prefix_Step4_Verb)
+             )
+        )
+        // normalization post-stemming
+        do Normalize_post
     )
-    // normalization post-stemming
-    do Normalize_post
 )

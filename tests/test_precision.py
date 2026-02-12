@@ -28,9 +28,9 @@ line3 = r.readline()
 i = cpt_stems = cpt_roots = 0
 
 while( line1 and line2 and line3 and i < len(golden_corpus)- 2):
-    stem = line1[:-1].decode("utf-8")
-    word = line2[:-1].decode("utf-8")
-    root = line3[:-1].decode("utf-8")
+    stem = line1[:-1]
+    word = line2[:-1]
+    root = line3[:-1]
     if word == golden_corpus[i]["word"]:
         if stem == golden_corpus[i]["stem"]:
             cpt_stems = cpt_stems + 1
@@ -44,14 +44,14 @@ while( line1 and line2 and line3 and i < len(golden_corpus)- 2):
 stemsSuccessPercent = (cpt_stems*100)/float(len(golden_corpus))
 rootssSuccessPercent = (cpt_roots*100)/float(len(golden_corpus))
 
-print "======================================================"
-print "================= Test arabic-stemmer ================"
-print "================= with Golden_Corpus  ================"
-print "======================================================"
-print "success rate stems = {:0.2f} %".format(stemsSuccessPercent)
-print "success rate roots = {:0.2f} %".format(rootssSuccessPercent)
-print cpt_stems," stem cases are passed from: ",len(golden_corpus)
-print cpt_roots," root cases are passed from: ",len(golden_corpus)
-print "======================================================"
-print "=================     End Test        ================"
-print "======================================================"
+print("======================================================")
+print("================= Test arabic-stemmer ================")
+print("================= with Golden_Corpus  ================")
+print("======================================================")
+print("success rate stems = {:0.2f} %".format(stemsSuccessPercent))
+print("success rate roots = {:0.2f} %".format(rootssSuccessPercent))
+print(cpt_stems," stem cases are passed from: ",len(golden_corpus))
+print(cpt_roots," root cases are passed from: ",len(golden_corpus))
+print("======================================================")
+print("=================     End Test        ================")
+print("======================================================")
