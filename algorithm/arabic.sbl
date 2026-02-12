@@ -400,7 +400,7 @@ define Prefix_Step2b as (
 define Prefix_Step3a_Noun as ( // it is noun and defined
         [substring] among (
             '{b}{a}{l}' '{k}{a}{l}' ($(len > 5) delete)
-            '{l}{l}' '{a}{l}' ($(len > 4) delete)
+            '{l}{l}' '{a}{l}' ($(len >= 4) delete)
         )
 )
 
@@ -477,7 +477,7 @@ backwardmode (
         )
         define Suffix_Noun_Step3 as ( // ya' nisbiya
             [substring] among (
-                '{y}' ($(len >= 3) delete)
+                '{y}' ($(len > 5) delete)
             )
         )
 
