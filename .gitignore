@@ -70,4 +70,6 @@ docs/site
 test_golden_corpus/
 tests/output_data/
 
-.DS_Storemodules/
+.DS_Store
+modules/
+bin/
