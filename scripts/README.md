@@ -90,9 +90,10 @@ console.log(stemmer.stemWord('والمعلمين')); // Output: معلم
 
 You should regenerate the JavaScript stemmer whenever:
 
-1. **The algorithm is updated**: When `algorithm/arabic.sbl` is modified
-2. **The root-based stemmer is changed**: When `algorithm/arabic_root.sbl` is modified  
-3. **Website deployment**: Before deploying updates to the website
+1. **The light stemmer algorithm is updated**: When `algorithm/arabic.sbl` is modified
+2. **Website deployment**: Before deploying updates to the website that use the stemmer
+
+**Note**: This script generates the light stemmer only. The root-based stemmer (`algorithm/arabic_root.sbl`) can be generated similarly by modifying the script to use that algorithm instead.
 
 ## Output File Structure
 
