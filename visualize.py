@@ -560,7 +560,7 @@ def visualize_word(word, output_file=None, stemmer_bin='./bin/stemwords'):
         Path to the generated HTML visualization file
     """
     if output_file is None:
-        output_file = f'visualization_{datetime.now().strftime("%Y%m%d_%H%M%S")}.html'
+        output_file = f'visualization_{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.html'
     
     visualizer = ArabicStemmerVisualizer(word)
     stemmed = visualizer.trace_stemming(stemmer_bin)
