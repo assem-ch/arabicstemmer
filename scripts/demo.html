@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arabic Stemmer Demo</title>
+    <style>
+        body {
+            font-family: 'Arial', 'Tahoma', sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            direction: rtl;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+        }
+        .result strong {
+            color: #2e7d32;
+        }
+        .examples {
+            margin-top: 30px;
+            padding: 15px;
+            background: #fff3e0;
+            border-radius: 5px;
+        }
+        .examples h3 {
+            margin-top: 0;
+            color: #e65100;
+        }
+        .example-item {
+            padding: 8px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .example-item:hover {
+            background: #ffe0b2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>مُحلِّل الكلمات العربية</h1>
+        <h2 style="text-align: center; color: #666; font-size: 16px;">Arabic Word Stemmer Demo</h2>
+        
+        <div class="input-group">
+            <label for="wordInput">أدخل كلمة عربية:</label>
+            <input type="text" id="wordInput" placeholder="مثال: الطلاب" autofocus>
+        </div>
+        
+        <button onclick="stemWord()">تحليل الكلمة</button>
+        
+        <div id="result" class="result" style="display: none;">
+            <strong>الأصل:</strong> <span id="stemOutput"></span>
+        </div>
+        
+        <div class="examples">
+            <h3>أمثلة للتجربة:</h3>
+            <div class="example-item" onclick="tryExample('الطالب')">الطالب</div>
+            <div class="example-item" onclick="tryExample('الطلاب')">الطلاب</div>
+            <div class="example-item" onclick="tryExample('والمعلمين')">والمعلمين</div>
+            <div class="example-item" onclick="tryExample('الحي')">الحي</div>
+            <div class="example-item" onclick="tryExample('فأطفالكم')">فأطفالكم</div>
+            <div class="example-item" onclick="tryExample('والطفلتين')">والطفلتين</div>
+        </div>
+    </div>
+
+    <script src="../dist/website/snowball.js"></script>
+    <script>
+        // Initialize the stemmer
+        var stemmer = new ArabicStemmer();
+        
+        // Function to stem a word
+        function stemWord() {
+            var input = document.getElementById('wordInput').value.trim();
+            
+            if (input === '') {
+                alert('الرجاء إدخال كلمة');
+                return;
+            }
+            
+            var stem = stemmer.stemWord(input);
+            
+            document.getElementById('stemOutput').textContent = stem;
+            document.getElementById('result').style.display = 'block';
+        }
+        
+        // Function to try an example
+        function tryExample(word) {
+            document.getElementById('wordInput').value = word;
+            stemWord();
+        }
+        
+        // Allow Enter key to submit
+        document.getElementById('wordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                stemWord();
+            }
+        });
+    </script>
+</body>
+</html>
