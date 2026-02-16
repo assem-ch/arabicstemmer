@@ -103,8 +103,11 @@ if (typeof module !== 'undefined' && module.exports) {
 } else if (typeof define === 'function' && define.amd) {
     define(function() { return ArabicStemmer; });
 } else {
-    // Browser global
-    this.ArabicStemmer = ArabicStemmer;
+    // Browser global - use globalThis for better compatibility
+    (typeof globalThis !== 'undefined' ? globalThis : 
+     typeof window !== 'undefined' ? window : 
+     typeof global !== 'undefined' ? global : 
+     this).ArabicStemmer = ArabicStemmer;
 }
 FOOTER
 
@@ -136,7 +139,12 @@ echo ""
 # Optional: Generate minified version if uglifyjs is available
 if command -v uglifyjs &> /dev/null; then
     echo "Generating minified version..."
-    MINIFIED_FILE="${OUTPUT_FILE%.js}.min.js"
+    # Create minified filename by replacing .js extension or adding .min.js
+    if [[ "$OUTPUT_FILE" == *.js ]]; then
+        MINIFIED_FILE="${OUTPUT_FILE%.js}.min.js"
+    else
+        MINIFIED_FILE="${OUTPUT_FILE}.min.js"
+    fi
     uglifyjs "$OUTPUT_FILE" -c -m -o "$MINIFIED_FILE"
     echo -e "${GREEN}✓ Minified version created: $MINIFIED_FILE${NC}"
     echo ""
