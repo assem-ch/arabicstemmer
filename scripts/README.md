@@ -156,6 +156,7 @@ The script performs the following steps:
 
 ## See Also
 
+- **Demo**: See `scripts/demo.html` for a complete browser-based demo
 - [Snowball Framework Documentation](https://snowballstem.org/)
 - [Arabic Stemmer Website](http://arabicstemmer.com)
 - [Project README](../README.md)
