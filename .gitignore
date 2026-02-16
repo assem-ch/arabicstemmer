@@ -73,3 +73,7 @@ tests/output_data/
 .DS_Store
 modules/
 bin/
+
+# Visualization outputs
+visualization_*.html
+test_visualization.html

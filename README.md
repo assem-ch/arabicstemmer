@@ -65,6 +65,18 @@ We configured tests to run against snowball-data arabic sample to test speed, gr
 ```sh
 $ make test
 ```
+
+## Visualize:
+Interactive visualization of the algorithm phases as an automaton. This helps understand how the stemmer processes words step-by-step.
+
+```sh
+$ python visualize.py الطالب
+```
+
+This generates an interactive HTML file showing all algorithm phases with transitions. See [VISUALIZATION.md](VISUALIZATION.md) for details.
+
+![Visualization Example](https://github.com/user-attachments/assets/6ae4dca6-6e4f-4255-9f58-956d80a3abcc)
+
 ## Distributions:
 - dist light stemmer to available languages:
 ```sh
