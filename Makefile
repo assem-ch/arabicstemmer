@@ -33,6 +33,11 @@ test:
 	@echo "Rooting sample grouping effect..."
 	@python tests/test_grouping.py  $(OUTPUT)output_root.txt $(VOCFILE) $(OUTPUT)grouping_root.txt
 
+visualize:
+	@echo "Creating interactive visualization..."
+	@python visualize.py "الطالب" visualization.html
+	@echo "Open visualization.html in your browser"
+
 
 
 test_against_gc:
