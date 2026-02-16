@@ -50,3 +50,7 @@ dist: build
 	@mkdir -p  "dist/java/";cp $(SNOWBALL)"dist/libstemmer_java.tgz" "dist/java/"
 	@mkdir -p  "dist/c/";cp $(SNOWBALL)"dist/libstemmer_c.tgz" "dist/c/"
 	@mkdir -p  "dist/jsx/";cp $(SNOWBALL)"dist/jsstemmer.tgz" "dist/jsx/"
+
+js_stemmer:
+	@echo "Generating JavaScript stemmer for website..."
+	@./scripts/generate_js_stemmer.sh

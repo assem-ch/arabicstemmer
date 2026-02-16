@@ -71,4 +71,10 @@ $ make test
 $ make dist
 ```
 
+## JavaScript Stemmer for Web:
+Generate a browser-compatible JavaScript stemmer for use in websites:
+```sh
+$ make js_stemmer
+```
+The generated file will be placed in `dist/website/snowball.js`. For more details and usage examples, see [scripts/README.md](scripts/README.md).
 
