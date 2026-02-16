@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assem's Arabic Stemmer - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .demo-section {
+            margin-bottom: 40px;
+        }
+        
+        .demo-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-family: 'Arial', sans-serif;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .btn-light {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .btn-root {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .btn-clear {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        
+        .output-group {
+            margin-top: 20px;
+        }
+        
+        .output-box {
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 100px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .word-item {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 15px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .word-item .original {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .word-item .stemmed {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .example-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .example-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .example-section table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .example-section th,
+        .example-section td {
+            padding: 10px;
+            text-align: right;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .example-section th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .loading.active {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>مقطّع الجذور العربية</h1>
+            <h1>Assem's Arabic Stemmer</h1>
+            <p>Light Stemmer & Root-Based Stemmer Demo</p>
+        </div>
+        
+        <div class="content">
+            <div class="demo-section">
+                <h2>تجربة المقطّع - Demo</h2>
+                
+                <div class="input-group">
+                    <label for="input-text">أدخل النص العربي - Enter Arabic Text:</label>
+                    <textarea id="input-text" placeholder="مثال: الطالب يدرس في المكتبة&#10;Example: الطالب يدرس في المكتبة">الطالب يدرس في المكتبة</textarea>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-light" onclick="stemText('light')">
+                        Light Stemmer<br>
+                        <small>مقطّع خفيف</small>
+                    </button>
+                    <button class="btn-root" onclick="stemText('root')">
+                        Root-Based Stemmer<br>
+                        <small>مقطّع الجذور</small>
+                    </button>
+                    <button class="btn-clear" onclick="clearResults()">
+                        Clear - مسح
+                    </button>
+                </div>
+                
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Processing... جاري المعالجة</p>
+                </div>
+                
+                <div class="stats" id="stats" style="display: none;">
+                    <div class="stat-item">
+                        <div class="stat-value" id="word-count">0</div>
+                        <div class="stat-label">Words - كلمات</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="unique-stems">0</div>
+                        <div class="stat-label">Unique Stems - جذور فريدة</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="processing-time">0ms</div>
+                        <div class="stat-label">Processing Time - وقت المعالجة</div>
+                    </div>
+                </div>
+                
+                <div class="output-group" id="output-section" style="display: none;">
+                    <label>النتائج - Results:</label>
+                    <div class="output-box" id="output"></div>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <h3>مثال المقارنة - Comparison Example</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>الكلمة الأصلية<br>Original Word</th>
+                            <th>المقطّع الخفيف<br>Light Stemmer</th>
+                            <th>مقطّع الجذور<br>Root-Based Stemmer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>طفل</td>
+                            <td>طفل</td>
+                            <td>طفل</td>
+                        </tr>
+                        <tr>
+                            <td>اطفال</td>
+                            <td>اطفال</td>
+                            <td>طفل</td>
+                        </tr>
+                        <tr>
+                            <td>الاطفال</td>
+                            <td>اطفال</td>
+                            <td>طفل</td>
+                        </tr>
+                        <tr>
+                            <td>اطفالكم</td>
+                            <td>اطفال</td>
+                            <td>طفل</td>
+                        </tr>
+                        <tr>
+                            <td>فأطفالكم</td>
+                            <td>اطفال</td>
+                            <td>طفل</td>
+                        </tr>
+                        <tr>
+                            <td>الطفولة</td>
+                            <td>طفول</td>
+                            <td>طفل</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Assem's Arabic Stemmer is a snowball-based stemming algorithm for Arabic</p>
+            <p><a href="https://github.com/assem-ch/arabicstemmer" target="_blank">GitHub Repository</a> | 
+               <a href="https://arabicstemmer.com" target="_blank">Website</a></p>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { BaseStemmer } from './base-stemmer.js';
+        import { ArabicLightStemmer } from './arabic-light-stemmer.js';
+        import { ArabicRootStemmer } from './arabic-root-stemmer.js';
+        
+        window.BaseStemmer = BaseStemmer;
+        window.ArabicLightStemmer = ArabicLightStemmer;
+        window.ArabicRootStemmer = ArabicRootStemmer;
+        
+        console.log('Stemmers loaded successfully!');
+    </script>
+    
+    <script>
+        let currentStemmer = null;
+        let currentType = '';
+        
+        function stemText(type) {
+            const inputText = document.getElementById('input-text').value.trim();
+            
+            if (!inputText) {
+                alert('الرجاء إدخال نص عربي\nPlease enter Arabic text');
+                return;
+            }
+            
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('output-section').style.display = 'none';
+            document.getElementById('stats').style.display = 'none';
+            
+            // Process after a short delay to show loading animation
+            setTimeout(() => {
+                try {
+                    const startTime = performance.now();
+                    
+                    // Initialize stemmer
+                    if (type === 'light') {
+                        currentStemmer = new window.ArabicLightStemmer();
+                        currentType = 'Light Stemmer';
+                    } else {
+                        currentStemmer = new window.ArabicRootStemmer();
+                        currentType = 'Root-Based Stemmer';
+                    }
+                    
+                    // Split text into words
+                    const words = inputText.split(/\s+/);
+                    const results = [];
+                    const stemSet = new Set();
+                    
+                    // Stem each word
+                    words.forEach(word => {
+                        const cleaned = word.trim();
+                        if (cleaned) {
+                            const stemmed = currentStemmer.stem(cleaned);
+                            results.push({ original: cleaned, stemmed: stemmed });
+                            stemSet.add(stemmed);
+                        }
+                    });
+                    
+                    const endTime = performance.now();
+                    const processingTime = (endTime - startTime).toFixed(2);
+                    
+                    // Display results
+                    displayResults(results, stemSet.size, processingTime);
+                    
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('حدث خطأ في المعالجة\nAn error occurred: ' + error.message);
+                } finally {
+                    document.getElementById('loading').classList.remove('active');
+                }
+            }, 100);
+        }
+        
+        function displayResults(results, uniqueStems, processingTime) {
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = '';
+            
+            // Create word items
+            results.forEach(item => {
+                const wordDiv = document.createElement('div');
+                wordDiv.className = 'word-item';
+                wordDiv.innerHTML = `
+                    <div class="original">${item.original}</div>
+                    <div class="stemmed">${item.stemmed}</div>
+                `;
+                outputDiv.appendChild(wordDiv);
+            });
+            
+            // Update stats
+            document.getElementById('word-count').textContent = results.length;
+            document.getElementById('unique-stems').textContent = uniqueStems;
+            document.getElementById('processing-time').textContent = processingTime + 'ms';
+            
+            // Show results
+            document.getElementById('output-section').style.display = 'block';
+            document.getElementById('stats').style.display = 'flex';
+        }
+        
+        function clearResults() {
+            document.getElementById('input-text').value = '';
+            document.getElementById('output-section').style.display = 'none';
+            document.getElementById('stats').style.display = 'none';
+        }
+        
+        // Make functions globally available
+        window.stemText = stemText;
+        window.clearResults = clearResults;
+    </script>
+</body>
+</html>
